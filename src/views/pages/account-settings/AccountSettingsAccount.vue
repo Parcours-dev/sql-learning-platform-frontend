@@ -1,12 +1,14 @@
 <script setup>
-import avatar1 from '@images/avatars/avatar-1.png'
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import avatar1 from '@images/avatars/avatar-1.png';
 
-const accountData = {
+const accountDataLocal = ref({
   avatarImg: avatar1,
-  firstName: 'john',
-  lastName: 'Doe',
+  prenom: '',
+  nom: '',
   email: 'johnDoe@example.com',
-  org: 'ThemeSelection',
+  numero_etudiant: '',
   phone: '+1 (917) 543-9876',
   address: '123 Main St, New York, NY 10001',
   state: 'New York',
@@ -15,11 +17,11 @@ const accountData = {
   language: 'English',
   timezone: '(GMT-11:00) International Date Line West',
   currency: 'USD',
-}
+});
 
-const refInputEl = ref()
-const accountDataLocal = ref(structuredClone(accountData))
-const isAccountDeactivated = ref(false)
+const refInputEl = ref(null);
+const isAccountDeactivated = ref(false);
+
 
 const resetForm = () => {
   accountDataLocal.value = structuredClone(accountData)
@@ -98,12 +100,29 @@ const currencies = [
   'HUF',
   'INR',
 ]
+
+
+
+
+/// Fonction pour charger les informations de l'utilisateur
+const loadUserInfo = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/user-info', { withCredentials: true });
+    // Mise à jour de accountDataLocal avec les données récupérées
+    accountDataLocal.value = { ...accountDataLocal.value, ...response.data };
+  } catch (error) {
+    console.error('Erreur lors de la récupération des informations utilisateur:', error);
+  }
+};
+
+// Appeler `loadUserInfo` au montage du composant
+onMounted(loadUserInfo);
 </script>
 
 <template>
   <VRow>
     <VCol cols="12">
-      <VCard title="Account Details">
+      <VCard title="Mon Compte 👩‍🎓">
         <VCardText class="d-flex">
           <!-- 👉 Avatar -->
           <VAvatar
@@ -168,9 +187,9 @@ const currencies = [
                 cols="12"
               >
                 <VTextField
-                  v-model="accountDataLocal.firstName"
-                  placeholder="John"
-                  label="First Name"
+                  v-model="accountDataLocal.prenom"
+                  placeholder="Antoine"
+                  label="Prénom"
                 />
               </VCol>
 
@@ -180,9 +199,9 @@ const currencies = [
                 cols="12"
               >
                 <VTextField
-                  v-model="accountDataLocal.lastName"
-                  placeholder="Doe"
-                  label="Last Name"
+                  v-model="accountDataLocal.nom"
+                  placeholder="Dupont"
+                  label="Nom"
                 />
               </VCol>
 
@@ -205,9 +224,9 @@ const currencies = [
                 md="6"
               >
                 <VTextField
-                  v-model="accountDataLocal.org"
-                  label="Organization"
-                  placeholder="ThemeSelection"
+                  v-model="accountDataLocal.numero_etudiant"
+                  label="Numéro étudiant"
+                  placeholder="0987"
                 />
               </VCol>
 

@@ -1,6 +1,6 @@
 <script setup>
 import { useTheme } from 'vuetify'
-import UpgradeToPro from '@/components/UpgradeToPro.vue'
+//import UpgradeToPro from '@/components/UpgradeToPro.vue'
 import { hexToRgb } from '@layouts/utils'
 import axios from "axios";
 axios.defaults.withCredentials = true;

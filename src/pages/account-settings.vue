@@ -10,12 +10,12 @@ const activeTab = ref(route.params.tab)
 // tabs
 const tabs = [
   {
-    title: 'Account',
+    title: 'Compte',
     icon: 'bx-user',
     tab: 'account',
   },
   {
-    title: 'Security',
+    title: 'Sécurité',
     icon: 'bx-lock-open',
     tab: 'security',
   },
