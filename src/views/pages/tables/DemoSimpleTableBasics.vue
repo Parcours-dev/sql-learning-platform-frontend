@@ -1,86 +1,46 @@
 <script setup>
-const desserts = [
-  {
-    dessert: 'Frozen Yogurt',
-    calories: 159,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Ice cream sandwich',
-    calories: 237,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Eclair',
-    calories: 262,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Cupcake',
-    calories: 305,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Gingerbread',
-    calories: 356,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-]
+import { ref, onMounted } from 'vue';
+
+const employees = ref([]); // Utilisez ref pour réagir aux changements de données
+
+// Fonction pour charger les données des employés depuis l'API
+const loadEmployees = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/tables');
+    if (!response.ok) {
+      throw new Error('Erreur lors de la récupération des employés');
+    }
+    const data = await response.json();
+    employees.value = data; // Met à jour les données des employés
+  } catch (error) {
+    console.error("Erreur : ", error.message);
+  }
+};
+
+// Utilisez onMounted pour charger les données lors du montage du composant
+onMounted(loadEmployees);
 </script>
+
 
 <template>
   <VTable>
     <thead>
-      <tr>
-        <th class="text-uppercase">
-          Desserts (100g Servings)
-        </th>
-        <th>
-          calories
-        </th>
-        <th>
-          Fat(g)
-        </th>
-        <th>
-          Carbs(g)
-        </th>
-        <th>
-          protein(g)
-        </th>
-      </tr>
+    <tr>
+      <th>EmployeID</th>
+      <th>Nom</th>
+      <th>Salaire</th>
+      <th>DepartementID</th>
+      <th>ManagerID</th>
+    </tr>
     </thead>
-
     <tbody>
-      <tr
-        v-for="item in desserts"
-        :key="item.dessert"
-      >
-        <td>
-          {{ item.dessert }}
-        </td>
-        <td class="text-center">
-          {{ item.calories }}
-        </td>
-        <td class="text-center">
-          {{ item.fat }}
-        </td>
-        <td class="text-center">
-          {{ item.carbs }}
-        </td>
-        <td class="text-center">
-          {{ item.protein }}
-        </td>
-      </tr>
+    <tr v-for="employee in employees" :key="employee.EmployeID">
+      <td class="text-center">{{ employee.EmployeID }}</td>
+      <td>{{ employee.Nom }}</td>
+      <td class="text-center">{{ employee.Salaire }}</td>
+      <td class="text-center">{{ employee.DepartementID }}</td>
+      <td class="text-center">{{ employee.ManagerID || 'N/A' }}</td>
+    </tr>
     </tbody>
   </VTable>
 </template>
