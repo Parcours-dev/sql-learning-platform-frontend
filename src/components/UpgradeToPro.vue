@@ -1,21 +1,20 @@
-<!--
 <template>
   <VBtn
-      color="error"
-      class="product-upgrade-to-pro"
-      href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/"
-      target="_blank"
-      rel="noopener noreferrer"
+    color="error"
+    class="product-upgrade-to-pro"
+    href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/"
+    target="_blank"
+    rel="noopener noreferrer"
   >
     Upgrade to Pro
 
     <VMenu
-        open-on-hover
-        activator="parent"
-        offset="15"
-        max-width="400px"
-        :close-on-content-click="false"
-        transition="slide-y-reverse-transition"
+      open-on-hover
+      activator="parent"
+      offset="15"
+      max-width="400px"
+      :close-on-content-click="false"
+      transition="slide-y-reverse-transition"
     >
       <VCard>
         <VImg src="https://cdn.jsdelivr.net/gh/themeselection/ts-assets/sneat/sneat-vuetify-vuejs-admin-template/banner/banner.png" />
@@ -26,18 +25,18 @@
         <VCardText>Click on below button to explore PRO version.</VCardText>
         <VCardText>
           <VBtn
-              class="me-4"
-              href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/?tab=details#details"
-              target="_blank"
-              rel="noopener noreferrer"
+            class="me-4"
+            href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/?tab=details#details"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Demo
           </VBtn>
           <VBtn
-              variant="outlined"
-              href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/"
-              target="_blank"
-              rel="noopener noreferrer"
+            variant="outlined"
+            href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Download
           </VBtn>
@@ -65,6 +64,3 @@
   }
 }
 </style>
-<script setup>
-</script>
--->

@@ -211,7 +211,7 @@ onMounted(loadUserInfo);
                 md="6"
               >
                 <VTextField
-                  v-model="accountDataLocal.Email"
+                  v-model="accountDataLocal.email"
                   label="E-mail"
                   placeholder="johndoe@gmail.com"
                   type="email"
