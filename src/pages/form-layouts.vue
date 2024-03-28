@@ -4,6 +4,8 @@ import DemoFormLayoutHorizontalFormWithIcons from '@/views/pages/form-layouts/De
 import DemoFormLayoutMultipleColumn from '@/views/pages/form-layouts/DemoFormLayoutMultipleColumn.vue'
 import DemoFormLayoutVerticalForm from '@/views/pages/form-layouts/DemoFormLayoutVerticalForm.vue'
 import DemoFormLayoutVerticalFormWithIcons from '@/views/pages/form-layouts/DemoFormLayoutVerticalFormWithIcons.vue'
+import CardNavigation from '@/views/pages/cards/card-basic/CardNavigation.vue'
+
 </script>
 
 <template>

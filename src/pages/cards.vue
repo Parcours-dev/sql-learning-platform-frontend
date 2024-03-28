@@ -2,6 +2,7 @@
 import CardBasic from '@/views/pages/cards/card-basic/CardBasic.vue'
 import CardNavigation from '@/views/pages/cards/card-basic/CardNavigation.vue'
 import CardSolid from '@/views/pages/cards/card-basic/CardSolid.vue'
+import McdVisualization from '@/components/McdVisualisation.vue'
 
 
 
@@ -21,21 +22,18 @@ const hoveredCard = ref(null)
 <template>
   <div>
     <p class="text-2xl mb-6">
-      Basic Cards
+      Chapitres - Découvres les exercices en cliquant sur les chapitres !
     </p>
-
     <CardBasic />
-
-    <p class="text-2xl mb-6 mt-14">
-      Navigation Cards
-    </p>
-
-    <CardNavigation />
-
-    <p class="text-2xl mt-14 mb-6 ">
-      Solid Cards
-    </p>
-
-    <CardSolid />
   </div>
+
+   <CardNavigation />
+  <!--
+          <p class="text-2xl mt-14 mb-6 ">
+            Solid Cards
+          </p>
+
+          <CardSolid />
+          <McdVisualization />
+        </div> -->
 </template>

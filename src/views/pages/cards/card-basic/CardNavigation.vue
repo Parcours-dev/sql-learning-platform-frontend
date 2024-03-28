@@ -1,97 +1,48 @@
 <script setup>
-const navigationTab = ref('ITEM ONE')
-const navigationTab2 = ref('ITEM ONE')
+import { computed, ref, watch } from 'vue';
+import axios from 'axios';
+import { useStore } from 'vuex';
 
-const tabItems = [
-  'ITEM ONE',
-  'ITEM TWO',
-  'ITEM THREE',
-]
+const store = useStore();
 
-const tabContent = 'Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards...'
+// Utilisation de computed pour réagir aux changements de l'état exercices dans le store
+const exercices = computed(() => store.state.exercices);
+const chapitreSelectionne = ref(null);
+const navigationTab = ref(null);
+
+watch(chapitreSelectionne, (nouveauChapitreId) => {
+  if (nouveauChapitreId) {
+    store.dispatch('chargerExercices', nouveauChapitreId);
+  }
+});
 </script>
+
+
+
 
 <template>
   <VRow>
-    <VCol
-      md="6"
-      cols="12"
-    >
+    <VCol md="6" cols="12">
       <VCard>
+        <!-- Onglets de navigation -->
         <VTabs v-model="navigationTab">
-          <VTab
-            v-for="item in tabItems"
-            :key="item"
-            :value="item"
-          >
-            {{ item }}
+          <VTab v-for="exercice in exercices" :key="exercice.id" :value="exercice.id" class="black--text">
+            {{ exercice.titre }}
           </VTab>
         </VTabs>
 
-        <VDivider />
-
-        <!-- tabs content -->
         <VWindow v-model="navigationTab">
-          <VWindowItem
-            v-for="item in tabItems"
-            :key="item"
-            :value="item"
-          >
-            <VCardItem>
-              <VCardTitle>Navigation Card</VCardTitle>
-            </VCardItem>
-
-            <VCardText>
-              {{ tabContent }}
-            </VCardText>
-
-            <VCardText>
-              <VBtn>Learn More</VBtn>
-            </VCardText>
+          <VWindowItem v-for="exercice in exercices" :key="exercice.id" :value="exercice.id">
+            <VCardTitle>{{ exercice.titre }}</VCardTitle>
+            <VCardText>{{ exercice.description }}</VCardText>
           </VWindowItem>
+          <VCardText>
+            <VBtn>Je m'entraîne !</VBtn>
+          </VCardText>
         </VWindow>
-      </VCard>
-    </VCol>
-
-    <VCol
-      md="6"
-      cols="12"
-    >
-      <VCard>
-        <VTabs
-          v-model="navigationTab2"
-          align-tabs="center"
-        >
-          <VTab
-            v-for="item in tabItems"
-            :key="item"
-            :value="item"
-          >
-            {{ item }}
-          </VTab>
-        </VTabs>
 
         <VDivider />
 
-        <!-- tabs content -->
-        <VWindow v-model="navigationTab2">
-          <VWindowItem
-            v-for="item in tabItems"
-            :key="item"
-            :value="item"
-            class="text-center"
-          >
-            <VCardItem>
-              <VCardTitle>Navigation Card</VCardTitle>
-            </VCardItem>
-
-            <VCardText>{{ tabContent }}</VCardText>
-
-            <VCardText>
-              <VBtn>Learn More</VBtn>
-            </VCardText>
-          </VWindowItem>
-        </VWindow>
       </VCard>
     </VCol>
   </VRow>

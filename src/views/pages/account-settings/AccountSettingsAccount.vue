@@ -7,7 +7,7 @@ const accountDataLocal = ref({
   avatarImg: avatar1,
   prenom: '',
   nom: '',
-  email: 'johnDoe@example.com',
+  email: '',
   numero_etudiant: '',
   phone: '+1 (917) 543-9876',
   address: '123 Main St, New York, NY 10001',
@@ -199,7 +199,7 @@ onMounted(loadUserInfo);
                 cols="12"
               >
                 <VTextField
-                  v-model="accountDataLocal.nom"
+                  v-model="accountDataLocal.prenom"
                   placeholder="Dupont"
                   label="Nom"
                 />
@@ -211,7 +211,7 @@ onMounted(loadUserInfo);
                 md="6"
               >
                 <VTextField
-                  v-model="accountDataLocal.email"
+                  v-model="accountDataLocal.numero_etudiant"
                   label="E-mail"
                   placeholder="johndoe@gmail.com"
                   type="email"

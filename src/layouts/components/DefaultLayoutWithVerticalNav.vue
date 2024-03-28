@@ -112,10 +112,17 @@ const upgradeBanner = computed(() => {
         }"
       />
 
-      <!-- 👉 User Interface -->
+      <!-- 👉 Inerface Exos -->
       <VerticalNavSectionTitle
         :item="{
-          heading: 'User Interface',
+          heading: 'Les Exercices',
+        }"
+      />
+      <VerticalNavLink
+          :item="{
+          title: 'Chapitres',
+          icon: 'bx-award',
+          to: '/cards',
         }"
       />
       <VerticalNavLink
@@ -134,13 +141,6 @@ const upgradeBanner = computed(() => {
       />
       <VerticalNavLink
         :item="{
-          title: 'Cards',
-          icon: 'bx-credit-card',
-          to: '/cards',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
           title: 'Tables',
           icon: 'bx-table',
           to: '/tables',
@@ -153,24 +153,6 @@ const upgradeBanner = computed(() => {
           to: '/form-layouts',
         }"
       />
-    </template>
-
-    <template #after-vertical-nav-items>
-      <!-- 👉 illustration -->
-      <a
-        href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="margin-left: 7px;"
-      >
-        <img
-          :src="upgradeBanner"
-          alt="upgrade-banner"
-          transition="scale-transition"
-          class="upgrade-banner mx-auto"
-          style="max-width: 230px;"
-        >
-      </a>
     </template>
 
     <!-- 👉 Pages -->
