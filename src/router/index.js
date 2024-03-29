@@ -29,6 +29,10 @@ const router = createRouter({
           component: () => import('../pages/cards.vue'),
         },
         {
+          path: 'exercices',
+          component: () => import('../pages/exercices.vue'),
+        },
+        {
           path: 'tables',
           component: () => import('../pages/tables.vue'),
         },

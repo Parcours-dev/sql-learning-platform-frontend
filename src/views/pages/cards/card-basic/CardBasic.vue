@@ -58,6 +58,7 @@ const hoveredCard = ref(null)
           <VBtn
               variant="text"
               density="comfortable"
+              :to="{ path: '/exercices' }"
               @click="selectionnerChapitre(card.chapitreId)"
           >
             Accès aux exercices 🧠

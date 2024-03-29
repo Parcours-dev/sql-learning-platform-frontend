@@ -22,7 +22,7 @@ watch(chapitreSelectionne, (nouveauChapitreId) => {
 
 <template>
   <VRow>
-    <VCol md="6" cols="12">
+    <VCol md="12" cols="12">
       <VCard>
         <!-- Onglets de navigation -->
         <VTabs v-model="navigationTab">
