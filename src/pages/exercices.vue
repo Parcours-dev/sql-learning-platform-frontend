@@ -3,7 +3,11 @@ import CardBasic from '@/views/pages/cards/card-basic/CardBasic.vue'
 import CardNavigation from '@/views/pages/cards/card-basic/CardNavigation.vue'
 import CardSolid from '@/views/pages/cards/card-basic/CardSolid.vue'
 import McdVisualization from '@/components/McdVisualisation.vue'
-
+import DemoFormLayoutHorizontalForm from '@/views/pages/form-layouts/DemoFormLayoutHorizontalForm.vue'
+import DemoFormLayoutHorizontalFormWithIcons from '@/views/pages/form-layouts/DemoFormLayoutHorizontalFormWithIcons.vue'
+import DemoFormLayoutMultipleColumn from '@/views/pages/form-layouts/DemoFormLayoutMultipleColumn.vue'
+import DemoFormLayoutVerticalForm from '@/views/pages/form-layouts/DemoFormLayoutVerticalForm.vue'
+import DemoFormLayoutVerticalFormWithIcons from '@/views/pages/form-layouts/DemoFormLayoutVerticalFormWithIcons.vue'
 
 
 import { ref } from 'vue'
@@ -28,6 +32,8 @@ const hoveredCard = ref(null)
   </div>
 
   <CardNavigation />
+
+
   <!--
           <p class="text-2xl mt-14 mb-6 ">
             Solid Cards

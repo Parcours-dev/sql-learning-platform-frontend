@@ -2,6 +2,8 @@
 import { computed, ref, watch } from 'vue';
 import axios from 'axios';
 import { useStore } from 'vuex';
+import DemoFormLayoutHorizontalFormWithIcons
+  from "@/views/pages/form-layouts/DemoFormLayoutHorizontalFormWithIcons.vue";
 
 const store = useStore();
 
@@ -36,9 +38,12 @@ watch(chapitreSelectionne, (nouveauChapitreId) => {
             <VCardTitle>{{ exercice.titre }}</VCardTitle>
             <VCardText>{{ exercice.description }}</VCardText>
           </VWindowItem>
-          <VCardText>
-            <VBtn>Je m'entraîne !</VBtn>
-          </VCardText>
+          <VCard title="Réponse">
+            <VCardText>
+              <DemoFormLayoutHorizontalFormWithIcons />
+              <VBtn>Je m'entraîne !</VBtn>
+            </VCardText>
+          </VCard>
         </VWindow>
 
         <VDivider />

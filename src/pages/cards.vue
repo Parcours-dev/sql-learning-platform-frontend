@@ -26,8 +26,6 @@ const hoveredCard = ref(null)
     </p>
     <CardBasic />
   </div>
-
-   <CardNavigation />
   <!--
           <p class="text-2xl mt-14 mb-6 ">
             Solid Cards
