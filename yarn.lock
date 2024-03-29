@@ -352,10 +352,10 @@
   resolved "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@esbuild/win32-x64@0.18.20":
+"@esbuild/darwin-arm64@0.18.20":
   version "0.18.20"
-  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.18.20.tgz"
-  integrity sha512-kTdfRcSiDfQca/y9QIkng02avJ+NCaQvrMejlsB3RRv5sE9rRoeBPISaZpKxHELzRxZyLvNts1P27W3wV+8geQ==
+  resolved "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.18.20.tgz"
+  integrity sha512-bxRHW5kHU38zS2lPTPOyuyTm+S+eobPUnTNkdJEfAddYgEcll4xkT8DB9d2008DtTbl7uJag2HuE5NZAZgnNEA==
 
 "@eslint-community/eslint-utils@^4.1.2", "@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.4.0":
   version "4.4.0"
@@ -947,7 +947,7 @@
   resolved "https://registry.npmjs.org/@ungap/structured-clone/-/structured-clone-1.2.0.tgz"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
-"@vitejs/plugin-vue-jsx@^3.0.0":
+"@vitejs/plugin-vue-jsx@^3.1.0":
   version "3.1.0"
   resolved "https://registry.npmjs.org/@vitejs/plugin-vue-jsx/-/plugin-vue-jsx-3.1.0.tgz"
   integrity sha512-w9M6F3LSEU5kszVb9An2/MmXNxocAnUb3WhRr8bHlimhDrXNt6n6D2nJQR3UXpGlZHh/EsgouOHCsM8V3Ln+WA==
@@ -3045,6 +3045,11 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
+
+fsevents@~2.3.2:
+  version "2.3.3"
+  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
+  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 function-bind@^1.1.2:
   version "1.1.2"
@@ -5799,6 +5804,16 @@ vue-chartjs@^5.2.0:
   resolved "https://registry.npmjs.org/vue-chartjs/-/vue-chartjs-5.3.0.tgz"
   integrity sha512-8XqX0JU8vFZ+WA2/knz4z3ThClduni2Nm0BMe2u0mXgTfd9pXrmJ07QBI+WAij5P/aPmPMX54HCE1seWL37ZdQ==
 
+vue-confetti-explosion@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/vue-confetti-explosion/-/vue-confetti-explosion-1.0.2.tgz"
+  integrity sha512-80OboM3/6BItIoZ6DpNcZFqGpF607kjIVc5af56oKgtFmt5yWehvJeoYhkzYlqxrqdBe0Ko4Ie3bWrmLau+dJw==
+
+vue-confetti@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/vue-confetti/-/vue-confetti-2.3.0.tgz"
+  integrity sha512-zmPniVzBKv0ie/BEXBR6Isi08hYSd6lS18b8VduG5BzZ2tv6bO/rlwISg+IpGY2XsqAFTXFdTC28YR+UPocnAw==
+
 vue-demi@>=0.14.5:
   version "0.14.7"
   resolved "https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.7.tgz"
@@ -5857,7 +5872,7 @@ vue-shepherd@^3.0.0:
   dependencies:
     shepherd.js "^11.1.0"
 
-"vue@^2.6.12 || ^3.2.4", "vue@^2.6.14 || ^3.3.0", "vue@^2.7.0 || ^3.2.25", vue@^3.0.0, "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.0-0 || ^2.7.0", vue@^3.0.11, vue@^3.0.2, vue@^3.2.0, vue@^3.2.25, vue@^3.3.4, "vue@> 3.0.0", vue@>=3, vue@>=3.0.0, "vue@2 || 3", vue@3.4.19:
+"vue@^2.6.12 || ^3.2.4", "vue@^2.6.14 || ^3.3.0", "vue@^2.7.0 || ^3.2.25", vue@^3.0.0, "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.0-0 || ^2.7.0", vue@^3.0.11, vue@^3.0.2, vue@^3.0.5, vue@^3.2.0, vue@^3.2.25, vue@^3.3.4, "vue@> 3.0.0", vue@>=3, vue@>=3.0.0, "vue@2 || 3", vue@3.4.19:
   version "3.4.19"
   resolved "https://registry.npmjs.org/vue/-/vue-3.4.19.tgz"
   integrity sha512-W/7Fc9KUkajFU8dBeDluM4sRGc/aa4YJnOYck8dkjgZoXtVsn3OeTGni66FV1l3+nvPA7VBFYtPioaGKUmEADw==

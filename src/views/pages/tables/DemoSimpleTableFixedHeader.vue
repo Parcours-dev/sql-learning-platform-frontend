@@ -1,89 +1,30 @@
 <script setup>
-const desserts = [
-  {
-    dessert: 'Frozen Yogurt',
-    calories: 159,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Ice cream sandwich',
-    calories: 237,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Eclair',
-    calories: 262,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Cupcake',
-    calories: 305,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Gingerbread',
-    calories: 356,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-]
+import { defineProps } from 'vue';
+
+// Accepter les données des employés comme prop
+const props = defineProps({
+  employes: Array
+});
 </script>
 
-<template>
-  <VTable
-    height="250"
-    fixed-header
-  >
-    <thead>
-      <tr>
-        <th class="text-uppercase">
-          Desserts (100g Servings)
-        </th>
-        <th>
-          calories
-        </th>
-        <th>
-          Fat(g)
-        </th>
-        <th>
-          Carbs(g)
-        </th>
-        <th>
-          protein(g)
-        </th>
-      </tr>
-    </thead>
 
+<template>
+  <VTable height="500" fixed-header>
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Salaire</th>
+      <th>DepartementID</th>
+      <th>ManagerID</th>
+    </tr>
+    </thead>
     <tbody>
-      <tr
-        v-for="item in desserts"
-        :key="item.dessert"
-      >
-        <td>
-          {{ item.dessert }}
-        </td>
-        <td class="text-center">
-          {{ item.calories }}
-        </td>
-        <td class="text-center">
-          {{ item.fat }}
-        </td>
-        <td class="text-center">
-          {{ item.carbs }}
-        </td>
-        <td class="text-center">
-          {{ item.protein }}
-        </td>
-      </tr>
+    <tr v-for="employe in props.employes" :key="employe.EmployeID">
+      <td>{{ employe.Nom }}</td>
+      <td class="text-center">{{ employe.Salaire }}</td>
+      <td class="text-center">{{ employe.DepartementID }}</td>
+      <td class="text-center">{{ employe.ManagerID }}</td>
+    </tr>
     </tbody>
   </VTable>
 </template>

@@ -1,27 +1,24 @@
 <script setup>
-const firstName = ref('')
-const email = ref('')
-const mobile = ref()
-const password = ref()
-const checkbox = ref(false)
+import { ref, defineProps, defineEmits } from 'vue';
+
+const firstName = ref('');
+const emits = defineEmits(['submit']);
+
+const handleSubmit = () => {
+  emits('submit', firstName.value); // Émettre l'événement avec la requête SQL
+};
 </script>
 
 <template>
-  <VForm @submit.prevent="() => {}">
+  <VForm @submit.prevent="handleSubmit">
     <VRow>
-      <!-- 👉 First Name -->
       <VCol cols="12">
-        <VRow no-gutters>
-        </VRow>
         <VRow>
-          <VCol
-              cols="12"
-              md="2"
-          >
+          <VCol cols="12" md="15">
             <VTextField
                 id="firstName"
                 v-model="firstName"
-                placeholder="Requête SQL"
+                label="Requête SQL"
                 persistent-placeholder
             />
           </VCol>
@@ -29,6 +26,8 @@ const checkbox = ref(false)
         <VRow>
           <VCol cols="12" class="mt-1 mb-1">&nbsp;</VCol>
         </VRow>
+        <!-- Bouton de soumission ajouté directement dans le composant pour la cohérence -->
+        <VBtn type="submit">Valider</VBtn>
       </VCol>
     </VRow>
   </VForm>
