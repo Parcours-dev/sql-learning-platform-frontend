@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, computed, watch, onMounted, reactive } from 'vue';
 import axios from 'axios';
 import { useStore } from 'vuex';
 import DemoFormLayoutHorizontalFormWithIcons from "@/views/pages/form-layouts/DemoFormLayoutHorizontalFormWithIcons.vue";
@@ -11,12 +11,14 @@ const exercices = computed(() => store.state.exercices);
 const chapitreSelectionne = ref(null);
 const navigationTab = ref(null);
 const employes = ref([]);
-const showConfetti = ref(false); // Ajouté pour contrôler l'affichage des confettis
-const tentativesIncorrectes = reactive({}); // Nouveau
-const indicesParQuestion = reactive({});// Pas besoin de réimporter onMounted, c'était fait en double
+const showConfetti = ref(false);
+const tentativesIncorrectes = reactive({});
+const indicesParQuestion = reactive({});
+const exerciceMaxReussi = ref(null);
 
 onMounted(async () => {
   await chargerEmployes();
+  await chargerProgression();
 });
 
 const chargerEmployes = async () => {
@@ -28,6 +30,20 @@ const chargerEmployes = async () => {
   }
 };
 
+const chargerProgression = async () => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/progression`, { withCredentials: true });
+    if (response.data.length > 0 && response.data[0].QuestionID !== null) {
+      exerciceMaxReussi.value = response.data[0].QuestionID;
+    } else {
+      console.log("Aucune progression trouvée ou l'utilisateur n'a pas encore complété d'exercice.");
+      exerciceMaxReussi.value = null; // Ou gérer autrement selon la logique de votre application
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération de la progression:", error);
+  }
+};
+
 
 const submitQuery = async (questionId, userQuery) => {
   try {
@@ -35,15 +51,22 @@ const submitQuery = async (questionId, userQuery) => {
       QuestionID: questionId,
       UserQuery: userQuery
     }, { withCredentials: true });
+
     if (response.data.isCorrect) {
       showConfetti.value = true;
       setTimeout(() => { showConfetti.value = false; }, 5000);
-      tentativesIncorrectes[questionId] = 0; // Réinitialise le compteur pour cette question
+      tentativesIncorrectes[questionId] = 0;
+      const indexExerciceActuel = exercices.value.findIndex(ex => ex.id === questionId);
+      const indexExerciceMaxReussi = exercices.value.findIndex(ex => ex.id === exerciceMaxReussi.value);
+      if (indexExerciceActuel > indexExerciceMaxReussi) {
+        exerciceMaxReussi.value = questionId;
+        // Optionnel: mettre à jour la progression dans la base de données ici
+      }
     } else {
       alert('Désolé, votre réponse est incorrecte. Réessayez !');
       tentativesIncorrectes[questionId] = (tentativesIncorrectes[questionId] || 0) + 1;
       if (tentativesIncorrectes[questionId] >= 3) {
-        obtenirIndice(questionId); // Nouvelle fonction pour obtenir l'indice
+        obtenirIndice(questionId);
       }
     }
   } catch (error) {
@@ -54,10 +77,19 @@ const submitQuery = async (questionId, userQuery) => {
 const obtenirIndice = async (questionId) => {
   try {
     const response = await axios.get(`http://localhost:3000/questions/${questionId}/indice`, { withCredentials: true });
-    indicesParQuestion[questionId] = response.data.indice; // Stocke l'indice en utilisant le QuestionID comme clé
+    indicesParQuestion[questionId] = response.data.indice;
   } catch (error) {
     console.error("Erreur lors de l'obtention de l'indice :", error);
   }
+};
+
+const estExerciceDisponible = (exercice) => {
+  const indexExerciceActuel = exercices.value.findIndex(ex => ex.id === exercice.id);
+  const indexExerciceMaxReussi = exercices.value.findIndex(ex => ex.id === exerciceMaxReussi.value);
+
+  console.log(`Exercice actuel: ${exercice.id}, Index: ${indexExerciceActuel}, Max réussi: ${exerciceMaxReussi.value}, Index max réussi: ${indexExerciceMaxReussi}`);
+
+  return indexExerciceActuel <= indexExerciceMaxReussi + 1;
 };
 
 watch(chapitreSelectionne, (nouveauChapitreId) => {
@@ -74,35 +106,47 @@ watch(chapitreSelectionne, (nouveauChapitreId) => {
     <VCol md="12" cols="12">
       <VCard>
         <VTabs v-model="navigationTab">
-          <VTab v-for="exercice in exercices" :key="exercice.id" :value="exercice.id" class="black--text">
+          <!-- Utilisez estExerciceDisponible pour conditionner la classe de grisé des exercices -->
+          <VTab
+              v-for="exercice in exercices"
+              :key="exercice.id"
+              :value="exercice.id"
+              :class="{ 'grey--text text--lighten-1': !estExerciceDisponible(exercice), 'black--text': estExerciceDisponible(exercice) }"
+          >
             {{ exercice.titre }}
           </VTab>
         </VTabs>
 
         <VWindow v-model="navigationTab">
-          <VWindowItem v-for="exercice in exercices" :key="exercice.id" :value="exercice.id">
+          <VWindowItem
+              v-for="exercice in exercices"
+              :key="exercice.id"
+              :value="exercice.id"
+          >
             <VCardTitle>{{ exercice.titre }}</VCardTitle>
             <VCardText>{{ exercice.description }}</VCardText>
-            <VCard title="Réponse">
+            <VCard title="Réponse" v-if="estExerciceDisponible(exercice)">
               <VCardText>
-                <DemoFormLayoutHorizontalFormWithIcons @submit="submitQuery(exercice.id, $event)" :indice="indicesParQuestion[exercice.id]" />              </VCardText>
-
+                <!-- Le formulaire est affiché seulement si l'exercice est disponible -->
+                <DemoFormLayoutHorizontalFormWithIcons @submit="submitQuery(exercice.id, $event)" :indice="indicesParQuestion[exercice.id]" />
+              </VCardText>
             </VCard>
+            <div v-else>
+              <VCardText>Cet exercice n'est pas encore disponible. Résous le précédent et reviens ici 💪🏼</VCardText>
+            </div>
           </VWindowItem>
         </VWindow>
 
         <VCol cols="5">
-        <VCard title="Employés">
-          <VCardText>
-            Voici la liste des employés du jeu de données. Bonne lecture 😉
-          </VCardText>
-          <DemoSimpleTableFixedHeader :employes="employes" />
-        </VCard>
-          </VCol>
+          <VCard title="Employés">
+            <VCardText>
+              Voici la liste des employés du jeu de données. Bonne lecture 😉
+            </VCardText>
+            <DemoSimpleTableFixedHeader :employes="employes" />
+          </VCard>
+        </VCol>
         <VDivider/>
       </VCard>
     </VCol>
-
-
   </VRow>
 </template>
