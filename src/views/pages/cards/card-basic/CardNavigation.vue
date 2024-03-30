@@ -12,8 +12,8 @@ const chapitreSelectionne = ref(null);
 const navigationTab = ref(null);
 const employes = ref([]);
 const showConfetti = ref(false); // Ajouté pour contrôler l'affichage des confettis
-
-// Pas besoin de réimporter onMounted, c'était fait en double
+const tentativesIncorrectes = reactive({}); // Nouveau
+const indicesParQuestion = reactive({});// Pas besoin de réimporter onMounted, c'était fait en double
 
 onMounted(async () => {
   await chargerEmployes();
@@ -36,13 +36,27 @@ const submitQuery = async (questionId, userQuery) => {
       UserQuery: userQuery
     }, { withCredentials: true });
     if (response.data.isCorrect) {
-      showConfetti.value = true; // Déclenche les confettis
-      setTimeout(() => { showConfetti.value = false; }, 5000); // Masque les confettis après 5 secondes
+      showConfetti.value = true;
+      setTimeout(() => { showConfetti.value = false; }, 5000);
+      tentativesIncorrectes[questionId] = 0; // Réinitialise le compteur pour cette question
     } else {
       alert('Désolé, votre réponse est incorrecte. Réessayez !');
+      tentativesIncorrectes[questionId] = (tentativesIncorrectes[questionId] || 0) + 1;
+      if (tentativesIncorrectes[questionId] >= 3) {
+        obtenirIndice(questionId); // Nouvelle fonction pour obtenir l'indice
+      }
     }
   } catch (error) {
     console.error('Erreur lors de la vérification de la requête:', error);
+  }
+};
+
+const obtenirIndice = async (questionId) => {
+  try {
+    const response = await axios.get(`http://localhost:3000/questions/${questionId}/indice`, { withCredentials: true });
+    indicesParQuestion[questionId] = response.data.indice; // Stocke l'indice en utilisant le QuestionID comme clé
+  } catch (error) {
+    console.error("Erreur lors de l'obtention de l'indice :", error);
   }
 };
 
@@ -71,8 +85,8 @@ watch(chapitreSelectionne, (nouveauChapitreId) => {
             <VCardText>{{ exercice.description }}</VCardText>
             <VCard title="Réponse">
               <VCardText>
-                <DemoFormLayoutHorizontalFormWithIcons @submit="submitQuery(exercice.id, $event)" />
-              </VCardText>
+                <DemoFormLayoutHorizontalFormWithIcons @submit="submitQuery(exercice.id, $event)" :indice="indicesParQuestion[exercice.id]" />              </VCardText>
+
             </VCard>
           </VWindowItem>
         </VWindow>

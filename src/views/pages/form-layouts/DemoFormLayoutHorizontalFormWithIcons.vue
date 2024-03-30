@@ -1,6 +1,7 @@
 <script setup>
 import { ref, defineProps, defineEmits } from 'vue';
 
+const { indice } = defineProps(['indice']);
 const firstName = ref('');
 const emits = defineEmits(['submit']);
 
@@ -23,10 +24,16 @@ const handleSubmit = () => {
             />
           </VCol>
         </VRow>
+        <!-- Affiche l'indice si disponible -->
+        <VRow v-if="indice">
+          <VCol cols="12" class="mt-1 mb-1">
+            Voici ton indice 🕵🏼 : {{ indice }}
+          </VCol>
+        </VRow>
+
         <VRow>
           <VCol cols="12" class="mt-1 mb-1">&nbsp;</VCol>
         </VRow>
-        <!-- Bouton de soumission ajouté directement dans le composant pour la cohérence -->
         <VBtn type="submit">Valider</VBtn>
       </VCol>
     </VRow>
