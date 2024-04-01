@@ -42,13 +42,14 @@ const upgradeBanner = computed(() => {
           </IconBtn>
 
           <span class="d-none d-md-flex align-center text-disabled">
-            <span class="me-3">Search</span>
+            <span class="me-3">Recherche</span>
             <span class="meta-key">&#8984;K</span>
           </span>
         </div>
 
         <VSpacer />
 
+        <!--
         <IconBtn
           class="me-2"
           href="https://github.com/themeselection/sneat-vuetify-vuejs-admin-template-free"
@@ -56,7 +57,7 @@ const upgradeBanner = computed(() => {
           rel="noopener noreferrer"
         >
           <VIcon icon="bxl-github" />
-        </IconBtn>
+        </IconBtn> -->
 
         <IconBtn class="me-2">
           <VIcon icon="bx-bell" />
@@ -125,6 +126,7 @@ const upgradeBanner = computed(() => {
           to: '/cards',
         }"
       />
+      <!--
       <VerticalNavLink
         :item="{
           title: 'Typography',
@@ -152,7 +154,7 @@ const upgradeBanner = computed(() => {
           icon: 'mdi-form-select',
           to: '/form-layouts',
         }"
-      />
+      /> -->
 
     </template>
 

@@ -48,14 +48,14 @@ import avatar1 from '@images/avatars/avatar-1.png'
             </template>
 
             <VListItemTitle class="font-weight-semibold">
-              John Doe
+              Nom Prenom
             </VListItemTitle>
-            <VListItemSubtitle>Admin</VListItemSubtitle>
+            <VListItemSubtitle>Rôle admin/user</VListItemSubtitle>
           </VListItem>
           <VDivider class="my-2" />
 
           <!-- 👉 Profile -->
-          <VListItem link>
+          <VListItem link to="/account-settings">
             <template #prepend>
               <VIcon
                 class="me-2"
@@ -64,11 +64,11 @@ import avatar1 from '@images/avatars/avatar-1.png'
               />
             </template>
 
-            <VListItemTitle>Profile</VListItemTitle>
+            <VListItemTitle>Mon Profil</VListItemTitle>
           </VListItem>
 
           <!-- 👉 Settings -->
-          <VListItem link>
+          <VListItem link to="/account-settings">
             <template #prepend>
               <VIcon
                 class="me-2"
@@ -77,10 +77,10 @@ import avatar1 from '@images/avatars/avatar-1.png'
               />
             </template>
 
-            <VListItemTitle>Settings</VListItemTitle>
+            <VListItemTitle>Paramètres</VListItemTitle>
           </VListItem>
 
-          <!-- 👉 Pricing -->
+          <!-- 👉 Pricing
           <VListItem link>
             <template #prepend>
               <VIcon
@@ -91,9 +91,9 @@ import avatar1 from '@images/avatars/avatar-1.png'
             </template>
 
             <VListItemTitle>Pricing</VListItemTitle>
-          </VListItem>
+          </VListItem> -->
 
-          <!-- 👉 FAQ -->
+          <!-- 👉 FAQ
           <VListItem link>
             <template #prepend>
               <VIcon
@@ -104,7 +104,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
             </template>
 
             <VListItemTitle>FAQ</VListItemTitle>
-          </VListItem>
+          </VListItem>-->
 
           <!-- Divider -->
           <VDivider class="my-2" />
