@@ -1,10 +1,37 @@
 <script setup>
-import { useTheme } from 'vuetify'
-import illustrationJohnDark from '@images/cards/illustration-john-dark.png'
-import illustrationJohnLight from '@images/cards/illustration-john-light.png'
+  import { useTheme } from 'vuetify'
+  import illustrationJohnDark from '@images/cards/illustration-john-dark.png'
+  import illustrationJohnLight from '@images/cards/illustration-john-light.png'
+  import axios from 'axios'
+  import { ref } from 'vue'
 
-const { global } = useTheme()
-const illustrationJohn = computed(() => global.name.value === 'dark' ? illustrationJohnDark : illustrationJohnLight)
+  const { global } = useTheme()
+  const illustrationJohn = computed(() => global.name.value === 'dark' ? illustrationJohnDark : illustrationJohnLight)
+
+  // Ajouter une référence pour stocker les données de l'utilisateur
+  const userData = ref({ nom: '' });
+
+  // Appel API pour récupérer les informations de l'utilisateur
+  axios.get('http://localhost:3000/user-info', { withCredentials: true })
+  .then(response => {
+  userData.value = response.data;  // Assurez-vous que la réponse a la structure attendue
+})
+  .catch(error => {
+  console.error('Erreur lors de la récupération des informations utilisateur:', error);
+});
+
+
+  // Données réactives pour stocker le pourcentage
+  const progressPercentage = ref(0);
+
+  // Appel API pour récupérer le pourcentage de progression
+  axios.get('http://localhost:3000/api/progress', { withCredentials: true })
+      .then(response => {
+        progressPercentage.value = response.data.progressPercentage;  // Assurez-vous que la réponse a la structure attendue
+      })
+      .catch(error => {
+        console.error('Erreur lors de la récupération du pourcentage de progression:', error);
+      });
 </script>
 
 <template>
@@ -18,15 +45,15 @@ const illustrationJohn = computed(() => global.name.value === 'dark' ? illustrat
       >
         <VCardItem>
           <VCardTitle class="text-md-h5 text-primary">
-            Congratulations John! 🎉
+            Félicitations {{ userData.Prenom }} ! 🎉
           </VCardTitle>
         </VCardItem>
 
         <VCardText>
           <span>
-            You have done 72% 🤩 more sales today.
+            Tu as résolu {{progressPercentage}} % 🤩 des exercices.
             <br>
-            Check your new raising badge in your profile.
+            Consulte les exercices restants pour continuer à progresser.
           </span>
           <br>
           <VBtn
@@ -34,7 +61,7 @@ const illustrationJohn = computed(() => global.name.value === 'dark' ? illustrat
             class="mt-4"
             size="small"
           >
-            View Badges
+            Je m'améliore !
           </VBtn>
         </VCardText>
       </VCol>

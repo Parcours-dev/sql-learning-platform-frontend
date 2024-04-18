@@ -5,6 +5,8 @@ export default createStore({
     state: {
         chapitreSelectionne: null,
         exercices: [],
+        userRole: '', // Ajout pour stocker le rôle de l'utilisateur
+        isAuthenticated: false, // Ajout pour gérer l'état d'authentification
     },
     mutations: {
         setChapitreSelectionne(state, id) {
@@ -13,8 +15,25 @@ export default createStore({
         setExercices(state, exercices) {
             state.exercices = exercices || [];
         },
+        setUserRole(state, role) {
+            state.userRole = role;
+            state.isAuthenticated = true;
+        },
+        logout(state) {
+            state.userRole = '';
+            state.isAuthenticated = false;
+        }
     },
     actions: {
+        async login({ commit }, credentials) {
+            try {
+                const response = await axios.post('http://localhost:3000/login', credentials);
+                commit('setUserRole', response.data.role);
+                // Vous pouvez également enregistrer l'état de la session ici, par exemple en utilisant localStorage ou autre
+            } catch (error) {
+                console.error('Erreur lors de la tentative de connexion :', error);
+            }
+        },
         async chargerExercices({ commit }, chapitreId) {
             try {
                 const reponse = await axios.get(`http://localhost:3000/api/chapitres/${chapitreId}/exercices`);
@@ -30,5 +49,4 @@ export default createStore({
             }
         },
     },
-
 });

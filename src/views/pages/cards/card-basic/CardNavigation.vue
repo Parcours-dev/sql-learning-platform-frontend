@@ -97,6 +97,7 @@ watch(chapitreSelectionne, (nouveauChapitreId) => {
     store.dispatch('chargerExercices', nouveauChapitreId);
   }
 });
+
 </script>
 
 

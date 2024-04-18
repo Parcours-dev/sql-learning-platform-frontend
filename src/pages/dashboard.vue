@@ -6,7 +6,7 @@ import AnalyticsProfitReport from '@/views/dashboard/AnalyticsProfitReport.vue'
 import AnalyticsTotalRevenue from '@/views/dashboard/AnalyticsTotalRevenue.vue'
 import AnalyticsTransactions from '@/views/dashboard/AnalyticsTransactions.vue'
 
-// 👉 Images
+// Images
 import chart from '@images/cards/chart-success.png'
 import card from '@images/cards/credit-card-primary.png'
 import paypal from '@images/cards/paypal-error.png'
@@ -14,9 +14,7 @@ import wallet from '@images/cards/wallet-info.png'
 </script>
 
 <template>
-  <!--
   <VRow>
-     👉 Congratulations 
     <VCol
         cols="12"
         md="8"
@@ -29,7 +27,6 @@ import wallet from '@images/cards/wallet-info.png'
         sm="4"
     >
       <VRow>
-         👉 Profit 
         <VCol
             cols="12"
             md="6"
@@ -44,7 +41,6 @@ import wallet from '@images/cards/wallet-info.png'
           />
         </VCol>
 
-         👉 Sales 
         <VCol
             cols="12"
             md="6"
@@ -61,7 +57,6 @@ import wallet from '@images/cards/wallet-info.png'
       </VRow>
     </VCol>
 
-     👉 Total Revenue 
     <VCol
         cols="12"
         md="8"
@@ -79,7 +74,6 @@ import wallet from '@images/cards/wallet-info.png'
         order-md="2"
     >
       <VRow>
-         👉 Payments 
         <VCol
             cols="12"
             sm="6"
@@ -94,7 +88,7 @@ import wallet from '@images/cards/wallet-info.png'
           />
         </VCol>
 
-         👉 Revenue 
+
         <VCol
             cols="12"
             sm="6"
@@ -111,7 +105,6 @@ import wallet from '@images/cards/wallet-info.png'
       </VRow>
 
       <VRow>
-         👉 Profit Report 
         <VCol
             cols="12"
             sm="12"
@@ -121,7 +114,6 @@ import wallet from '@images/cards/wallet-info.png'
       </VRow>
     </VCol>
 
-     👉 Order Statistics 
     <VCol
         cols="12"
         md="4"
@@ -131,7 +123,6 @@ import wallet from '@images/cards/wallet-info.png'
       <AnalyticsOrderStatistics />
     </VCol>
 
-     👉 Tabs chart 
     <VCol
         cols="12"
         md="4"
@@ -141,7 +132,6 @@ import wallet from '@images/cards/wallet-info.png'
       <AnalyticsFinanceTabs />
     </VCol>
 
-     👉 Transactions 
     <VCol
         cols="12"
         md="4"
@@ -150,5 +140,5 @@ import wallet from '@images/cards/wallet-info.png'
     >
       <AnalyticsTransactions />
     </VCol>
-  </VRow>-->
+  </VRow>
 </template>

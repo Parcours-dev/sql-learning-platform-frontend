@@ -1,4 +1,8 @@
 <script setup>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+// Import des composants comme avant
 import CardBasic from '@/views/pages/cards/card-basic/CardBasic.vue'
 import CardNavigation from '@/views/pages/cards/card-basic/CardNavigation.vue'
 import CardSolid from '@/views/pages/cards/card-basic/CardSolid.vue'
@@ -9,9 +13,6 @@ import DemoFormLayoutMultipleColumn from '@/views/pages/form-layouts/DemoFormLay
 import DemoFormLayoutVerticalForm from '@/views/pages/form-layouts/DemoFormLayoutVerticalForm.vue'
 import DemoFormLayoutVerticalFormWithIcons from '@/views/pages/form-layouts/DemoFormLayoutVerticalFormWithIcons.vue'
 
-
-import { ref } from 'vue'
-
 const cards = ref([
   { title: 'Chapitre 1324234243234 ' },
   { title: 'Chapitre 2' },
@@ -20,8 +21,8 @@ const cards = ref([
 ])
 
 const hoveredCard = ref(null)
-
 </script>
+
 
 <template>
   <div>
