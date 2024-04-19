@@ -1,11 +1,14 @@
 <script setup>
-import DemoFormLayoutHorizontalForm from '@/views/pages/form-layouts/DemoFormLayoutHorizontalForm.vue'
+//import DemoFormLayoutHorizontalForm from '@/views/pages/form-layouts/DemoFormLayoutHorizontalForm.vue'
 import DemoFormLayoutHorizontalFormWithIcons from '@/views/pages/form-layouts/DemoFormLayoutHorizontalFormWithIcons.vue'
 import DemoFormLayoutMultipleColumn from '@/views/pages/form-layouts/DemoFormLayoutMultipleColumn.vue'
 import DemoFormLayoutVerticalForm from '@/views/pages/form-layouts/DemoFormLayoutVerticalForm.vue'
 import DemoFormLayoutVerticalFormWithIcons from '@/views/pages/form-layouts/DemoFormLayoutVerticalFormWithIcons.vue'
 import CardNavigation from '@/views/pages/cards/card-basic/CardNavigation.vue'
+import AddChapitre from "@/views/pages/form-layouts/AddChapitre.vue";
+import AddExercices from "@/views/pages/form-layouts/AddExercices.vue";
 
+//DemoFormLayoutHorizontalForm.vue
 </script>
 
 <template>
@@ -16,12 +19,26 @@ import CardNavigation from '@/views/pages/cards/card-basic/CardNavigation.vue'
         md="6"
       >
         <!-- 👉 Horizontal Form -->
-        <VCard title="Horizontal Form">
+        <VCard title="Créer un chapitre">
           <VCardText>
-            <DemoFormLayoutHorizontalForm />
+            <AddChapitre/>
           </VCardText>
         </VCard>
       </VCol>
+
+      <VCol
+          cols="12"
+          md="6"
+      >
+        <!-- 👉 Horizontal Form -->
+        <VCard title="Ajouter un Exercice">
+          <VCardText>
+            <AddExercices/>
+          </VCardText>
+        </VCard>
+      </VCol>
+
+
       <VCol
         cols="12"
         md="6"
