@@ -15,20 +15,12 @@ const showConfetti = ref(false);
 const tentativesIncorrectes = reactive({});
 const indicesParQuestion = reactive({});
 const exerciceMaxReussi = ref(null);
+const columnNames = ref({}); // Define columnNames as a reactive reference
 
 onMounted(async () => {
-  await chargerEmployes();
   await chargerProgression();
+  await fetchColumnNames();
 });
-
-const chargerEmployes = async () => {
-  try {
-    const response = await axios.get('http://localhost:3000/tables/employe');
-    employes.value = response.data;
-  } catch (error) {
-    console.error("Erreur lors de la récupération des données des employés:", error);
-  }
-};
 
 const chargerProgression = async () => {
   try {
@@ -37,13 +29,21 @@ const chargerProgression = async () => {
       exerciceMaxReussi.value = response.data[0].QuestionID;
     } else {
       console.log("Aucune progression trouvée ou l'utilisateur n'a pas encore complété d'exercice.");
-      exerciceMaxReussi.value = null; // Ou gérer autrement selon la logique de votre application
+      exerciceMaxReussi.value = null; // Handle as needed for your app logic
     }
   } catch (error) {
     console.error("Erreur lors de la récupération de la progression:", error);
   }
 };
 
+const fetchColumnNames = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/api/columns');
+    columnNames.value = response.data;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des noms de colonnes:', error);
+  }
+};
 
 const submitQuery = async (questionId, userQuery) => {
   try {
@@ -60,7 +60,6 @@ const submitQuery = async (questionId, userQuery) => {
       const indexExerciceMaxReussi = exercices.value.findIndex(ex => ex.id === exerciceMaxReussi.value);
       if (indexExerciceActuel > indexExerciceMaxReussi) {
         exerciceMaxReussi.value = questionId;
-        // Optionnel: mettre à jour la progression dans la base de données ici
       }
     } else {
       alert('Désolé, votre réponse est incorrecte. Réessayez !');
@@ -86,9 +85,6 @@ const obtenirIndice = async (questionId) => {
 const estExerciceDisponible = (exercice) => {
   const indexExerciceActuel = exercices.value.findIndex(ex => ex.id === exercice.id);
   const indexExerciceMaxReussi = exercices.value.findIndex(ex => ex.id === exerciceMaxReussi.value);
-
-  console.log(`Exercice actuel: ${exercice.id}, Index: ${indexExerciceActuel}, Max réussi: ${exerciceMaxReussi.value}, Index max réussi: ${indexExerciceMaxReussi}`);
-
   return indexExerciceActuel <= indexExerciceMaxReussi + 1;
 };
 
@@ -137,16 +133,31 @@ watch(chapitreSelectionne, (nouveauChapitreId) => {
             </div>
           </VWindowItem>
         </VWindow>
-
-        <VCol cols="5">
-          <VCard title="Employés">
-            <VCardText>
-              Voici la liste des employés du jeu de données. Bonne lecture 😉
-            </VCardText>
-            <DemoSimpleTableFixedHeader :employes="employes" />
-          </VCard>
-        </VCol>
         <VDivider/>
+
+        <v-row>
+          <v-col cols="12" md="12" offset-md="0">
+            <v-card>
+              <v-card-title>Noms des tables et colonnes</v-card-title>
+              <v-card-text>
+                <v-list>
+                  <v-list-item-group>
+                    <v-list-item v-for="(columns, table) in columnNames" :key="table">
+                      <v-list-item-content>
+                        <v-list-item-title>
+                          <strong>{{ table }}</strong>
+                        </v-list-item-title>
+                        <v-list-item-subtitle>
+                          Colonnes : {{ columns.join(', ') }}
+                        </v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list-item-group>
+                </v-list>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
       </VCard>
     </VCol>
   </VRow>

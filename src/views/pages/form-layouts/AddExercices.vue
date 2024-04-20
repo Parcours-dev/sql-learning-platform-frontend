@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 import ShowExerciceTable from '@/views/pages/tables/ShowExerciceTable.vue';
 import DemoSimpleTableFixedHeader from "@/views/pages/tables/DemoSimpleTableFixedHeader.vue";  // Assurez-vous que le chemin est correct
 
@@ -19,6 +20,8 @@ export default {
         instructions: '',
         chapitreId: ''
       },
+      selectedTables: [],
+      allTables: [],
       rules: {
         required: value => !!value || 'Ce champ est requis.',
         numeric: value => !isNaN(Number(value)) || 'Ce champ doit être numérique.'
@@ -27,34 +30,34 @@ export default {
     };
   },
   methods: {
+    async fetchAllTables() {
+      try {
+        const response = await axios.get('http://localhost:3000/api/tables');
+        this.allTables = response.data;
+      } catch (error) {
+        console.error('Error fetching table names:', error);
+      }
+    },
+    saveTableSelections() {
+      console.log('Selected tables:', this.selectedTables);
+      // Store the selection in the session or send to backend
+      axios.post('http://localhost:3000/api/save-tables', { tables: this.selectedTables });
+    },
     async submitExercice() {
       if (!this.validateExercice()) {
-        this.$toast.error('Veuillez remplir tous les champs requis correctement.');
+        alert('Veuillez remplir tous les champs requis correctement.');
         return;
       }
       try {
         const url = 'http://localhost:3000/api/addexercices';
-        const fetchOptions = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(this.exercice),
-          credentials: 'include'
-        };
-
-        const response = await fetch(url, fetchOptions);
-
-        if (!response.ok) {
-          throw new Error('Échec de l’ajout de l’exercice');
+        const response = await axios.post(url, this.exercice, { withCredentials: true });
+        if (response.data) {
+          alert('Exercice ajouté avec succès: ' + response.data.message);
+          this.fetchExercices(); // Re-fetch exercices after adding
         }
-
-        const responseData = await response.json();
-        console.log("Exercice ajouté avec succès: " + responseData.message);
-        // Charger à nouveau les exercices après l'ajout
-        this.fetchExercices();
       } catch (error) {
         console.error('Erreur lors de l’ajout de l’exercice:', error);
+        alert('Échec de l’ajout de l’exercice');
       }
     },
     validateExercice() {
@@ -63,7 +66,7 @@ export default {
     },
     async fetchExercices() {
       try {
-        const response = await fetch('http://localhost:3000/api/exercices');
+        const response = await axios.get('http://localhost:3000/api/exercices');
         if (response.ok) {
           this.exercices = await response.json();
         }
@@ -73,15 +76,17 @@ export default {
     }
   },
   mounted() {
+    this.fetchAllTables();
     this.fetchExercices();
   }
 }
 </script>
 
+
 <template>
   <v-container fluid>
     <!-- Colonne de droite pour la table -->
-    <VCol cols="12" md="12" outlined class="pa-4">
+    <VCol cols="12" md="12">
       <VCard title="Lise des exercices">
         <VCardText>
           Voici la liste des exercices actuellement disponibles.
@@ -185,9 +190,21 @@ export default {
             </v-row>
           </v-form>
         </v-card>
+          <!-- Zone de sélection de table -->
+          <v-card outlined class="pa-4 mt-3">
+            <v-card-title>Sélectionnez les tables</v-card-title>
+            <v-card-text>
+              <v-checkbox
+                  v-for="table in allTables"
+                  :key="table"
+                  v-model="selectedTables"
+                  :label="table"
+                  :value="table">
+              </v-checkbox>
+            </v-card-text>
+            <v-btn @click="saveTableSelections">Envoyer</v-btn>
+          </v-card>
       </v-col>
-
-
     </v-row>
   </v-container>
 </template>
