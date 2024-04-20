@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+import ShowExerciceTable from '@/views/pages/tables/ShowExerciceTable.vue';
+import ShowChapitreTable from "@/views/pages/tables/ShowChapitreTable.vue";
+
 
 const nomChapitre = ref('');
 const descriptionChapitre = ref('');
@@ -21,52 +24,58 @@ const soumettreChapitre = async () => {
   });
 }
 </script>
-
 <template>
-  <VForm @submit.prevent="soumettreChapitre">
-    <VRow>
-      <VCol cols="12">
-        <VRow no-gutters>
-          <!-- Nom du chapitre -->
-          <VCol cols="12" md="3">
-            <label for="nomChapitre">Nom du Chapitre</label>
-          </VCol>
-          <VCol cols="12" md="9">
-            <VTextField
-                id="nomChapitre"
-                v-model="nomChapitre"
-                placeholder="Entrez le nom du chapitre"
-                persistent-placeholder
-            />
-          </VCol>
-        </VRow>
-      </VCol>
-
-      <VCol cols="12">
-        <VRow no-gutters>
-          <!-- Description du chapitre -->
-          <VCol cols="12" md="3">
-            <label for="descriptionChapitre">Description</label>
-          </VCol>
-          <VCol cols="12" md="9">
-            <VTextField
-                id="descriptionChapitre"
-                v-model="descriptionChapitre"
-                placeholder="Entrez une description"
-                persistent-placeholder
-            />
-          </VCol>
-        </VRow>
-      </VCol>
-
-      <!-- Bouton Envoyer -->
-      <VCol offset-md="3" cols="12" md="9" class="d-flex gap-4">
-        <VBtn type="submit">
-          Envoyer
-        </VBtn>
-      </VCol>
-    </VRow>
-
-
-  </VForm>
+  <v-container>
+    <!-- Section for displaying chapters -->
+    <VCol cols="12">
+    <v-card class="pa-4 mb-5"> <!-- Added margin-bottom for spacing -->
+      <v-card-title>Liste des Chapitres</v-card-title>
+      <v-card-text>
+        Voici la liste des Chapitres actuellement disponibles.
+      </v-card-text>
+      <ShowChapitreTable/>
+    </v-card>
+    </VCol>
+    <!-- Section for adding a new chapter -->
+    <v-form @submit.prevent="soumettreChapitre">
+      <v-card class="pa-4">
+        <v-card-title>Ajouter un nouveau Chapitre</v-card-title>
+        <v-card-text>
+          <v-row>
+            <v-col cols="12" md="3">
+              <label for="nomChapitre">Nom du Chapitre</label>
+            </v-col>
+            <v-col cols="12" md="9">
+              <v-text-field
+                  id="nomChapitre"
+                  v-model="nomChapitre"
+                  placeholder="Entrez le nom du chapitre"
+                  persistent-placeholder
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="3">
+              <label for="descriptionChapitre">Description</label>
+            </v-col>
+            <v-col cols="12" md="9">
+              <v-text-field
+                  id="descriptionChapitre"
+                  v-model="descriptionChapitre"
+                  placeholder="Entrez une description"
+                  persistent-placeholder
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col offset-md="3" cols="12" md="9" class="d-flex gap-4">
+              <v-btn type="submit" color="primary">
+                Envoyer
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </v-form>
+  </v-container>
 </template>
