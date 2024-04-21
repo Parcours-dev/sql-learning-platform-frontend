@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import ShowExerciceTable from '@/views/pages/tables/ShowExerciceTable.vue';
 import ShowChapitreTable from "@/views/pages/tables/ShowChapitreTable.vue";
+import {toast} from "vue3-toastify";
+import 'vue3-toastify/dist/index.css';
 
 
 const nomChapitre = ref('');
@@ -22,6 +24,16 @@ const soumettreChapitre = async () => {
     body: JSON.stringify(chapitre),
     credentials: 'include'
   });
+  toast('Chapitre ajouté', {
+    theme: 'auto',
+    type: 'success',
+    position: 'top-center',
+    dangerouslyHTMLString: true,
+    "autoClose": 1500,
+  });
+  setTimeout(() => {
+    window.location.reload();
+  }, 1800);
 }
 </script>
 <template>

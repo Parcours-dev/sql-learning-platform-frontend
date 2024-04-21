@@ -2,7 +2,8 @@
 import axios from 'axios';
 import ShowExerciceTable from '@/views/pages/tables/ShowExerciceTable.vue';
 import DemoSimpleTableFixedHeader from "@/views/pages/tables/DemoSimpleTableFixedHeader.vue";  // Assurez-vous que le chemin est correct
-
+import {toast} from "vue3-toastify";
+import 'vue3-toastify/dist/index.css';
 export default {
   components: {
     DemoSimpleTableFixedHeader,
@@ -45,7 +46,44 @@ export default {
     saveTableSelections() {
       console.log('Selected tables:', this.selectedTables);
       // Store the selection in the session or send to backend
-      axios.post('http://localhost:3000/api/save-tables', { tables: this.selectedTables });
+      axios.post('http://localhost:3000/api/save-tables', { tables: this.selectedTables })
+          .then(response => {
+            // Affichage d'un toast de succès
+            toast("Sélection des tables enregistrée avec succès.", {
+              position: 'top-center', // adaptez selon vos besoins
+              timeout: 5000,
+              type: 'success',
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.6,
+              showCloseButtonOnHover: false,
+              hideProgressBar: false,
+              closeButton: 'button',
+              icon: true,
+              rtl: false
+            });
+          })
+          .catch(error => {
+            // Affichage d'un toast d'erreur
+            console.error('Erreur lors de la sauvegarde des tables sélectionnées:', error);
+            toast("Erreur lors de la sauvegarde des tables sélectionnées.", {
+              position: 'top-center', // adaptez selon vos besoins
+              timeout: 5000,
+              closeOnClick: true,
+              type: 'error',
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.6,
+              showCloseButtonOnHover: false,
+              hideProgressBar: false,
+              closeButton: 'button',
+              icon: true,
+              rtl: false
+            });
+          });
     },
     async submitExercice() {
       if (!this.validateExercice()) {
@@ -56,12 +94,26 @@ export default {
         const url = 'http://localhost:3000/api/addexercices';
         const response = await axios.post(url, this.exercice, { withCredentials: true });
         if (response.data) {
-          alert('Exercice ajouté avec succès: ' + response.data.message);
+          toast("Ajout de l'exercice réussi", {
+            theme: 'auto',
+            type: 'success',
+            position: 'top-center',
+            dangerouslyHTMLString: true,
+            "autoClose": 1500,
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 1800);
           this.fetchExercices(); // Re-fetch exercices after adding
         }
       } catch (error) {
-        console.error('Erreur lors de l’ajout de l’exercice:', error);
-        alert('Échec de l’ajout de l’exercice');
+        toast("Erreur lors de l'ajout de l'exercice", {
+          theme: 'auto',
+          type: 'error',
+          position: 'top-center',
+          dangerouslyHTMLString: true,
+          "autoClose": 2500,
+        });
       }
     },
     validateExercice() {

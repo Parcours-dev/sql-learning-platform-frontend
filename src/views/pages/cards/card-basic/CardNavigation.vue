@@ -5,6 +5,8 @@ import { useStore } from 'vuex';
 import DemoFormLayoutHorizontalFormWithIcons from "@/views/pages/form-layouts/DemoFormLayoutHorizontalFormWithIcons.vue";
 import DemoSimpleTableFixedHeader from "@/views/pages/tables/DemoSimpleTableFixedHeader.vue";
 import ConfettiExplosion from "vue-confetti-explosion";
+import {toast} from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 const store = useStore();
 const exercices = computed(() => store.state.exercices);
@@ -55,6 +57,13 @@ const submitQuery = async (questionId, userQuery) => {
     }, { withCredentials: true });
 
     if (response.data.isCorrect) {
+      toast('Bien joué, tu as bien répondu !', {
+        theme: 'auto',
+        type: 'success',
+        position: 'top-center',
+        dangerouslyHTMLString: true,
+        timeout: 1000
+      });
       showConfetti.value = true;
       setTimeout(() => { showConfetti.value = false; }, 5000);
       tentativesIncorrectes[questionId] = 0;
@@ -64,7 +73,13 @@ const submitQuery = async (questionId, userQuery) => {
         exerciceMaxReussi.value = questionId;
       }
     } else {
-      alert('Désolé, votre réponse est incorrecte. Réessayez !');
+      toast('Dommage ... Réessaye !', {
+        theme: 'auto',
+        type: 'error',
+        position: 'top-center',
+        dangerouslyHTMLString: true,
+        timeout: 1000
+      });
       tentativesIncorrectes[questionId] = (tentativesIncorrectes[questionId] || 0) + 1;
       if (tentativesIncorrectes[questionId] >= 3) {
         obtenirIndice(questionId);
