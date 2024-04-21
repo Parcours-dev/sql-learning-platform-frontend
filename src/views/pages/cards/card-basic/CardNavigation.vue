@@ -16,10 +16,12 @@ const tentativesIncorrectes = reactive({});
 const indicesParQuestion = reactive({});
 const exerciceMaxReussi = ref(null);
 const columnNames = ref({}); // Define columnNames as a reactive reference
+const selectedTables = ref([]);
 
 onMounted(async () => {
   await chargerProgression();
   await fetchColumnNames();
+
 });
 
 const chargerProgression = async () => {

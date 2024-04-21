@@ -32,10 +32,14 @@ export default {
   methods: {
     async fetchAllTables() {
       try {
-        const response = await axios.get('http://localhost:3000/api/tables');
-        this.allTables = response.data;
+        const [tablesResponse, selectedResponse] = await Promise.all([
+          axios.get('http://localhost:3000/api/tables'),
+          axios.get('http://localhost:3000/api/get-selected-tables')
+        ]);
+        this.allTables = tablesResponse.data;
+        this.selectedTables = selectedResponse.data.tables;
       } catch (error) {
-        console.error('Error fetching table names:', error);
+        console.error('Error fetching table names or selected tables:', error);
       }
     },
     saveTableSelections() {
@@ -199,8 +203,9 @@ export default {
                   :key="table"
                   v-model="selectedTables"
                   :label="table"
-                  :value="table">
-              </v-checkbox>
+                  :value="table"
+              ></v-checkbox>
+
             </v-card-text>
             <v-btn @click="saveTableSelections">Envoyer</v-btn>
           </v-card>
