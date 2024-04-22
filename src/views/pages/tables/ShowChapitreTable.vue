@@ -1,22 +1,33 @@
 <script setup>
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive, defineEmits } from 'vue';
 import axios from 'axios';
 
-// Chapters array and sorting state
+const emits = defineEmits(['edit-chapter']);
 const chapters = ref([]);
 const sortState = reactive({
-  key: '',       // current column key being sorted
-  isAscending: true  // sort direction
+  key: '',
+  isAscending: true
 });
 
-// Function to load chapters from the backend
 const fetchChapters = async () => {
-  try {
-    const response = await axios.get('http://localhost:3000/api/chapitres');
-    chapters.value = response.data;
-  } catch (error) {
-    console.error('Error fetching chapters:', error);
-  }
+  const response = await axios.get('http://localhost:3000/api/chapitres');
+  chapters.value = response.data;
+};
+
+const editChapter = (chapter) => {
+  emits('edit-chapter', {
+    ChapitreID: chapter.ChapitreID, // Utilisez la bonne clé pour l'ID
+    Nom: chapter.Nom,
+    Description: chapter.Description
+  });
+  console.log('Editing chapter:', chapter);
+};
+
+
+const deleteChapter = async (id) => {
+  await axios.delete(`http://localhost:3000/api/deletechapitres/${id}`);
+  window.location.reload();
+  fetchChapters();
 };
 
 // Function to handle sort
@@ -38,6 +49,7 @@ const sortChapters = (key) => {
 
 // Load chapters on component mount
 onMounted(fetchChapters);
+
 </script>
 <template>
   <v-container>
@@ -47,6 +59,7 @@ onMounted(fetchChapters);
         <th @click="sortChapters('ChapitreID')">ID</th>
         <th @click="sortChapters('Nom')">Nom</th>
         <th @click="sortChapters('Description')">Description</th>
+        <th>Actions</th>
       </tr>
       </thead>
       <tbody>
@@ -54,6 +67,14 @@ onMounted(fetchChapters);
         <td>{{ chapter.ChapitreID }}</td>
         <td>{{ chapter.Nom }}</td>
         <td>{{ chapter.Description }}</td>
+        <td>
+          <v-icon small class="mr-2" @click="editChapter(chapter)">
+            mdi-pencil
+          </v-icon>
+          <v-icon small @click="deleteChapter(chapter.ChapitreID)">
+            mdi-delete
+          </v-icon>
+        </td>
       </tr>
       </tbody>
     </v-table>
