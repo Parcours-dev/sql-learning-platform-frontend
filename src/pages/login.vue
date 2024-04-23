@@ -3,51 +3,50 @@ import { ref } from 'vue'
 import axios from 'axios'
 import ErrorHeader from '@/components/ErrorHeader.vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex';
 
+const store = useStore();
+const router = useRouter();
 const form = ref({
-  //email: '',
-  username:'',
+  username: '',
   password: '',
-  //remember: false,
-})
-const showError = ref(false)
+  remember: false
+});
+const showError = ref(false);
 const errorDetails = ref({
   errorCode: '',
   errorTitle: '',
-  errorDescription: '',
-})
+  errorDescription: ''
+});
 
-const router = useRouter()
-
-const isPasswordVisible = ref(false)
+const isPasswordVisible = ref(false);
 
 const submitForm = async () => {
-  showError.value = false // Réinitialiser l'état de l'erreur avant chaque tentative
-
+  showError.value = false; // Reset error state
   try {
-    const response = await axios.post('http://localhost:3000/login', form.value)
-    if (response.status === 200) {
-      router.push('/dashboard')
+    const response = await axios.post('http://localhost:3000/login', form.value);
+    if (response.data.role) {
+      store.commit('setUserRole', response.data.role); // Update role in the store
+      router.push('/dashboard'); // Redirect to dashboard
     }
   } catch (error) {
-    showError.value = true
-    if (error.response && error.response.status === 401) {
+    showError.value = true;
+    if (error.response) {
       errorDetails.value = {
-        errorCode: '😤',
+        errorCode: error.response.status,
         errorTitle: 'Erreur d\'authentification',
-        errorDescription: 'Identifiants invalides. Veuillez réessayer.'
+        errorDescription: error.response.data.message || 'Problème de connexion.'
       }
     } else {
       errorDetails.value = {
-        errorCode: '🙈',
-        errorTitle: 'Problème de connexion',
-        errorDescription: 'Une erreur est survenue. Veuillez réessayer plus tard.'
+        errorCode: '500',
+        errorTitle: 'Erreur du serveur',
+        errorDescription: 'Une erreur serveur est survenue. Veuillez réessayer plus tard.'
       }
     }
   }
 }
 </script>
-
 
 <template>
   <div class="auth-wrapper d-flex align-center justify-center pa-4">

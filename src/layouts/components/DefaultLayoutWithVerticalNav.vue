@@ -5,13 +5,19 @@ import upgradeBannerDark from '@images/pro/upgrade-banner-dark.png'
 import upgradeBannerLight from '@images/pro/upgrade-banner-light.png'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
-
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 // Components
 //import Footer from '@/layouts/components/Footer.vue'
 import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
 import UserProfile from '@/layouts/components/UserProfile.vue'
 
 const vuetifyTheme = useTheme()
+const store = useStore();
+const isAdmin = computed(() => {
+  console.log("Current user role:", store.state.userRole);  // Ce log doit afficher 'Admin' pour un admin
+  return store.state.userRole === "Admin";
+});
 
 const upgradeBanner = computed(() => {
   return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
@@ -148,7 +154,9 @@ const upgradeBanner = computed(() => {
           to: '/tables',
         }"
       />-->
-      <VerticalNavLink
+
+      <!-- On affiche que si c'est un admin -->
+      <VerticalNavLink v-if="isAdmin"
         :item="{
           title: 'Administation',
           icon: 'mdi-form-select',

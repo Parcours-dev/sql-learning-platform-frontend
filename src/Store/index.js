@@ -6,7 +6,7 @@ export default createStore({
         chapitres: [],
         chapitreSelectionne: null,
         exercices: [],
-        userRole: '',
+        userRole: "",
         isAuthenticated: false,
     },
     mutations: {
@@ -19,9 +19,14 @@ export default createStore({
         setExercices(state, exercices) {
             state.exercices = exercices || [];
         },
-        setUserRole(state, role) {
-            state.userRole = role;
-            state.isAuthenticated = true;
+        setUserRole(state, roleName) {
+            console.log("Role received in mutation:", roleName); // Ce log devrait afficher 'Admin'
+            if (roleName) {
+                state.userRole = roleName;
+                state.isAuthenticated = true;
+            } else {
+                console.error("No role name received in mutation");
+            }
         },
         logout(state) {
             state.userRole = '';
@@ -29,22 +34,19 @@ export default createStore({
         }
     },
     actions: {
+        // Dans votre action de login, assurez-vous que la propriété 'role' est bien passée.
         async login({ commit }, credentials) {
+            console.log("test de log")
             try {
                 const response = await axios.post('http://localhost:3000/login', credentials);
-                commit('setUserRole', response.data.role);
-                // Vous pouvez également enregistrer l'état de la session ici, par exemple en utilisant localStorage ou autre
+                console.log("Login response data:", response.data); // Assurez-vous que 'role' est correct
+                if (response.data.role) {
+                    commit('setUserRole', response.data.role);
+                } else {
+                    console.error("Role not received in response");
+                }
             } catch (error) {
                 console.error('Erreur lors de la tentative de connexion :', error);
-            }
-        },
-        async chargerChapitres({ commit }) {
-            try {
-                const response = await axios.get('http://localhost:3000/api/chapitres');
-                commit('setChapitres', response.data);
-            } catch (error) {
-                console.error("Erreur lors du chargement des chapitres:", error);
-                commit('setChapitres', []);
             }
         },
         async chargerExercices({ commit }, chapitreId) {
