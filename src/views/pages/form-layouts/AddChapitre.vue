@@ -5,6 +5,7 @@ import ShowChapitreTable from "@/views/pages/tables/ShowChapitreTable.vue";
 import { toast } from "vue3-toastify";
 import 'vue3-toastify/dist/index.css';
 
+
 const nomChapitre = ref('');
 const descriptionChapitre = ref('');
 const chapitreId = ref(null);
@@ -87,33 +88,42 @@ const setEditChapter = (chapitre) => {
       <v-col cols="12">
         <v-form @submit.prevent="soumettreChapitre">
           <v-card class="pa-4">
-            <v-card-title>{{ isEditing ? 'Modifier' : 'Ajouter un nouveau' }} Chapitre</v-card-title>
+            <v-card-title>{{ isEditing ? 'Modifier un chapitre' : 'Ajouter un nouveau chapitre' }}</v-card-title>
             <v-card-text>
               <v-row>
-                <v-col cols="12" md="3">
-                  <label for="nomChapitre">Nom du Chapitre</label>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                      label="Nom du Chapitre"
+                      prepend-icon="mdi-book-open-variant"
+                      v-model="nomChapitre"
+                      placeholder="Entrez le nom du chapitre"
+                      outlined
+                      dense
+                  ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="9">
-                  <v-text-field id="nomChapitre" v-model="nomChapitre" placeholder="Entrez le nom du chapitre" />
+                <v-col cols="12" md="6">
+                  <v-text-field
+                      label="Description"
+                      prepend-icon="mdi-text-box-outline"
+                      v-model="descriptionChapitre"
+                      placeholder="Entrez une description"
+                      outlined
+                      dense
+                  ></v-text-field>
                 </v-col>
               </v-row>
-              <v-row>
-                <v-col cols="12" md="3">
-                  <label for="descriptionChapitre">Description</label>
-                </v-col>
-                <v-col cols="12" md="9">
-                  <v-text-field id="descriptionChapitre" v-model="descriptionChapitre" placeholder="Entrez une description" />
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col offset-md="3" cols="12" md="9">
-                  <v-btn type="submit" color="primary">{{ isEditing ? 'Modifier' : 'Envoyer' }}</v-btn>
+              <v-row justify="end">
+                <v-col cols="auto">
+                  <v-btn color="primary" type="submit" class="ma-2">
+                    {{ isEditing ? 'Modifier' : 'Ajouter' }} Chapitre
+                  </v-btn>
                 </v-col>
               </v-row>
             </v-card-text>
           </v-card>
         </v-form>
       </v-col>
+
     </v-row>
   </v-container>
 </template>

@@ -1,31 +1,47 @@
 <script setup>
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive, defineEmits } from 'vue';
 import axios from 'axios';
 
-// Questions array and sorting state
+const emits = defineEmits(['edit-exercice', 'delete-exercice']);
 const questions = ref([]);
 const sortState = reactive({
-  key: '',       // current column key being sorted
-  isAscending: true  // sort direction
+  key: '',
+  isAscending: true
 });
 
-// Function to load questions from the backend
 const fetchQuestions = async () => {
+  const response = await axios.get('http://localhost:3000/api/questions');
+  questions.value = response.data;
+};
+
+const editExercice = (question) => {
+  emits('edit-exercice', {
+    id: question.QuestionID, // Assurez-vous d'utiliser les bons noms de propriétés
+    titre: question.Title,
+    description: question.Description,
+    correctQuery: question.CorrectQuery,
+    niveau: question.Level,
+    categorie: question.Category,
+    texteQuestion: question.QuestionText,
+    instructions: question.Instructions,
+    chapitreId: question.ChapitreID
+  });
+  console.log('Editing exercise:', question);
+};
+
+const deleteExercice = async (questionId) => {
   try {
-    const response = await axios.get('http://localhost:3000/api/questions');
-    questions.value = response.data;
+    await axios.delete(`http://localhost:3000/api/questions/${questionId}`);
+    fetchQuestions();  // Recharger les questions après suppression
   } catch (error) {
-    console.error('Error fetching questions:', error);
+    console.error('Error deleting question:', error);
   }
 };
 
-// Function to handle sort
 const sortQuestions = (key) => {
   if (sortState.key === key) {
-    // Toggle sort direction if the same column is clicked
     sortState.isAscending = !sortState.isAscending;
   } else {
-    // Set new key and default to ascending sort
     sortState.key = key;
     sortState.isAscending = true;
   }
@@ -36,9 +52,9 @@ const sortQuestions = (key) => {
   });
 };
 
-// Load questions on component mount
 onMounted(fetchQuestions);
 </script>
+
 <template>
   <v-table fixed-header height="500" density="comfortable">
     <thead>
@@ -52,6 +68,7 @@ onMounted(fetchQuestions);
       <th @click="sortQuestions('QuestionText')">Texte de la Question</th>
       <th @click="sortQuestions('Instructions')">Instructions</th>
       <th @click="sortQuestions('ChapitreID')">ID du Chapitre</th>
+      <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -65,6 +82,14 @@ onMounted(fetchQuestions);
       <td>{{ question.QuestionText }}</td>
       <td>{{ question.Instructions }}</td>
       <td>{{ question.ChapitreID }}</td>
+      <td>
+        <v-btn icon @click="editExercice(question)">
+          <v-icon>mdi-pencil</v-icon>
+        </v-btn>
+        <v-btn icon color="red" @click="deleteExercice(question.QuestionID)">
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </td>
     </tr>
     </tbody>
   </v-table>
