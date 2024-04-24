@@ -12,7 +12,9 @@ import card from '@images/cards/credit-card-primary.png'
 import paypal from '@images/cards/paypal-error.png'
 import wallet from '@images/cards/wallet-info.png'
 import success from "@images/cards/success.png";
-import CardStaticTopChaptert from "@core/components/cards/CardStaticTopChapter.vue";
+import CardStaticTopChapter from "@core/components/cards/CardStaticTopChapter.vue";
+import AnalyticsResponseDay from "@/views/dashboard/AnalyticsResponseDay.vue";
+import Analytics100Chapter from "@/views/dashboard/Analytics100Chapter.vue";
 </script>
 
 <template>
@@ -59,7 +61,7 @@ import CardStaticTopChaptert from "@core/components/cards/CardStaticTopChapter.v
         order="2"
         order-md="1"
     >
-      <AnalyticsTotalRevenue />
+      <AnalyticsResponseDay/>
     </VCol>
 
     <VCol
@@ -89,7 +91,7 @@ import CardStaticTopChaptert from "@core/components/cards/CardStaticTopChapter.v
             cols="12"
             sm="6"
         >
-          <CardStaticTopChaptert
+          <CardStaticTopChapter
               v-bind="{
             image: chart,
             }"
@@ -113,7 +115,7 @@ import CardStaticTopChaptert from "@core/components/cards/CardStaticTopChapter.v
         sm="6"
         order="3"
     >
-      <AnalyticsOrderStatistics />
+      <Analytics100Chapter />
     </VCol>
 
     <VCol
