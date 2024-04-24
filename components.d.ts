@@ -9,6 +9,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    CardStaticBadChapter: typeof import('./src/@core/components/cards/CardStaticBadChapter.vue')['default']
+    CardStaticBadStudent: typeof import('./src/@core/components/cards/CardStaticBadStudent.vue')['default']
+    CardStaticTopChapter: typeof import('./src/@core/components/cards/CardStaticTopChapter.vue')['default']
+    CardStaticTopChaptert: typeof import('./src/@core/components/cards/CardStaticTopChaptert.vue')['default']
+    CardStaticTopStudent: typeof import('./src/@core/components/cards/CardStaticTopStudent.vue')['default']
     CardStatisticsHorizontal: typeof import('./src/@core/components/cards/CardStatisticsHorizontal.vue')['default']
     CardStatisticsVertical: typeof import('./src/@core/components/cards/CardStatisticsVertical.vue')['default']
     CardStatisticsWithImages: typeof import('./src/@core/components/cards/CardStatisticsWithImages.vue')['default']

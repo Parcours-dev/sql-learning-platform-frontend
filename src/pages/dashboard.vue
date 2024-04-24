@@ -11,6 +11,8 @@ import chart from '@images/cards/chart-success.png'
 import card from '@images/cards/credit-card-primary.png'
 import paypal from '@images/cards/paypal-error.png'
 import wallet from '@images/cards/wallet-info.png'
+import success from "@images/cards/success.png";
+import CardStaticTopChaptert from "@core/components/cards/CardStaticTopChapter.vue";
 </script>
 
 <template>
@@ -31,12 +33,9 @@ import wallet from '@images/cards/wallet-info.png'
             cols="12"
             md="6"
         >
-          <CardStatisticsVertical
+          <CardStaticTopStudent
               v-bind="{
-              title: 'Profit',
-              image: chart,
-              stats: '$12,628',
-              change: 72.80,
+            image: chart,
             }"
           />
         </VCol>
@@ -45,12 +44,9 @@ import wallet from '@images/cards/wallet-info.png'
             cols="12"
             md="6"
         >
-          <CardStatisticsVertical
+          <CardStaticBadStudent
               v-bind="{
-              title: 'Sales',
-              image: wallet,
-              stats: '$4,679',
-              change: 28.42,
+            image: chart,
             }"
           />
         </VCol>
@@ -78,7 +74,7 @@ import wallet from '@images/cards/wallet-info.png'
             cols="12"
             sm="6"
         >
-          <CardStatisticsVertical
+          <CardStaticBadChapter
               v-bind=" {
               title: 'Payments',
               image: paypal,
@@ -93,12 +89,9 @@ import wallet from '@images/cards/wallet-info.png'
             cols="12"
             sm="6"
         >
-          <CardStatisticsVertical
+          <CardStaticTopChaptert
               v-bind="{
-              title: 'Transactions',
-              image: card,
-              stats: '$14,857',
-              change: 28.14,
+            image: chart,
             }"
           />
         </VCol>
