@@ -55,6 +55,9 @@ onMounted(async () => {
     </VCardText>
 
     <VCardText>
+      <p class="text-h7 text-no-wrap mb-0">
+        Moins bon étudiant
+      </p>
       <p class="text-h6 text-no-wrap mb-0">
         {{ studentData.name }}
       </p>
