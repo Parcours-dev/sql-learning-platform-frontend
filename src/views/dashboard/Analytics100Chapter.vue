@@ -34,7 +34,7 @@ const chartOptions = ref({
         margin: 8,
         fontSize: '16px',
         formatter: function(seriesName, opts) {
-          return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%";
+          return chartOptions.value.labels + ":  " + opts.w.globals.series[opts.seriesIndex] + "%";
         },
       },
     }
@@ -55,7 +55,7 @@ onMounted(async () => {
     const response = await axios.get('http://localhost:3000/api/chapter-completion');
     series.value = response.data.map(item => item.completionPercentage);
     chartOptions.value.labels = response.data.map(item => "Chapitre " + item.chapterId); // Change "chapterID" to "chapterId"
-    chartOptions.value.plotOptions.radialBar.barLabels.formatter = function(Charoption, opts) {
+    chartOptions.value.plotOptions.radialBar.barLabels.formatter = function(seriesName, opts) {
       return chartOptions.value.labels[opts.seriesIndex] + ":  " + Math.round(opts.w.globals.series[opts.seriesIndex]) + "%";
     };
   } catch (error) {

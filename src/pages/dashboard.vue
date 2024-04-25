@@ -17,6 +17,7 @@ import AnalyticsResponseDay from "@/views/dashboard/AnalyticsResponseDay.vue";
 import Analytics100Chapter from "@/views/dashboard/Analytics100Chapter.vue";
 import AnalyticsLastParticipation from "@/views/dashboard/AnalyticsLastParticipation.vue";
 import AnalyticsRankingStudent from "@/views/dashboard/AnalyticsRankingStudent.vue";
+import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
 </script>
 
 <template>
@@ -106,7 +107,7 @@ import AnalyticsRankingStudent from "@/views/dashboard/AnalyticsRankingStudent.v
             cols="12"
             sm="12"
         >
-          <AnalyticsProfitReport />
+          <AnalyticsNews/>
         </VCol>
       </VRow>
     </VCol>
