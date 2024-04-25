@@ -55,7 +55,7 @@ onMounted(async () => {
     const response = await axios.get('http://localhost:3000/api/chapter-completion');
     series.value = response.data.map(item => item.completionPercentage);
     chartOptions.value.labels = response.data.map(item => "Chapitre " + item.chapterId); // Change "chapterID" to "chapterId"
-    chartOptions.value.plotOptions.radialBar.barLabels.formatter = function(seriesName, opts) {
+    chartOptions.value.plotOptions.radialBar.barLabels.formatter = function(Charoption, opts) {
       return chartOptions.value.labels[opts.seriesIndex] + ":  " + Math.round(opts.w.globals.series[opts.seriesIndex]) + "%";
     };
   } catch (error) {

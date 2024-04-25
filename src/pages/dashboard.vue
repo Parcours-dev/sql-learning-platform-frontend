@@ -15,6 +15,8 @@ import success from "@images/cards/success.png";
 import CardStaticTopChapter from "@core/components/cards/CardStaticTopChapter.vue";
 import AnalyticsResponseDay from "@/views/dashboard/AnalyticsResponseDay.vue";
 import Analytics100Chapter from "@/views/dashboard/Analytics100Chapter.vue";
+import AnalyticsLastParticipation from "@/views/dashboard/AnalyticsLastParticipation.vue";
+import AnalyticsRankingStudent from "@/views/dashboard/AnalyticsRankingStudent.vue";
 </script>
 
 <template>
@@ -79,7 +81,7 @@ import Analytics100Chapter from "@/views/dashboard/Analytics100Chapter.vue";
           <CardStaticBadChapter
               v-bind=" {
               title: 'Payments',
-              image: paypal,
+              image: chart,
               stats: '$2,468',
               change: -14.82,
             }"
@@ -124,7 +126,7 @@ import Analytics100Chapter from "@/views/dashboard/Analytics100Chapter.vue";
         sm="6"
         order="3"
     >
-      <AnalyticsFinanceTabs />
+      <AnalyticsRankingStudent />
     </VCol>
 
     <VCol
@@ -133,7 +135,7 @@ import Analytics100Chapter from "@/views/dashboard/Analytics100Chapter.vue";
         sm="6"
         order="3"
     >
-      <AnalyticsTransactions />
+      <AnalyticsLastParticipation />
     </VCol>
   </VRow>
 </template>

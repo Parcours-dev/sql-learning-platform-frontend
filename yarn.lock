@@ -5877,7 +5877,7 @@ vue-shepherd@^3.0.0:
   dependencies:
     shepherd.js "^11.1.0"
 
-"vue@^2.6.12 || ^3.2.4", "vue@^2.6.14 || ^3.3.0", "vue@^2.7.0 || ^3.2.25", vue@^3.0.0, "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.0-0 || ^2.7.0", vue@^3.0.11, vue@^3.0.2, vue@^3.0.5, vue@^3.2.0, vue@^3.2.25, vue@^3.3.4, "vue@> 3.0.0", vue@>=3, vue@>=3.0.0, vue@>=3.2.0, "vue@2 || 3", vue@3.4.19:
+"vue@^2.6.12 || ^3.2.4", "vue@^2.6.14 || ^3.3.0", "vue@^2.7.0 || ^3.2.25", vue@^3.0.0, "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.0-0 || ^2.7.0", vue@^3.0.11, vue@^3.0.2, vue@^3.0.5, vue@^3.2.0, vue@^3.2.25, vue@^3.2.45, vue@^3.3.4, "vue@> 3.0.0", vue@>=3, vue@>=3.0.0, vue@>=3.2.0, "vue@2 || 3", vue@3.4.19:
   version "3.4.19"
   resolved "https://registry.npmjs.org/vue/-/vue-3.4.19.tgz"
   integrity sha512-W/7Fc9KUkajFU8dBeDluM4sRGc/aa4YJnOYck8dkjgZoXtVsn3OeTGni66FV1l3+nvPA7VBFYtPioaGKUmEADw==
@@ -5892,6 +5892,13 @@ vue3-apexcharts@^1.5.2:
   version "1.5.2"
   resolved "https://registry.npmjs.org/vue3-apexcharts/-/vue3-apexcharts-1.5.2.tgz"
   integrity sha512-rGbgUJDjtsyjfRF0uzwDjzt8+M7ICSRAbm1N9KCDiczW8BSpbEZuaEsJDJYnJuLFIIVXIGilYzIcjNBf6NbeYA==
+
+vue3-easy-data-table@^1.5.47:
+  version "1.5.47"
+  resolved "https://registry.npmjs.org/vue3-easy-data-table/-/vue3-easy-data-table-1.5.47.tgz"
+  integrity sha512-q0bZBlWIwQ3FIhB+F98ylFPfBJWiS3Xv7QqBe3xS5MbRNZP96RFjaQn7C0Pi0J/aaucNW8gFWxPyh9NESS1ehw==
+  dependencies:
+    vue "^3.2.45"
 
 vue3-perfect-scrollbar@^1.6.0:
   version "1.6.1"
