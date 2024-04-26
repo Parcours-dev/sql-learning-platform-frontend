@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from 'vue';
+import { onMounted, ref } from 'vue';
 import VueApexCharts from 'vue3-apexcharts';
 import axios from 'axios';
 import dayjs from 'dayjs';
@@ -52,8 +52,7 @@ const chartOptions = ref({
       formatter: function (value) {
         return dayjs(new Date(value)).format('DD-MM');
       }
-    },
-    // Vous pouvez définir min et max ici pour contrôler la fenêtre de visualisation initiale
+    }
   },
   yaxis: {
     floating: false
@@ -69,14 +68,17 @@ const series = ref([{
 }]);
 
 onMounted(() => {
-  // Initialiser le graphique avec des données existantes
   const fetchData = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/daily-correct-answers');
-      series.value[0].data = response.data.map(item => ({
-        x: new Date(item.date).getTime(),
+      console.log("Data fetched:", response.data);
+      const seriesData = response.data.map(item => ({
+        x: new Date(item.date).getTime(), // Assurez-vous que les dates sont converties correctement
         y: item.correctAnswers
       }));
+      series.value[0].data = seriesData;
+      chartOptions.value.xaxis.min = Math.min(...seriesData.map(item => item.x)); // Définit le min de l'axe x
+      chartOptions.value.xaxis.max = Math.max(...seriesData.map(item => item.x)); // Définit le max de l'axe x
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -85,7 +87,6 @@ onMounted(() => {
   fetchData();
 });
 </script>
-
 <template>
   <VCard>
     <v-card-item>

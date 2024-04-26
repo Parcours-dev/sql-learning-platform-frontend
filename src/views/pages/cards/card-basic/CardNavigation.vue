@@ -45,7 +45,7 @@ const fetchColumnNames = async () => {
     const response = await axios.get('http://localhost:3000/api/columns');
     columnNames.value = response.data;
   } catch (error) {
-    console.error('Erreur lors de la récupération des noms de colonnes:', error);
+    console.error('Erreur lors de la récupération des détails des tables:', error);
   }
 };
 
@@ -163,14 +163,35 @@ watch(chapitreSelectionne, (nouveauChapitreId) => {
               <v-card-text>
                 <v-list>
                   <v-list-item-group>
-                    <v-list-item v-for="(columns, table) in columnNames" :key="table">
+                    <v-list-item v-for="(details, table) in columnNames" :key="table">
                       <v-list-item-content>
                         <v-list-item-title>
                           <strong>{{ table }}</strong>
                         </v-list-item-title>
                         <v-list-item-subtitle>
-                          Colonnes : {{ columns.join(', ') }}
+                          Colonnes:
+                          <ul>
+                            <v-list class="text-no-wrap" v-for="column in details.columns" :key="column.name">
+                              {{ column.name }} ({{ column.type }}) {{ column.nullable === 'YES' ? 'Nullable' : 'Not Nullable' }},
+                              {{ column.key }} {{ column.extra }}
+                            </v-list>
+                          </ul>
                         </v-list-item-subtitle>
+                        <v-list-item-subtitle class="text-no-wrap">
+                          Contraintes:
+                          <ul>
+                            <v-list v-for="constraint in details.constraints" :key="constraint.COLUMN_NAME">
+                              {{ constraint.COLUMN_NAME }} référence
+                              <template v-if="constraint.REFERENCED_TABLE_NAME && constraint.REFERENCED_COLUMN_NAME">
+                                {{ constraint.REFERENCED_TABLE_NAME }}.{{ constraint.REFERENCED_COLUMN_NAME }}
+                              </template>
+                              <template v-else>
+                                Aucune référence spécifiée
+                              </template>
+                            </v-list>
+                          </ul>
+                        </v-list-item-subtitle>
+
                       </v-list-item-content>
                     </v-list-item>
                   </v-list-item-group>
