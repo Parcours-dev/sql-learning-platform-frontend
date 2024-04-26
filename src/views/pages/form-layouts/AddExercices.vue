@@ -1,7 +1,8 @@
 <script>
 import axios from 'axios';
 import ShowExerciceTable from '@/views/pages/tables/ShowExerciceTable.vue';
-import DemoSimpleTableFixedHeader from "@/views/pages/tables/DemoSimpleTableFixedHeader.vue";  // Assurez-vous que le chemin est correct
+import DemoSimpleTableFixedHeader from "@/views/pages/tables/DemoSimpleTableFixedHeader.vue";
+import {toast} from "vue3-toastify";  // Assurez-vous que le chemin est correct
 
 export default {
   components: {
@@ -46,6 +47,8 @@ export default {
       console.log('Selected tables:', this.selectedTables);
       // Store the selection in the session or send to backend
       axios.post('http://localhost:3000/api/save-tables', { tables: this.selectedTables });
+      toast.success('Tables chargées avec succès');
+
     },
     async submitExercice() {
       if (!this.validateExercice()) {
