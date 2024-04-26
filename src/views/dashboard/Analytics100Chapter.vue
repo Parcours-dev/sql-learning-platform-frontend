@@ -34,7 +34,8 @@ const chartOptions = ref({
         margin: 8,
         fontSize: '16px',
         formatter: function (seriesName, opts) {
-          return chartOptions.value.labels + ":  " + opts.w.globals.series[opts.seriesIndex] + "%";
+          const label = chartOptions.value.labels[opts.seriesIndex];
+          return label + ":  " + opts.w.globals.series[opts.seriesIndex] + "%";
         },
       },
     }

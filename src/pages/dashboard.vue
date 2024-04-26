@@ -9,6 +9,17 @@ import Analytics100Chapter from "@/views/dashboard/Analytics100Chapter.vue";
 import AnalyticsLastParticipation from "@/views/dashboard/AnalyticsLastParticipation.vue";
 import AnalyticsRankingStudent from "@/views/dashboard/AnalyticsRankingStudent.vue";
 import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
+import {computed} from "vue";
+import {useStore} from 'vuex';
+
+
+
+const store = useStore();
+const isAdmin = computed(() => {
+  console.log("Current user role:", store.state.userRole);  // Ce log doit afficher 'Admin' pour un admin
+  return store.state.userRole === "Admin";
+});
+
 </script>
 
 <template>
@@ -29,7 +40,7 @@ import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
             cols="12"
             md="6"
         >
-          <CardStaticTopStudent
+          <CardStaticTopStudent v-if="isAdmin"
               v-bind="{
             image: chart,
             }"
@@ -40,7 +51,7 @@ import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
             cols="12"
             md="6"
         >
-          <CardStaticBadStudent
+          <CardStaticBadStudent v-if="isAdmin"
               v-bind="{
             image: chart,
             }"
@@ -55,7 +66,7 @@ import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
         order="2"
         order-md="1"
     >
-      <AnalyticsResponseDay/>
+      <AnalyticsResponseDay v-if="isAdmin"/>
     </VCol>
 
     <VCol
@@ -70,7 +81,7 @@ import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
             cols="12"
             sm="6"
         >
-          <CardStaticBadChapter
+          <CardStaticBadChapter v-if="isAdmin"
               v-bind=" {
               title: 'Payments',
               image: chart,
@@ -85,7 +96,7 @@ import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
             cols="12"
             sm="6"
         >
-          <CardStaticTopChapter
+          <CardStaticTopChapter v-if="isAdmin"
               v-bind="{
             image: chart,
             }"
@@ -98,7 +109,7 @@ import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
             cols="12"
             sm="12"
         >
-          <AnalyticsNews/>
+          <AnalyticsNews v-if="isAdmin"/>
         </VCol>
       </VRow>
     </VCol>
@@ -109,7 +120,7 @@ import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
         order="3"
         sm="6"
     >
-      <Analytics100Chapter/>
+      <Analytics100Chapter v-if="isAdmin"/>
     </VCol>
 
     <VCol
@@ -118,7 +129,7 @@ import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
         order="3"
         sm="6"
     >
-      <AnalyticsRankingStudent/>
+      <AnalyticsRankingStudent v-if="isAdmin"/>
     </VCol>
 
     <VCol
@@ -127,7 +138,7 @@ import AnalyticsNews from "@/views/dashboard/AnalyticsNews.vue";
         order="3"
         sm="6"
     >
-      <AnalyticsLastParticipation/>
+      <AnalyticsLastParticipation v-if="isAdmin"/>
     </VCol>
   </VRow>
 </template>

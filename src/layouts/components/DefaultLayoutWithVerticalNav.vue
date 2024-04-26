@@ -14,10 +14,10 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
 
 const vuetifyTheme = useTheme()
 const store = useStore();
-const isAdmin = computed(() => {
-  console.log("Current user role:", store.state.userRole);  // Ce log doit afficher 'Admin' pour un admin
-  return store.state.userRole === "Admin";
-});
+  const isAdmin = computed(() => {
+    console.log("Current user role:", store.state.userRole);  // Ce log doit afficher 'Admin' pour un admin
+    return store.state.userRole === "Admin";
+  });
 
 const upgradeBanner = computed(() => {
   return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
