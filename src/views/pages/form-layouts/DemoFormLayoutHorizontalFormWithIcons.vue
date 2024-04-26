@@ -1,7 +1,7 @@
 <script setup>
-import { ref, defineProps, defineEmits } from 'vue';
+import {defineEmits, defineProps, ref} from 'vue';
 
-const { indice } = defineProps(['indice']);
+const {indice} = defineProps(['indice']);
 const firstName = ref('');
 const emits = defineEmits(['submit']);
 
@@ -26,13 +26,13 @@ const handleSubmit = () => {
         </VRow>
         <!-- Affiche l'indice si disponible -->
         <VRow v-if="indice">
-          <VCol cols="12" class="mt-1 mb-1">
+          <VCol class="mt-1 mb-1" cols="12">
             Voici ton indice 🕵🏼 : {{ indice }}
           </VCol>
         </VRow>
 
         <VRow>
-          <VCol cols="12" class="mt-1 mb-1">&nbsp;</VCol>
+          <VCol class="mt-1 mb-1" cols="12">&nbsp;</VCol>
         </VRow>
         <VBtn type="submit">Valider</VBtn>
       </VCol>

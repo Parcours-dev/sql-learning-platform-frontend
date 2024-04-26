@@ -1,7 +1,7 @@
 <script setup>
 import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
-import { hexToRgb } from '@layouts/utils'
+import {useTheme} from 'vuetify'
+import {hexToRgb} from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
 
@@ -15,21 +15,21 @@ const series = [
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
   const variableTheme = vuetifyTheme.current.value.variables
-  const disabledTextColor = `rgba(${ hexToRgb(String(currentTheme['on-surface'])) },${ variableTheme['disabled-opacity'] })`
-  const primaryTextColor = `rgba(${ hexToRgb(String(currentTheme['on-surface'])) },${ variableTheme['high-emphasis-opacity'] })`
-  
+  const disabledTextColor = `rgba(${hexToRgb(String(currentTheme['on-surface']))},${variableTheme['disabled-opacity']})`
+  const primaryTextColor = `rgba(${hexToRgb(String(currentTheme['on-surface']))},${variableTheme['high-emphasis-opacity']})`
+
   return {
     chart: {
-      sparkline: { enabled: true },
-      animations: { enabled: false },
+      sparkline: {enabled: true},
+      animations: {enabled: false},
     },
     stroke: {
       width: 6,
       colors: [currentTheme.surface],
     },
-    legend: { show: false },
-    tooltip: { enabled: false },
-    dataLabels: { enabled: false },
+    legend: {show: false},
+    tooltip: {enabled: false},
+    dataLabels: {enabled: false},
     labels: [
       'Fashion',
       'Electronic',
@@ -49,8 +49,8 @@ const chartOptions = computed(() => {
       },
     },
     states: {
-      hover: { filter: { type: 'none' } },
-      active: { filter: { type: 'none' } },
+      hover: {filter: {type: 'none'}},
+      active: {filter: {type: 'none'}},
     },
     plotOptions: {
       pie: {
@@ -143,7 +143,7 @@ const moreList = [
 
       <template #append>
         <div class="me-n3 mt-n8">
-          <MoreBtn :menu-list="moreList" />
+          <MoreBtn :menu-list="moreList"/>
         </div>
       </template>
     </VCardItem>
@@ -159,27 +159,27 @@ const moreList = [
 
         <div>
           <VueApexCharts
-            type="donut"
-            :height="125"
-            width="105"
-            :options="chartOptions"
-            :series="series"
+              :height="125"
+              :options="chartOptions"
+              :series="series"
+              type="donut"
+              width="105"
           />
         </div>
       </div>
 
       <VList class="card-list mt-7">
         <VListItem
-          v-for="order in orders"
-          :key="order.title"
+            v-for="order in orders"
+            :key="order.title"
         >
           <template #prepend>
             <VAvatar
-              rounded
-              variant="tonal"
-              :color="order.avatarColor"
+                :color="order.avatarColor"
+                rounded
+                variant="tonal"
             >
-              <VIcon :icon="order.avatarIcon" />
+              <VIcon :icon="order.avatarIcon"/>
             </VAvatar>
           </template>
 

@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from 'vue'
+import {ref} from 'vue'
 import axios from 'axios'
 import ErrorHeader from '@/components/ErrorHeader.vue'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex';
+import {useRouter} from 'vue-router'
+import {useStore} from 'vuex';
 
 const store = useStore();
 const router = useRouter();
@@ -51,15 +51,15 @@ const submitForm = async () => {
 <template>
   <div class="auth-wrapper d-flex align-center justify-center pa-4">
     <VCard
-      class="auth-card pa-4 pt-7"
-      max-width="448"
+        class="auth-card pa-4 pt-7"
+        max-width="448"
     >
-        <VCardItem class="justify-center">
+      <VCardItem class="justify-center">
         <template #prepend>
           <div class="d-flex">
             <div
-              class="d-flex text-primary"
-              v-html="logo"
+                class="d-flex text-primary"
+                v-html="logo"
             />
           </div>
         </template>
@@ -82,43 +82,43 @@ const submitForm = async () => {
         <ErrorHeader
             v-if="showError"
             :errorCode="errorDetails.errorCode"
-            :errorTitle="errorDetails.errorTitle"
             :errorDescription="errorDetails.errorDescription"
+            :errorTitle="errorDetails.errorTitle"
         />
         <VForm @submit.prevent="submitForm">
           <VRow>
             <!-- email -->
             <VCol cols="12">
               <VTextField
-                v-model="form.username"
-                autofocus
-                placeholder="antoinedupont@gmail.com"
-                label="Email"
-                type="email"
+                  v-model="form.username"
+                  autofocus
+                  label="Email"
+                  placeholder="antoinedupont@gmail.com"
+                  type="email"
               />
             </VCol>
 
             <!-- password -->
             <VCol cols="12">
               <VTextField
-                v-model="form.password"
-                label="Mot de passe"
-                placeholder="············"
-                :type="isPasswordVisible ? 'text' : 'password'"
-                :append-inner-icon="isPasswordVisible ? 'bx-hide' : 'bx-show'"
-                @click:append-inner="isPasswordVisible = !isPasswordVisible"
+                  v-model="form.password"
+                  :append-inner-icon="isPasswordVisible ? 'bx-hide' : 'bx-show'"
+                  :type="isPasswordVisible ? 'text' : 'password'"
+                  label="Mot de passe"
+                  placeholder="············"
+                  @click:append-inner="isPasswordVisible = !isPasswordVisible"
               />
 
               <!-- remember me checkbox -->
               <div class="d-flex align-center justify-space-between flex-wrap mt-1 mb-4">
                 <VCheckbox
-                  v-model="form.remember"
-                  label="Se souvenir de moi"
+                    v-model="form.remember"
+                    label="Se souvenir de moi"
                 />
 
                 <RouterLink
-                  class="text-primary ms-2 mb-1"
-                  to="javascript:void(0)"
+                    class="text-primary ms-2 mb-1"
+                    to="javascript:void(0)"
                 >
                   Mot de passe oublié
                 </RouterLink>
@@ -126,8 +126,8 @@ const submitForm = async () => {
 
               <!-- login button -->
               <VBtn
-                block
-                type="submit"
+                  block
+                  type="submit"
               >
                 Connexion
               </VBtn>
@@ -135,13 +135,13 @@ const submitForm = async () => {
 
             <!-- create account -->
             <VCol
-              cols="12"
-              class="text-center text-base"
+                class="text-center text-base"
+                cols="12"
             >
               <span>C'est ta première fois ?</span>
               <RouterLink
-                class="text-primary ms-2"
-                to="/register"
+                  class="text-primary ms-2"
+                  to="/register"
               >
                 Créer mon compte
               </RouterLink>

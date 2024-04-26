@@ -1,9 +1,9 @@
 <script setup>
-import { ref, computed, watch, onMounted, reactive } from 'vue';
+import {computed, onMounted, reactive, ref, watch} from 'vue';
 import axios from 'axios';
-import { useStore } from 'vuex';
-import DemoFormLayoutHorizontalFormWithIcons from "@/views/pages/form-layouts/DemoFormLayoutHorizontalFormWithIcons.vue";
-import DemoSimpleTableFixedHeader from "@/views/pages/tables/DemoSimpleTableFixedHeader.vue";
+import {useStore} from 'vuex';
+import DemoFormLayoutHorizontalFormWithIcons
+  from "@/views/pages/form-layouts/DemoFormLayoutHorizontalFormWithIcons.vue";
 import ConfettiExplosion from "vue-confetti-explosion";
 import {toast} from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
@@ -28,7 +28,7 @@ onMounted(async () => {
 
 const chargerProgression = async () => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/progression`, { withCredentials: true });
+    const response = await axios.get(`http://localhost:3000/api/progression`, {withCredentials: true});
     if (response.data.length > 0 && response.data[0].QuestionID !== null) {
       exerciceMaxReussi.value = response.data[0].QuestionID;
     } else {
@@ -54,7 +54,7 @@ const submitQuery = async (questionId, userQuery) => {
     const response = await axios.post('http://localhost:3000/verify-query', {
       QuestionID: questionId,
       UserQuery: userQuery
-    }, { withCredentials: true });
+    }, {withCredentials: true});
 
     if (response.data.isCorrect) {
       toast('Bien joué, tu as bien répondu !', {
@@ -65,7 +65,9 @@ const submitQuery = async (questionId, userQuery) => {
         timeout: 1000
       });
       showConfetti.value = true;
-      setTimeout(() => { showConfetti.value = false; }, 5000);
+      setTimeout(() => {
+        showConfetti.value = false;
+      }, 5000);
       tentativesIncorrectes[questionId] = 0;
       const indexExerciceActuel = exercices.value.findIndex(ex => ex.id === questionId);
       const indexExerciceMaxReussi = exercices.value.findIndex(ex => ex.id === exerciceMaxReussi.value);
@@ -92,7 +94,7 @@ const submitQuery = async (questionId, userQuery) => {
 
 const obtenirIndice = async (questionId) => {
   try {
-    const response = await axios.get(`http://localhost:3000/questions/${questionId}/indice`, { withCredentials: true });
+    const response = await axios.get(`http://localhost:3000/questions/${questionId}/indice`, {withCredentials: true});
     indicesParQuestion[questionId] = response.data.indice;
   } catch (error) {
     console.error("Erreur lors de l'obtention de l'indice :", error);
@@ -115,17 +117,18 @@ watch(chapitreSelectionne, (nouveauChapitreId) => {
 
 
 <template>
-  <ConfettiExplosion v-if="showConfetti" :duration="7000" :force="0.5" :stageHeight="2000" :stageWidth="2000" :particleCount="300"/>
+  <ConfettiExplosion v-if="showConfetti" :duration="7000" :force="0.5" :particleCount="300" :stageHeight="2000"
+                     :stageWidth="2000"/>
   <VRow>
-    <VCol md="12" cols="12">
+    <VCol cols="12" md="12">
       <VCard>
         <VTabs v-model="navigationTab">
           <!-- Utilisez estExerciceDisponible pour conditionner la classe de grisé des exercices -->
           <VTab
               v-for="exercice in exercices"
               :key="exercice.id"
-              :value="exercice.id"
               :class="{ 'grey--text text--lighten-1': !estExerciceDisponible(exercice), 'black--text': estExerciceDisponible(exercice) }"
+              :value="exercice.id"
           >
             {{ exercice.titre }}
           </VTab>
@@ -139,10 +142,11 @@ watch(chapitreSelectionne, (nouveauChapitreId) => {
           >
             <VCardTitle>{{ exercice.titre }}</VCardTitle>
             <VCardText>{{ exercice.description }}</VCardText>
-            <VCard title="Réponse" v-if="estExerciceDisponible(exercice)">
+            <VCard v-if="estExerciceDisponible(exercice)" title="Réponse">
               <VCardText>
                 <!-- Le formulaire est affiché seulement si l'exercice est disponible -->
-                <DemoFormLayoutHorizontalFormWithIcons @submit="submitQuery(exercice.id, $event)" :indice="indicesParQuestion[exercice.id]" />
+                <DemoFormLayoutHorizontalFormWithIcons :indice="indicesParQuestion[exercice.id]"
+                                                       @submit="submitQuery(exercice.id, $event)"/>
               </VCardText>
             </VCard>
             <div v-else>

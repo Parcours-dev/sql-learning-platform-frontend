@@ -3,14 +3,14 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
 import * as d3 from 'd3';
 
 const mcdContainer = ref(null);
 
 onMounted(async () => {
-  const { data: mcdData } = await axios.get('http://localhost:3000/api/mcd');
+  const {data: mcdData} = await axios.get('http://localhost:3000/api/mcd');
   drawMcd(mcdData);
 });
 
@@ -44,7 +44,7 @@ function drawMcd(mcdData) {
       .attr('fill', 'darkblue');
 
   // Ajouter les colonnes pour chaque table
-  tables.each(function(tableData, i) {
+  tables.each(function (tableData, i) {
     d3.select(this).selectAll('.column')
         .data(tableData.columns)
         .enter()

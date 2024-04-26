@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import {onMounted, ref} from 'vue';
 import VueApexCharts from 'vue3-apexcharts';
 import axios from 'axios';
 import dayjs from 'dayjs';
@@ -49,7 +49,7 @@ const chartOptions = ref({
     type: 'datetime',
     tickAmount: 10, // Contrôle le nombre de ticks sur l'axe des x
     labels: {
-      formatter: function(value) {
+      formatter: function (value) {
         return dayjs(new Date(value)).format('DD-MM');
       }
     },
@@ -88,11 +88,11 @@ onMounted(() => {
 
 <template>
   <VCard>
-  <v-card-item>
-    <v-card-title>Nombre de bonnes réponses par jour</v-card-title>
-  <div id="realtime-chart">
-    <VueApexCharts type="line" height="350" :options="chartOptions" :series="series"/>
-  </div>
-  </v-card-item>
-    </VCard>
+    <v-card-item>
+      <v-card-title>Nombre de bonnes réponses par jour</v-card-title>
+      <div id="realtime-chart">
+        <VueApexCharts :options="chartOptions" :series="series" height="350" type="line"/>
+      </div>
+    </v-card-item>
+  </VCard>
 </template>

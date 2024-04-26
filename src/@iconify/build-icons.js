@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 /**
  * This is an advanced example for creating icon bundles for Iconify SVG Framework.
  *
@@ -31,12 +31,12 @@ const sources = {
         // },
     ],
     icons: [
-    // 'mdi:home',
-    // 'mdi:account',
-    // 'mdi:login',
-    // 'mdi:logout',
-    // 'octicon:book-24',
-    // 'octicon:code-square-24',
+        // 'mdi:home',
+        // 'mdi:account',
+        // 'mdi:login',
+        // 'mdi:logout',
+        // 'octicon:book-24',
+        // 'octicon:code-square-24',
     ],
     json: [
         // Custom JSON file
@@ -104,8 +104,7 @@ const target = (0, node_path_1.join)(__dirname, 'icons-bundle.js');
         await node_fs_1.promises.mkdir(dir, {
             recursive: true,
         });
-    }
-    catch (err) {
+    } catch (err) {
         //
     }
     /**
@@ -185,8 +184,7 @@ const target = (0, node_path_1.join)(__dirname, 'icons-bundle.js');
                     }
                     // Optimise
                     await (0, tools_1.runSVGO)(svg);
-                }
-                catch (err) {
+                } catch (err) {
                     // Invalid icon
                     console.error(`Error parsing ${name} from ${source.dir}:`, err);
                     iconSet.remove(name);
@@ -207,6 +205,7 @@ const target = (0, node_path_1.join)(__dirname, 'icons-bundle.js');
 })().catch(err => {
     console.error(err);
 });
+
 /**
  * Remove metadata from icon set
  */
@@ -223,6 +222,7 @@ function removeMetaData(iconSet) {
         delete iconSet[prop];
     });
 }
+
 /**
  * Sort icon names by prefix
  */

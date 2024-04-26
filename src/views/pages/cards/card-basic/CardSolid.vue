@@ -40,19 +40,19 @@ const solidCardData = [
 <template>
   <VRow>
     <VCol
-      v-for="data in solidCardData"
-      :key="data.icon"
-      cols="12"
-      md="6"
-      lg="4"
+        v-for="data in solidCardData"
+        :key="data.icon"
+        cols="12"
+        lg="4"
+        md="6"
     >
       <VCard :color="data.cardBg">
         <VCardItem>
           <template #prepend>
             <VIcon
-              size="1.9rem"
-              color="white"
-              :icon="data.icon"
+                :icon="data.icon"
+                color="white"
+                size="1.9rem"
             />
           </template>
           <VCardTitle class="text-white">
@@ -69,24 +69,24 @@ const solidCardData = [
         <VCardText class="d-flex justify-space-between align-center flex-wrap">
           <div class="text-no-wrap">
             <VAvatar
-              size="34"
-              :image="data.avatarImg"
+                :image="data.avatarImg"
+                size="34"
             />
             <span class="text-white ms-2">{{ data.avatarName }}</span>
           </div>
 
           <div class="d-flex align-center">
             <IconBtn
-              icon="bx-heart"
-              color="white"
-              class="me-1"
+                class="me-1"
+                color="white"
+                icon="bx-heart"
             />
             <span class="text-subtitle-2 text-white me-4">{{ data.likes }}</span>
 
             <IconBtn
-              icon="bx-share-alt"
-              color="white"
-              class="me-1"
+                class="me-1"
+                color="white"
+                icon="bx-share-alt"
             />
             <span class="text-subtitle-2 text-white">{{ data.share }}</span>
           </div>

@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
 
 const props = defineProps({
@@ -44,9 +44,9 @@ onMounted(async () => {
   <VCard>
     <VCardText class="d-flex align-center pb-4">
       <img
-          width="42"
           :src="props.image"
           alt="Chapitre réussi"
+          width="42"
       >
     </VCardText>
 
@@ -61,7 +61,7 @@ onMounted(async () => {
         Réponses correctes :
       </h5>
       <h5 class="text-h5 text-no-wrap mb-1">
-        {{ chapterData.correctAnswersCount}}
+        {{ chapterData.correctAnswersCount }}
       </h5>
     </VCardText>
   </VCard>

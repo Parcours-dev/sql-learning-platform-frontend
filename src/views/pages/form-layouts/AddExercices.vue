@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios';
 import ShowExerciceTable from '@/views/pages/tables/ShowExerciceTable.vue';
-import { toast } from "vue3-toastify";
+import {toast} from "vue3-toastify";
 import 'vue3-toastify/dist/index.css';
 
 export default {
@@ -60,7 +60,7 @@ export default {
       }
     },
     setEditExercice(exercice) {
-      this.exercice = { ...exercice };
+      this.exercice = {...exercice};
       this.isEditing = true;
     },
     resetForm() {
@@ -90,7 +90,7 @@ export default {
       <v-card title="Liste des exercices">
         <v-card-text>
           Voici la liste des exercices actuellement disponibles.
-          <ShowExerciceTable @edit-exercice="setEditExercice" />
+          <ShowExerciceTable @edit-exercice="setEditExercice"/>
         </v-card-text>
       </v-card>
     </v-col>
@@ -101,19 +101,19 @@ export default {
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
-                    label="Titre de l'Exercice"
                     v-model="exercice.titre"
+                    :rules="[rules.required]"
+                    label="Titre de l'Exercice"
                     prepend-icon="mdi-format-title"
-                    :rules="[rules.required]"
                     required
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
                 <v-text-field
-                    label="Catégorie"
                     v-model="exercice.categorie"
+                    :rules="[rules.required]"
+                    label="Catégorie"
                     prepend-icon="mdi-bookshelf"
-                    :rules="[rules.required]"
                     required
                 ></v-text-field>
               </v-col>
@@ -121,11 +121,11 @@ export default {
             <v-row>
               <v-col cols="12">
                 <v-textarea
-                    label="Description"
                     v-model="exercice.description"
+                    :rules="[rules.required]"
+                    auto-grow
+                    label="Description"
                     prepend-icon="mdi-text"
-                    :rules="[rules.required]"
-                    auto-grow
                     required
                 ></v-textarea>
               </v-col>
@@ -133,11 +133,11 @@ export default {
             <v-row>
               <v-col cols="12">
                 <v-textarea
-                    label="Texte de la Question"
                     v-model="exercice.texteQuestion"
-                    prepend-icon="mdi-comment-question-outline"
                     :rules="[rules.required]"
                     auto-grow
+                    label="Texte de la Question"
+                    prepend-icon="mdi-comment-question-outline"
                     required
                 ></v-textarea>
               </v-col>
@@ -145,29 +145,29 @@ export default {
             <v-row>
               <v-col cols="12">
                 <v-textarea
-                    label="Instructions"
                     v-model="exercice.instructions"
-                    prepend-icon="mdi-format-list-bulleted"
                     auto-grow
+                    label="Instructions"
+                    prepend-icon="mdi-format-list-bulleted"
                 ></v-textarea>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
-                    label="Requête Correcte"
                     v-model="exercice.correctQuery"
-                    prepend-icon="mdi-code-tags"
                     :rules="[rules.required]"
+                    label="Requête Correcte"
+                    prepend-icon="mdi-code-tags"
                     required
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
                 <v-text-field
-                    label="Niveau"
                     v-model="exercice.niveau"
-                    prepend-icon="mdi-school"
                     :rules="[rules.required]"
+                    label="Niveau"
+                    prepend-icon="mdi-school"
                     required
                 ></v-text-field>
               </v-col>
@@ -175,16 +175,16 @@ export default {
             <v-row>
               <v-col cols="12">
                 <v-text-field
-                    label="Numéro du Chapitre"
                     v-model="exercice.chapitreId"
-                    prepend-icon="mdi-book-open-page-variant"
                     :rules="[rules.required, rules.numeric]"
+                    label="Numéro du Chapitre"
+                    prepend-icon="mdi-book-open-page-variant"
                     required
                 ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
-              <v-col cols="12" class="text-right">
+              <v-col class="text-right" cols="12">
                 <v-btn color="primary" type="submit">{{ isEditing ? 'Modifier' : 'Ajouter' }} Exercice</v-btn>
               </v-col>
             </v-row>

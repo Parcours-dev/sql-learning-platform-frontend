@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
 import VueApexCharts from 'vue3-apexcharts';
 
@@ -33,7 +33,7 @@ const chartOptions = ref({
         useSeriesColors: true,
         margin: 8,
         fontSize: '16px',
-        formatter: function(seriesName, opts) {
+        formatter: function (seriesName, opts) {
           return chartOptions.value.labels + ":  " + opts.w.globals.series[opts.seriesIndex] + "%";
         },
       },
@@ -55,9 +55,7 @@ onMounted(async () => {
     const response = await axios.get('http://localhost:3000/api/chapter-completion');
     series.value = response.data.map(item => item.completionPercentage);
     chartOptions.value.labels = response.data.map(item => "Chapitre " + item.chapterId); // Change "chapterID" to "chapterId"
-    chartOptions.value.plotOptions.radialBar.barLabels.formatter = function(seriesName, opts) {
-      return chartOptions.value.labels[opts.seriesIndex] + ":  " + Math.round(opts.w.globals.series[opts.seriesIndex]) + "%";
-    };
+
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -66,14 +64,14 @@ onMounted(async () => {
 
 <template>
   <VCard>
-  <v-card-title class="text-wrap">Complétion des Chapitres</v-card-title>
+    <v-card-title class="text-wrap">Complétion des Chapitres</v-card-title>
     <v-card-text>
       <p class="text-h8 text-wrap mb-0">
         Part des questions répondues correctement pour chaque chapitre par chaque étudiant
       </p>
     </v-card-text>
-  <div id="chart">
-    <VueApexCharts type="radialBar" height="390" :options="chartOptions" :series="series"/>
-  </div>
+    <div id="chart">
+      <VueApexCharts :options="chartOptions" :series="series" height="390" type="radialBar"/>
+    </div>
   </VCard>
 </template>

@@ -1,9 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 import axios from 'axios';
-import AuthProvider from '@/views/pages/authentication/AuthProvider.vue';
 import logo from '@images/logo.svg?raw';
-import { useRouter } from 'vue-router'
 import ErrorHeader from "@/components/ErrorHeader.vue";
 import router from "@/router";
 
@@ -52,7 +50,7 @@ const handleSignUp = async () => {
           errorTitle: 'Erreur Serveur',
           errorDescription: 'Problème de serveur interne. Veuillez réessayer plus tard.',
         };
-      } else if (error.response.status === 404){
+      } else if (error.response.status === 404) {
         errorDetails.value = {
           errorCode: '🙈',
           errorTitle: 'Problème de connexion',
@@ -69,15 +67,15 @@ const handleSignUp = async () => {
 <template>
   <div class="auth-wrapper d-flex align-center justify-center pa-4">
     <VCard
-      class="auth-card pa-4 pt-7"
-      max-width="448"
+        class="auth-card pa-4 pt-7"
+        max-width="448"
     >
       <VCardItem class="justify-center">
         <template #prepend>
           <div class="d-flex">
             <div
-              class="d-flex text-primary"
-              v-html="logo"
+                class="d-flex text-primary"
+                v-html="logo"
             />
           </div>
         </template>
@@ -99,8 +97,8 @@ const handleSignUp = async () => {
       <ErrorHeader
           v-if="showError"
           :errorCode="errorDetails.errorCode"
-          :errorTitle="errorDetails.errorTitle"
           :errorDescription="errorDetails.errorDescription"
+          :errorTitle="errorDetails.errorTitle"
       />
 
       <VCardText>
@@ -109,53 +107,53 @@ const handleSignUp = async () => {
             <!-- Username -->
             <VCol cols="12">
               <VTextField
-                v-model="form.username"
-                autofocus
-                label="Nom Complet"
-                placeholder="Pierre Coussot"
+                  v-model="form.username"
+                  autofocus
+                  label="Nom Complet"
+                  placeholder="Pierre Coussot"
               />
             </VCol>
             <!-- email -->
             <VCol cols="12">
               <VTextField
-                v-model="form.email"
-                label="Email"
-                placeholder="antoinedupont@gmail.com"
-                type="email"
+                  v-model="form.email"
+                  label="Email"
+                  placeholder="antoinedupont@gmail.com"
+                  type="email"
               />
             </VCol>
 
             <!-- password -->
             <VCol cols="12">
               <VTextField
-                v-model="form.password"
-                label="Mot de passe"
-                placeholder="············"
-                :type="isPasswordVisible ? 'text' : 'password'"
-                :append-inner-icon="isPasswordVisible ? 'bx-hide' : 'bx-show'"
-                @click:append-inner="isPasswordVisible = !isPasswordVisible"
+                  v-model="form.password"
+                  :append-inner-icon="isPasswordVisible ? 'bx-hide' : 'bx-show'"
+                  :type="isPasswordVisible ? 'text' : 'password'"
+                  label="Mot de passe"
+                  placeholder="············"
+                  @click:append-inner="isPasswordVisible = !isPasswordVisible"
               />
               <div class="d-flex align-center mt-1 mb-4">
                 <VCheckbox
-                  id="privacy-policy"
-                  v-model="form.privacyPolicies"
-                  inline
+                    id="privacy-policy"
+                    v-model="form.privacyPolicies"
+                    inline
                 />
                 <VLabel
-                  for="privacy-policy"
-                  style="opacity: 1;"
+                    for="privacy-policy"
+                    style="opacity: 1;"
                 >
                   <span class="me-1">J'accepte la</span>
                   <a
-                    href="javascript:void(0)"
-                    class="text-primary"
+                      class="text-primary"
+                      href="javascript:void(0)"
                   >politique de confidentialité</a>
                 </VLabel>
               </div>
 
               <VBtn
-                block
-                type="submit"
+                  block
+                  type="submit"
               >
                 S'inscrire
               </VBtn>
@@ -163,13 +161,13 @@ const handleSignUp = async () => {
 
             <!-- login instead -->
             <VCol
-              cols="12"
-              class="text-center text-base"
+                class="text-center text-base"
+                cols="12"
             >
               <span>Tu as déjà un compte ?</span>
               <RouterLink
-                class="text-primary ms-2"
-                to="/login"
+                  class="text-primary ms-2"
+                  to="/login"
               >
                 Se Connecter
               </RouterLink>

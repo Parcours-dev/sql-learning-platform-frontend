@@ -1,23 +1,13 @@
 <script setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-
 // Import des composants comme avant
-import CardBasic from '@/views/pages/cards/card-basic/CardBasic.vue'
 import CardNavigation from '@/views/pages/cards/card-basic/CardNavigation.vue'
-import CardSolid from '@/views/pages/cards/card-basic/CardSolid.vue'
-import McdVisualization from '@/components/McdVisualisation.vue'
 //import DemoFormLayoutHorizontalForm from '@/views/pages/form-layouts/DemoFormLayoutHorizontalForm.vue'
-import DemoFormLayoutHorizontalFormWithIcons from '@/views/pages/form-layouts/DemoFormLayoutHorizontalFormWithIcons.vue'
-import DemoFormLayoutMultipleColumn from '@/views/pages/form-layouts/DemoFormLayoutMultipleColumn.vue'
-import DemoFormLayoutVerticalForm from '@/views/pages/form-layouts/DemoFormLayoutVerticalForm.vue'
-import DemoFormLayoutVerticalFormWithIcons from '@/views/pages/form-layouts/DemoFormLayoutVerticalFormWithIcons.vue'
 
 const cards = ref([
-  { title: 'Chapitre 1324234243234 ' },
-  { title: 'Chapitre 2' },
-  { title: 'Chapitre 3' },
-  { title: 'Chapitre 4' },
+  {title: 'Chapitre 1324234243234 '},
+  {title: 'Chapitre 2'},
+  {title: 'Chapitre 3'},
+  {title: 'Chapitre 4'},
 ])
 
 const hoveredCard = ref(null)
@@ -29,10 +19,10 @@ const hoveredCard = ref(null)
     <p class="text-2xl mb-6">
       EXERCICES - Découvres les exercices !
     </p>
-   <!-- <CardBasic /> -->
+    <!-- <CardBasic /> -->
   </div>
 
-  <CardNavigation />
+  <CardNavigation/>
 
 
   <!--

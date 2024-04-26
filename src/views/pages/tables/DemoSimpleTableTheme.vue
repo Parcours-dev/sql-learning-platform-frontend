@@ -41,46 +41,46 @@ const desserts = [
 <template>
   <VTable theme="dark">
     <thead>
-      <tr>
-        <th>
-          Desserts (100g Servings)
-        </th>
-        <th class="text-uppercase">
-          calories
-        </th>
-        <th class="text-uppercase">
-          Fat(g)
-        </th>
-        <th class="text-uppercase">
-          Carbs(g)
-        </th>
-        <th class="text-uppercase">
-          protein(g)
-        </th>
-      </tr>
+    <tr>
+      <th>
+        Desserts (100g Servings)
+      </th>
+      <th class="text-uppercase">
+        calories
+      </th>
+      <th class="text-uppercase">
+        Fat(g)
+      </th>
+      <th class="text-uppercase">
+        Carbs(g)
+      </th>
+      <th class="text-uppercase">
+        protein(g)
+      </th>
+    </tr>
     </thead>
 
     <tbody>
-      <tr
+    <tr
         v-for="item in desserts"
         :key="item.dessert"
-      >
-        <td>
-          {{ item.dessert }}
-        </td>
-        <td class="text-center">
-          {{ item.calories }}
-        </td>
-        <td class="text-center">
-          {{ item.fat }}
-        </td>
-        <td class="text-center">
-          {{ item.carbs }}
-        </td>
-        <td class="text-center">
-          {{ item.protein }}
-        </td>
-      </tr>
+    >
+      <td>
+        {{ item.dessert }}
+      </td>
+      <td class="text-center">
+        {{ item.calories }}
+      </td>
+      <td class="text-center">
+        {{ item.fat }}
+      </td>
+      <td class="text-center">
+        {{ item.carbs }}
+      </td>
+      <td class="text-center">
+        {{ item.protein }}
+      </td>
+    </tr>
     </tbody>
   </VTable>
 </template>

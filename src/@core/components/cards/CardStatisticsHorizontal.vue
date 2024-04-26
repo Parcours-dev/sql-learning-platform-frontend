@@ -1,5 +1,5 @@
 <script setup>
-import { kFormatter } from '@core/utils/formatters'
+import {kFormatter} from '@core/utils/formatters'
 
 const props = defineProps({
   title: {
@@ -32,15 +32,15 @@ const isPositive = controlledComputed(() => props.change, () => Math.sign(props.
   <VCard>
     <VCardText class="d-flex align-center">
       <VAvatar
-        size="44"
-        rounded
-        :color="props.color"
-        variant="tonal"
-        class="me-4"
+          :color="props.color"
+          class="me-4"
+          rounded
+          size="44"
+          variant="tonal"
       >
         <VIcon
-          :icon="props.icon"
-          size="30"
+            :icon="props.icon"
+            size="30"
         />
       </VAvatar>
 
@@ -49,10 +49,10 @@ const isPositive = controlledComputed(() => props.change, () => Math.sign(props.
         <div class="d-flex align-center flex-wrap">
           <span class="text-h6 font-weight-semibold">{{ kFormatter(props.stats) }}</span>
           <div
-            v-if="props.change"
-            :class="`${isPositive ? 'text-success' : 'text-error'} mt-1`"
+              v-if="props.change"
+              :class="`${isPositive ? 'text-success' : 'text-error'} mt-1`"
           >
-            <VIcon :icon="isPositive ? 'bx-chevron-up' : 'bx-chevron-down'" />
+            <VIcon :icon="isPositive ? 'bx-chevron-up' : 'bx-chevron-down'"/>
             <span class="text-caption font-weight-semibold">{{ Math.abs(props.change) }}%</span>
           </div>
         </div>

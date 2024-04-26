@@ -13,96 +13,96 @@ const checkbox = ref(false)
     <VRow>
       <!-- 👉 First Name -->
       <VCol
-        cols="12"
-        md="6"
+          cols="12"
+          md="6"
       >
         <VTextField
-          v-model="firstName"
-          label="First Name"
-          placeholder="John"
+            v-model="firstName"
+            label="First Name"
+            placeholder="John"
         />
       </VCol>
 
       <!-- 👉 Last Name -->
       <VCol
-        cols="12"
-        md="6"
+          cols="12"
+          md="6"
       >
         <VTextField
-          v-model="lastName"
-          label="Last Name"
-          placeholder="Doe"
+            v-model="lastName"
+            label="Last Name"
+            placeholder="Doe"
         />
       </VCol>
 
       <!-- 👉 Email -->
       <VCol
-        cols="12"
-        md="6"
+          cols="12"
+          md="6"
       >
         <VTextField
-          v-model="email"
-          label="Email"
-          placeholder="johndoe@email.com"
+            v-model="email"
+            label="Email"
+            placeholder="johndoe@email.com"
         />
       </VCol>
 
       <!-- 👉 City -->
       <VCol
-        cols="12"
-        md="6"
+          cols="12"
+          md="6"
       >
         <VTextField
-          v-model="city"
-          label="City"
-          placeholder="New York"
+            v-model="city"
+            label="City"
+            placeholder="New York"
         />
       </VCol>
 
       <!-- 👉 Country -->
       <VCol
-        cols="12"
-        md="6"
+          cols="12"
+          md="6"
       >
         <VTextField
-          v-model="country"
-          label="Country"
-          placeholder="United States"
+            v-model="country"
+            label="Country"
+            placeholder="United States"
         />
       </VCol>
 
       <!-- 👉 Company -->
       <VCol
-        cols="12"
-        md="6"
+          cols="12"
+          md="6"
       >
         <VTextField
-          v-model="company"
-          label="Company"
-          placeholder="Pixinvent"
+            v-model="company"
+            label="Company"
+            placeholder="Pixinvent"
         />
       </VCol>
 
       <!-- 👉 Remember me -->
       <VCol cols="12">
         <VCheckbox
-          v-model="checkbox"
-          label="Remember me"
+            v-model="checkbox"
+            label="Remember me"
         />
       </VCol>
 
       <VCol
-        cols="12"
-        class="d-flex gap-4"
+          class="d-flex gap-4"
+          cols="12"
       >
         <VBtn type="submit">
           Submit
         </VBtn>
 
         <VBtn
-          type="reset"
-          color="secondary"
-          variant="tonal"
+            color="secondary"
+            type="reset"
+            variant="tonal"
         >
           Reset
         </VBtn>

@@ -1,5 +1,5 @@
 <script setup>
-import { useRoute } from 'vue-router'
+import {useRoute} from 'vue-router'
 import AccountSettingsAccount from '@/views/pages/account-settings/AccountSettingsAccount.vue'
 import AccountSettingsNotification from '@/views/pages/account-settings/AccountSettingsNotification.vue'
 import AccountSettingsSecurity from '@/views/pages/account-settings/AccountSettingsSecurity.vue'
@@ -30,41 +30,41 @@ const tabs = [
 <template>
   <div>
     <VTabs
-      v-model="activeTab"
-      show-arrows
+        v-model="activeTab"
+        show-arrows
     >
       <VTab
-        v-for="item in tabs"
-        :key="item.icon"
-        :value="item.tab"
+          v-for="item in tabs"
+          :key="item.icon"
+          :value="item.tab"
       >
         <VIcon
-          size="20"
-          start
-          :icon="item.icon"
+            :icon="item.icon"
+            size="20"
+            start
         />
         {{ item.title }}
       </VTab>
     </VTabs>
-    <VDivider />
+    <VDivider/>
 
     <VWindow
-      v-model="activeTab"
-      class="mt-5 disable-tab-transition"
+        v-model="activeTab"
+        class="mt-5 disable-tab-transition"
     >
       <!-- Account -->
       <VWindowItem value="account">
-        <AccountSettingsAccount />
+        <AccountSettingsAccount/>
       </VWindowItem>
 
       <!-- Security -->
       <VWindowItem value="security">
-        <AccountSettingsSecurity />
+        <AccountSettingsSecurity/>
       </VWindowItem>
 
       <!-- Notification -->
       <VWindowItem value="notification">
-        <AccountSettingsNotification />
+        <AccountSettingsNotification/>
       </VWindowItem>
     </VWindow>
   </div>

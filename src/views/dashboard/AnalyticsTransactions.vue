@@ -70,23 +70,23 @@ const moreList = [
   <VCard title="Transactions">
     <template #append>
       <div class="me-n3 mt-n2">
-        <MoreBtn :menu-list="moreList" />
+        <MoreBtn :menu-list="moreList"/>
       </div>
     </template>
 
     <VCardText>
       <VList class="card-list">
         <VListItem
-          v-for="item in transactions"
-          :key="item.paymentMethod"
+            v-for="item in transactions"
+            :key="item.paymentMethod"
         >
           <template #prepend>
             <VAvatar
-              rounded
-              variant="tonal"
-              :color="item.color"
-              :image="item.icon"
-              class="me-3"
+                :color="item.color"
+                :image="item.icon"
+                class="me-3"
+                rounded
+                variant="tonal"
             />
           </template>
 
@@ -99,7 +99,9 @@ const moreList = [
 
           <template #append>
             <VListItemAction>
-              <span class="me-1">{{ item.amount > 0 ? `+$${Math.abs(item.amount)}` : `-$${Math.abs(item.amount)}` }}</span>
+              <span class="me-1">{{
+                  item.amount > 0 ? `+$${Math.abs(item.amount)}` : `-$${Math.abs(item.amount)}`
+                }}</span>
               <span class="text-disabled">USD</span>
             </VListItemAction>
           </template>
@@ -110,7 +112,7 @@ const moreList = [
 </template>
 
 <style lang="scss" scoped>
-  .card-list {
-    --v-card-list-gap: 1.6rem;
-  }
+.card-list {
+  --v-card-list-gap: 1.6rem;
+}
 </style>

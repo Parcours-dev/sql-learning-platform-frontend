@@ -1,10 +1,7 @@
 <script setup>
 import VueApexCharts from 'vue3-apexcharts'
-import {
-  useDisplay,
-  useTheme,
-} from 'vuetify'
-import { hexToRgb } from '@layouts/utils'
+import {useDisplay, useTheme,} from 'vuetify'
+import {hexToRgb} from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
 const display = useDisplay()
@@ -22,11 +19,11 @@ const series = [{
 
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
-  
+
   return {
     chart: {
       parentHeightOffset: 0,
-      toolbar: { show: false },
+      toolbar: {show: false},
       dropShadow: {
         top: 12,
         blur: 4,
@@ -36,8 +33,8 @@ const chartOptions = computed(() => {
         color: currentTheme.warning,
       },
     },
-    tooltip: { enabled: false },
-    colors: [`rgba(${ hexToRgb(String(currentTheme.warning)) }, 1)`],
+    tooltip: {enabled: false},
+    colors: [`rgba(${hexToRgb(String(currentTheme.warning))}, 1)`],
     stroke: {
       width: 4,
       curve: 'smooth',
@@ -52,11 +49,11 @@ const chartOptions = computed(() => {
       },
     },
     xaxis: {
-      labels: { show: false },
-      axisTicks: { show: false },
-      axisBorder: { show: false },
+      labels: {show: false},
+      axisTicks: {show: false},
+      axisBorder: {show: false},
     },
-    yaxis: { labels: { show: false } },
+    yaxis: {labels: {show: false}},
     responsive: [
       {
         breakpoint: display.thresholds.value.lg,
@@ -97,9 +94,9 @@ const chartOptions = computed(() => {
         <div>
           <div class="text-success text-sm">
             <VIcon
-              icon="bx-up-arrow-alt"
-              size="18"
-              class="me-1"
+                class="me-1"
+                icon="bx-up-arrow-alt"
+                size="18"
             />
             <span>68.2%</span>
           </div>
@@ -112,11 +109,11 @@ const chartOptions = computed(() => {
 
       <div class="h-100 d-flex align-center">
         <VueApexCharts
-          type="line"
-          :height="131"
-          width="80%"
-          :options="chartOptions"
-          :series="series"
+            :height="131"
+            :options="chartOptions"
+            :series="series"
+            type="line"
+            width="80%"
         />
       </div>
     </VCardText>

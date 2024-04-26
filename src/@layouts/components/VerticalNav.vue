@@ -1,6 +1,6 @@
 <script setup>
-import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-import { useDisplay } from 'vuetify'
+import {PerfectScrollbar} from 'vue3-perfect-scrollbar'
+import {useDisplay} from 'vuetify'
 import logo from '@images/logo.svg?raw'
 
 const props = defineProps({
@@ -22,7 +22,7 @@ const props = defineProps({
   },
 })
 
-const { mdAndDown } = useDisplay()
+const {mdAndDown} = useDisplay()
 const refNav = ref()
 const route = useRoute()
 
@@ -40,27 +40,27 @@ const handleNavScroll = evt => {
 
 <template>
   <Component
-    :is="props.tag"
-    ref="refNav"
-    class="layout-vertical-nav"
-    :class="[
+      :is="props.tag"
+      ref="refNav"
+      :class="[
       {
         'visible': isOverlayNavActive,
         'scrolled': isVerticalNavScrolled,
         'overlay-nav': mdAndDown,
       },
     ]"
+      class="layout-vertical-nav"
   >
     <!-- 👉 Header -->
     <div class="nav-header">
       <slot name="nav-header">
         <RouterLink
-          to="/"
-          class="app-logo d-flex align-center gap-x-3 app-title-wrapper"
+            class="app-logo d-flex align-center gap-x-3 app-title-wrapper"
+            to="/"
         >
           <div
-            class="d-flex"
-            v-html="logo"
+              class="d-flex"
+              v-html="logo"
           />
 
           <h1 class="leading-normal">
@@ -70,23 +70,23 @@ const handleNavScroll = evt => {
       </slot>
     </div>
     <slot name="before-nav-items">
-      <div class="vertical-nav-items-shadow" />
+      <div class="vertical-nav-items-shadow"/>
     </slot>
     <slot
-      name="nav-items"
-      :update-is-vertical-nav-scrolled="updateIsVerticalNavScrolled"
+        :update-is-vertical-nav-scrolled="updateIsVerticalNavScrolled"
+        name="nav-items"
     >
       <PerfectScrollbar
-        tag="ul"
-        class="nav-items"
-        :options="{ wheelPropagation: false }"
-        @ps-scroll-y="handleNavScroll"
+          :options="{ wheelPropagation: false }"
+          class="nav-items"
+          tag="ul"
+          @ps-scroll-y="handleNavScroll"
       >
-        <slot />
+        <slot/>
       </PerfectScrollbar>
     </slot>
 
-    <slot name="after-nav-items" />
+    <slot name="after-nav-items"/>
   </Component>
 </template>
 

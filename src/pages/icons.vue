@@ -55,21 +55,21 @@ const iconsList = [
   <div>
     <div class="d-flex align-center flex-wrap">
       <VCard
-        v-for="icon in iconsList"
-        :key="icon"
-        class="mb-6 me-6"
+          v-for="icon in iconsList"
+          :key="icon"
+          class="mb-6 me-6"
       >
         <VCardText class="py-3 px-4">
           <VIcon
-            size="30"
-            :icon="icon"
+              :icon="icon"
+              size="30"
           />
         </VCardText>
 
         <!-- tooltips -->
         <VTooltip
-          location="top"
-          activator="parent"
+            activator="parent"
+            location="top"
         >
           {{ icon }}
         </VTooltip>
@@ -79,10 +79,10 @@ const iconsList = [
     <!-- more icons -->
     <div class="text-center">
       <VBtn
-        href="https://boxicons.com/"
-        rel="noopener noreferrer"
-        color="primary"
-        target="_blank"
+          color="primary"
+          href="https://boxicons.com/"
+          rel="noopener noreferrer"
+          target="_blank"
       >
         View All Box Icons
       </VBtn>

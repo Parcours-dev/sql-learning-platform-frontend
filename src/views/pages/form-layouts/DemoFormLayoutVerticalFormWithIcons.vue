@@ -7,10 +7,10 @@ const firstName = ref('')
     <VRow>
       <VCol cols="12">
         <VTextField
-          v-model="firstName"
-          prepend-inner-icon="bx-user"
-          label="First Name"
-          placeholder="John"
+            v-model="firstName"
+            label="First Name"
+            placeholder="John"
+            prepend-inner-icon="bx-user"
         />
       </VCol>
     </VRow>

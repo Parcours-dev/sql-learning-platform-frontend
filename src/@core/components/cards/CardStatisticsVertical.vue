@@ -25,16 +25,16 @@ const isPositive = controlledComputed(() => props.change, () => Math.sign(props.
   <VCard>
     <VCardText class="d-flex align-center pb-4">
       <img
-        width="42"
-        :src="props.image"
-        alt="image"
+          :src="props.image"
+          alt="image"
+          width="42"
       >
 
-      <VSpacer />
+      <VSpacer/>
 
       <MoreBtn
-        size="x-small"
-        class="me-n3 mt-n4"
+          class="me-n3 mt-n4"
+          size="x-small"
       />
     </VCardText>
 
@@ -46,12 +46,12 @@ const isPositive = controlledComputed(() => props.change, () => Math.sign(props.
         {{ props.stats }}
       </h5>
       <span
-        :class="isPositive ? 'text-success' : 'text-error'"
-        class="d-flex align-center gap-1 text-sm"
+          :class="isPositive ? 'text-success' : 'text-error'"
+          class="d-flex align-center gap-1 text-sm"
       >
         <VIcon
-          size="18"
-          :icon="isPositive ? 'bx-up-arrow-alt' : 'bx-down-arrow-alt'"
+            :icon="isPositive ? 'bx-up-arrow-alt' : 'bx-down-arrow-alt'"
+            size="18"
         />
         {{ isPositive ? Math.abs(props.change) : props.change }}%
       </span>

@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
 
 const props = defineProps({
@@ -44,9 +44,9 @@ onMounted(async () => {
   <VCard>
     <VCardText class="d-flex align-center pb-4">
       <img
-          width="42"
           :src="props.image"
           alt="Chapitre moins réussi"
+          width="42"
       >
     </VCardText>
 

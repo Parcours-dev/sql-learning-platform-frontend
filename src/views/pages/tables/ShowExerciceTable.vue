@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, reactive, defineEmits } from 'vue';
+import {defineEmits, onMounted, reactive, ref} from 'vue';
 import axios from 'axios';
 
 const emits = defineEmits(['edit-exercice', 'delete-exercice']);
@@ -56,7 +56,7 @@ onMounted(fetchQuestions);
 </script>
 
 <template>
-  <v-table fixed-header height="500" density="comfortable">
+  <v-table density="comfortable" fixed-header height="500">
     <thead>
     <tr>
       <th @click="sortQuestions('QuestionID')">ID</th>
@@ -86,7 +86,7 @@ onMounted(fetchQuestions);
         <v-btn icon @click="editExercice(question)">
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
-        <v-btn icon color="red" @click="deleteExercice(question.QuestionID)">
+        <v-btn color="red" icon @click="deleteExercice(question.QuestionID)">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </td>

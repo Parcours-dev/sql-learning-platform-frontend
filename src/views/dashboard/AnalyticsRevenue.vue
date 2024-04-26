@@ -1,7 +1,7 @@
 <script setup>
 import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
-import { hexToRgb } from '@layouts/utils'
+import {useTheme} from 'vuetify'
+import {hexToRgb} from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
 
@@ -20,12 +20,12 @@ const series = [{
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
   const variableTheme = vuetifyTheme.current.value.variables
-  const disabledText = `rgba(${ hexToRgb(String(currentTheme['on-surface'])) },${ variableTheme['disabled-opacity'] })`
-  
+  const disabledText = `rgba(${hexToRgb(String(currentTheme['on-surface']))},${variableTheme['disabled-opacity']})`
+
   return {
     chart: {
       parentHeightOffset: 0,
-      toolbar: { show: false },
+      toolbar: {show: false},
     },
     plotOptions: {
       bar: {
@@ -36,21 +36,21 @@ const chartOptions = computed(() => {
         startingShape: 'rounded',
       },
     },
-    legend: { show: false },
-    tooltip: { enabled: false },
-    dataLabels: { enabled: false },
+    legend: {show: false},
+    tooltip: {enabled: false},
+    dataLabels: {enabled: false},
     colors: [
-      `rgba(${ hexToRgb(String(currentTheme.primary)) }, 0.16)`,
-      `rgba(${ hexToRgb(String(currentTheme.primary)) }, 0.16)`,
-      `rgba(${ hexToRgb(String(currentTheme.primary)) }, 0.16)`,
-      `rgba(${ hexToRgb(String(currentTheme.primary)) }, 0.16)`,
-      `rgba(${ hexToRgb(String(currentTheme.primary)) }, 1)`,
-      `rgba(${ hexToRgb(String(currentTheme.primary)) }, 0.16)`,
-      `rgba(${ hexToRgb(String(currentTheme.primary)) }, 0.16)`,
+      `rgba(${hexToRgb(String(currentTheme.primary))}, 0.16)`,
+      `rgba(${hexToRgb(String(currentTheme.primary))}, 0.16)`,
+      `rgba(${hexToRgb(String(currentTheme.primary))}, 0.16)`,
+      `rgba(${hexToRgb(String(currentTheme.primary))}, 0.16)`,
+      `rgba(${hexToRgb(String(currentTheme.primary))}, 1)`,
+      `rgba(${hexToRgb(String(currentTheme.primary))}, 0.16)`,
+      `rgba(${hexToRgb(String(currentTheme.primary))}, 0.16)`,
     ],
     states: {
-      hover: { filter: { type: 'none' } },
-      active: { filter: { type: 'none' } },
+      hover: {filter: {type: 'none'}},
+      active: {filter: {type: 'none'}},
     },
     xaxis: {
       categories: [
@@ -62,8 +62,8 @@ const chartOptions = computed(() => {
         'S',
         'S',
       ],
-      axisTicks: { show: false },
-      axisBorder: { show: false },
+      axisTicks: {show: false},
+      axisBorder: {show: false},
       tickPlacement: 'on',
       labels: {
         style: {
@@ -73,7 +73,7 @@ const chartOptions = computed(() => {
         },
       },
     },
-    yaxis: { show: false },
+    yaxis: {show: false},
     grid: {
       show: false,
       padding: {
@@ -99,10 +99,10 @@ const chartOptions = computed(() => {
     </VCardText>
 
     <VueApexCharts
-      type="bar"
-      :height="110"
-      :options="chartOptions"
-      :series="series"
+        :height="110"
+        :options="chartOptions"
+        :series="series"
+        type="bar"
     />
   </VCard>
 </template>

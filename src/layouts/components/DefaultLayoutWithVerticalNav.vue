@@ -1,12 +1,12 @@
 <script setup>
-import { useTheme } from 'vuetify'
+import {useTheme} from 'vuetify'
 import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue'
 import upgradeBannerDark from '@images/pro/upgrade-banner-dark.png'
 import upgradeBannerLight from '@images/pro/upgrade-banner-light.png'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
-import { computed } from 'vue';
-import { useStore } from 'vuex';
+import {computed} from 'vue';
+import {useStore} from 'vuex';
 // Components
 //import Footer from '@/layouts/components/Footer.vue'
 import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
@@ -31,20 +31,20 @@ const upgradeBanner = computed(() => {
       <div class="d-flex h-100 align-center">
         <!-- 👉 Vertical nav toggle in overlay mode -->
         <IconBtn
-          class="ms-n3 d-lg-none"
-          @click="toggleVerticalOverlayNavActive(true)"
+            class="ms-n3 d-lg-none"
+            @click="toggleVerticalOverlayNavActive(true)"
         >
-          <VIcon icon="bx-menu" />
+          <VIcon icon="bx-menu"/>
         </IconBtn>
 
         <!-- 👉 Search -->
         <div
-          class="d-flex align-center cursor-pointer"
-          style="user-select: none;"
+            class="d-flex align-center cursor-pointer"
+            style="user-select: none;"
         >
           <!-- 👉 Search Trigger button -->
           <IconBtn>
-            <VIcon icon="bx-search" />
+            <VIcon icon="bx-search"/>
           </IconBtn>
 
           <span class="d-none d-md-flex align-center text-disabled">
@@ -53,7 +53,7 @@ const upgradeBanner = computed(() => {
           </span>
         </div>
 
-        <VSpacer />
+        <VSpacer/>
 
         <!--
         <IconBtn
@@ -66,25 +66,25 @@ const upgradeBanner = computed(() => {
         </IconBtn> -->
 
         <IconBtn class="me-2">
-          <VIcon icon="bx-bell" />
+          <VIcon icon="bx-bell"/>
         </IconBtn>
 
-        <NavbarThemeSwitcher class="me-2" />
+        <NavbarThemeSwitcher class="me-2"/>
 
-        <UserProfile />
+        <UserProfile/>
       </div>
     </template>
 
     <template #vertical-nav-content>
       <VerticalNavLink
-        :item="{
+          :item="{
           title: 'Accueil',
           icon: 'bx-home',
           to: '/dashboard',
         }"
       />
       <VerticalNavLink
-        :item="{
+          :item="{
           title: 'Mon Compte',
           icon: 'mdi-account-cog-outline',
           to: '/account-settings',
@@ -93,26 +93,26 @@ const upgradeBanner = computed(() => {
 
       <!-- 👉 Pages -->
       <VerticalNavSectionTitle
-        :item="{
+          :item="{
           heading: 'Pages',
         }"
       />
       <VerticalNavLink
-        :item="{
+          :item="{
           title: 'Login',
           icon: 'bx-log-in',
           to: '/login',
         }"
       />
       <VerticalNavLink
-        :item="{
+          :item="{
           title: 'Register',
           icon: 'bx-user-plus',
           to: '/register',
         }"
       />
       <VerticalNavLink
-        :item="{
+          :item="{
           title: 'Error',
           icon: 'bx-info-circle',
           to: '/no-existence',
@@ -121,7 +121,7 @@ const upgradeBanner = computed(() => {
 
       <!-- 👉 Inerface Exos -->
       <VerticalNavSectionTitle
-        :item="{
+          :item="{
           heading: 'Les Exercices',
         }"
       />
@@ -157,7 +157,7 @@ const upgradeBanner = computed(() => {
 
       <!-- On affiche que si c'est un admin -->
       <VerticalNavLink v-if="isAdmin"
-        :item="{
+                       :item="{
           title: 'Administation',
           icon: 'mdi-form-select',
           to: '/form-layouts',
@@ -167,11 +167,11 @@ const upgradeBanner = computed(() => {
     </template>
 
     <!-- 👉 Pages -->
-    <slot />
+    <slot/>
 
     <!-- 👉 Footer -->
     <template #footer>
-      <Footer />
+      <Footer/>
     </template>
   </VerticalNavLayout>
 </template>

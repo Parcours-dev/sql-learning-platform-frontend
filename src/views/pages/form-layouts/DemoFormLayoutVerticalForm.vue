@@ -11,58 +11,58 @@ const checkbox = ref(false)
     <VRow>
       <VCol cols="12">
         <VTextField
-          v-model="firstName"
-          label="First Name"
-          placeholder="John"
+            v-model="firstName"
+            label="First Name"
+            placeholder="John"
         />
       </VCol>
 
       <VCol cols="12">
         <VTextField
-          v-model="email"
-          label="Email"
-          type="email"
-          placeholder="johndoe@example.com"
+            v-model="email"
+            label="Email"
+            placeholder="johndoe@example.com"
+            type="email"
         />
       </VCol>
 
       <VCol cols="12">
         <VTextField
-          v-model="mobile"
-          label="Mobile"
-          placeholder="+1 123 456 7890"
-          type="number"
+            v-model="mobile"
+            label="Mobile"
+            placeholder="+1 123 456 7890"
+            type="number"
         />
       </VCol>
 
       <VCol cols="12">
         <VTextField
-          v-model="password"
-          label="Password"
-          type="password"
-          placeholder="············"
+            v-model="password"
+            label="Password"
+            placeholder="············"
+            type="password"
         />
       </VCol>
 
       <VCol cols="12">
         <VCheckbox
-          v-model="checkbox"
-          label="Remember me"
+            v-model="checkbox"
+            label="Remember me"
         />
       </VCol>
 
       <VCol
-        cols="12"
-        class="d-flex gap-4"
+          class="d-flex gap-4"
+          cols="12"
       >
         <VBtn type="submit">
           Submit
         </VBtn>
 
         <VBtn
-          type="reset"
-          color="secondary"
-          variant="tonal"
+            color="secondary"
+            type="reset"
+            variant="tonal"
         >
           Reset
         </VBtn>

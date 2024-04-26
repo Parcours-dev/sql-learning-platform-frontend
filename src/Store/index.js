@@ -1,4 +1,4 @@
-import { createStore } from 'vuex';
+import {createStore} from 'vuex';
 import axios from 'axios';
 
 export default createStore({
@@ -35,7 +35,7 @@ export default createStore({
     },
     actions: {
         // Dans votre action de login, assurez-vous que la propriété 'role' est bien passée.
-        async login({ commit }, credentials) {
+        async login({commit}, credentials) {
             console.log("test de log")
             try {
                 const response = await axios.post('http://localhost:3000/login', credentials);
@@ -49,7 +49,7 @@ export default createStore({
                 console.error('Erreur lors de la tentative de connexion :', error);
             }
         },
-        async chargerExercices({ commit }, chapitreId) {
+        async chargerExercices({commit}, chapitreId) {
             try {
                 const reponse = await axios.get(`http://localhost:3000/api/chapitres/${chapitreId}/exercices`);
                 commit('setExercices', reponse.data.map(ex => ({

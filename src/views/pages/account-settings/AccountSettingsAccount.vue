@@ -104,10 +104,10 @@ onMounted(loadUserInfo);
         <VCardText class="d-flex">
           <!-- 👉 Avatar -->
           <VAvatar
+              :image="accountDataLocal.avatarImg"
+              class="me-6"
               rounded="lg"
               size="100"
-              class="me-6"
-              :image="accountDataLocal.avatarImg"
           />
 
           <!-- 👉 Upload Photo -->
@@ -118,31 +118,31 @@ onMounted(loadUserInfo);
                   @click="refInputEl?.click()"
               >
                 <VIcon
-                    icon="bx-cloud-upload"
                     class="d-sm-none"
+                    icon="bx-cloud-upload"
                 />
                 <span class="d-none d-sm-block">Changer la photo</span>
               </VBtn>
 
               <input
                   ref="refInputEl"
-                  type="file"
-                  name="file"
                   accept=".jpeg,.png,.jpg,GIF"
                   hidden
+                  name="file"
+                  type="file"
                   @input="changeAvatar"
               >
 
               <VBtn
-                  type="reset"
                   color="error"
+                  type="reset"
                   variant="tonal"
                   @click="resetAvatar"
               >
                 <span class="d-none d-sm-block">Réinitialiser</span>
                 <VIcon
-                    icon="bx-refresh"
                     class="d-sm-none"
+                    icon="bx-refresh"
                 />
               </VBtn>
             </div>
@@ -161,25 +161,25 @@ onMounted(loadUserInfo);
             <VRow>
               <!-- 👉 First Name -->
               <VCol
-                  md="6"
                   cols="12"
+                  md="6"
               >
                 <VTextField
                     v-model="accountDataLocal.prenom"
-                    placeholder="John"
                     label="Prénom"
+                    placeholder="John"
                 />
               </VCol>
 
               <!-- 👉 Last Name -->
               <VCol
-                  md="6"
                   cols="12"
+                  md="6"
               >
                 <VTextField
                     v-model="accountDataLocal.nom"
-                    placeholder="Doe"
                     label="Nom"
+                    placeholder="Doe"
                 />
               </VCol>
 
@@ -211,8 +211,8 @@ onMounted(loadUserInfo);
 
               <!-- 👉 Form Actions -->
               <VCol
-                  cols="12"
                   class="d-flex flex-wrap gap-4"
+                  cols="12"
               >
 
 
@@ -220,8 +220,8 @@ onMounted(loadUserInfo);
 
                 <VBtn
                     color="secondary"
-                    variant="tonal"
                     type="reset"
+                    variant="tonal"
                     @click.prevent="resetForm"
                 >
                   Réinitialiser
@@ -246,8 +246,8 @@ onMounted(loadUserInfo);
 
           <VBtn
               :disabled="!isAccountDeactivated"
-              color="error"
               class="mt-3"
+              color="error"
               @click="deleteAccount"
           >
             Desactiver

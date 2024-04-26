@@ -1,10 +1,10 @@
 <script setup>
 import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
+import {useTheme} from 'vuetify'
 import statsVerticalChart from '@images/cards/chart-success.png'
 import statsVerticalPaypal from '@images/cards/paypal-error.png'
 import statsVerticalWallet from '@images/cards/wallet-primary.png'
-import { hexToRgb } from '@layouts/utils'
+import {hexToRgb} from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
 
@@ -76,22 +76,22 @@ const tabData = computed(() => {
       compareToLastWeek: '$28k',
     },
   }
-  
+
   return data[currentTab.value]
 })
 
 const chartConfig = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
   const variableTheme = vuetifyTheme.current.value.variables
-  const disabledTextColor = `rgba(${ hexToRgb(String(currentTheme['on-surface'])) },${ variableTheme['disabled-opacity'] })`
-  const borderColor = `rgba(${ hexToRgb(String(variableTheme['border-color'])) },${ variableTheme['border-opacity'] })`
-  
+  const disabledTextColor = `rgba(${hexToRgb(String(currentTheme['on-surface']))},${variableTheme['disabled-opacity']})`
+  const borderColor = `rgba(${hexToRgb(String(variableTheme['border-color']))},${variableTheme['border-opacity']})`
+
   return {
     chart: {
       parentHeightOffset: 0,
-      toolbar: { show: false },
+      toolbar: {show: false},
     },
-    dataLabels: { enabled: false },
+    dataLabels: {enabled: false},
     stroke: {
       width: 3,
       curve: 'smooth',
@@ -140,8 +140,8 @@ const chartConfig = computed(() => {
       },
     },
     xaxis: {
-      axisTicks: { show: false },
-      axisBorder: { show: false },
+      axisTicks: {show: false},
+      axisBorder: {show: false},
       categories: [
         '',
         'Jan',
@@ -170,7 +170,7 @@ const chartConfig = computed(() => {
       size: 8,
       strokeWidth: 6,
       strokeOpacity: 1,
-      hover: { size: 8 },
+      hover: {size: 8},
       colors: ['transparent'],
       strokeColors: 'transparent',
       discrete: [{
@@ -189,8 +189,8 @@ const chartConfig = computed(() => {
   <VCard>
     <VCardItem>
       <VTabs
-        v-model="currentTab"
-        class="v-tabs-pill"
+          v-model="currentTab"
+          class="v-tabs-pill"
       >
         <VTab value="income">
           Income
@@ -206,9 +206,9 @@ const chartConfig = computed(() => {
 
     <VCardText class="d-flex align-center gap-3">
       <VAvatar
-        size="46"
-        rounded
-        :image="tabData.avatar"
+          :image="tabData.avatar"
+          rounded
+          size="46"
       />
 
       <div>
@@ -220,12 +220,12 @@ const chartConfig = computed(() => {
             {{ tabData.stats }}
           </h6>
           <span
-            class="text-sm"
-            :class="tabData.profitLoss > 0 ? 'text-success' : 'text-error'"
+              :class="tabData.profitLoss > 0 ? 'text-success' : 'text-error'"
+              class="text-sm"
           >
             <VIcon
-              size="24"
-              icon="bx-chevron-up"
+                icon="bx-chevron-up"
+                size="24"
             />
             {{ tabData.profitLoss }}%
           </span>
@@ -235,17 +235,17 @@ const chartConfig = computed(() => {
 
     <VCardText>
       <VueApexCharts
-        type="area"
-        :height="241"
-        :options="chartConfig"
-        :series="series[currentTab]"
+          :height="241"
+          :options="chartConfig"
+          :series="series[currentTab]"
+          type="area"
       />
     </VCardText>
 
     <VCardText class="d-flex align-center justify-center gap-3">
       <VProgressCircular
-        size="45"
-        :model-value="tabData.profitLoss"
+          :model-value="tabData.profitLoss"
+          size="45"
       >
         <span class="text-xs text-medium-emphasis">{{ tabData.profitLossAmount }}</span>
       </VProgressCircular>

@@ -1,7 +1,7 @@
 <script setup>
-import { useTheme } from 'vuetify'
+import {useTheme} from 'vuetify'
 
-const { global } = useTheme()
+const {global} = useTheme()
 
 const authProviders = [
   {
@@ -29,10 +29,10 @@ const authProviders = [
 
 <template>
   <VBtn
-    v-for="link in authProviders"
-    :key="link.icon"
-    :icon="link.icon"
-    variant="text"
-    :color="global.name.value === 'dark' ? link.colorInDark : link.color"
+      v-for="link in authProviders"
+      :key="link.icon"
+      :color="global.name.value === 'dark' ? link.colorInDark : link.color"
+      :icon="link.icon"
+      variant="text"
   />
 </template>

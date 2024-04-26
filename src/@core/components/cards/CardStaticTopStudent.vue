@@ -1,7 +1,6 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
-import success from '@images/cards/success.png';
 
 const props = defineProps({
   title: {
@@ -47,12 +46,12 @@ onMounted(async () => {
   <VCard>
     <VCardText class="d-flex align-center pb-4">
       <img
-        width="42"
-        :src="props.image"
-        alt="image"
+          :src="props.image"
+          alt="image"
+          width="42"
       >
 
-      <VSpacer />
+      <VSpacer/>
 
     </VCardText>
 
@@ -67,11 +66,11 @@ onMounted(async () => {
         Réponses correctes :
       </h5>
       <h5 class="text-h5 text-no-wrap mb-1">
-        {{ studentData.nb}}
+        {{ studentData.nb }}
       </h5>
       <span
-        :class="isPositive ? 'text-success' : 'text-error'"
-        class="d-flex align-center gap-1 text-sm"
+          :class="isPositive ? 'text-success' : 'text-error'"
+          class="d-flex align-center gap-1 text-sm"
       >
       </span>
     </VCardText>

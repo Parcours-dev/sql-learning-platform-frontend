@@ -1,9 +1,7 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import AccountSettingsAccount from '@/views/pages/account-settings/AccountSettingsAccount.vue';
+import {onMounted, ref} from 'vue';
+import {useRoute, useRouter} from 'vue-router';
 import AccountSettingsNotification from '@/views/pages/account-settings/AccountSettingsNotification.vue';
-import AccountSettingsSecurity from '@/views/pages/account-settings/AccountSettingsSecurity.vue';
 import AddChapitre from "@/views/pages/form-layouts/AddChapitre.vue";
 import AddExercice from "@/views/pages/form-layouts/AddExercices.vue";
 
@@ -12,8 +10,8 @@ const router = useRouter();
 const activeTab = ref(route.params.tab || 'chapitre');
 
 const tabs = [
-  { title: 'Chapitre', icon: 'bx-user', tab: 'chapitre' },
-  { title: 'Exercice', icon: 'bx-lock-open', tab: 'exercice' },
+  {title: 'Chapitre', icon: 'bx-user', tab: 'chapitre'},
+  {title: 'Exercice', icon: 'bx-lock-open', tab: 'exercice'},
   // Uncomment if Notifications are added back
   // { title: 'Notifications', icon: 'bx-bell', tab: 'notification' },
 ];
@@ -21,35 +19,35 @@ const tabs = [
 // Setup redirection to default tab if no tab is specified
 onMounted(() => {
   if (!route.params.tab) {
-    router.replace({ query: { tab: 'chapitre' } });
+    router.replace({query: {tab: 'chapitre'}});
   }
 });
 
 // Listen for tab changes
 watch(activeTab, (newTab) => {
-  router.push({ query: { tab: newTab } });
+  router.push({query: {tab: newTab}});
 });
 </script>
 <template>
   <div>
     <VTabs v-model="activeTab" show-arrows>
       <VTab v-for="item in tabs" :key="item.icon" :value="item.tab">
-        <VIcon size="20" start :icon="item.icon" />
+        <VIcon :icon="item.icon" size="20" start/>
         {{ item.title }}
       </VTab>
     </VTabs>
 
-    <VDivider />
+    <VDivider/>
 
     <VWindow v-model="activeTab" class="mt-5 disable-tab-transition">
       <VWindowItem value="chapitre">
-          <AddChapitre/>
+        <AddChapitre/>
       </VWindowItem>
       <VWindowItem value="exercice">
         <AddExercice/>
       </VWindowItem>
       <VWindowItem value="notification">
-        <AccountSettingsNotification />
+        <AccountSettingsNotification/>
       </VWindowItem>
     </VWindow>
   </div>

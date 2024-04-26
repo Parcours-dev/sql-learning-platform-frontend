@@ -9,17 +9,17 @@ const props = defineProps({
 
 <template>
   <li
-    class="nav-link"
-    :class="{ disabled: item.disable }"
+      :class="{ disabled: item.disable }"
+      class="nav-link"
   >
     <Component
-      :is="item.to ? 'RouterLink' : 'a'"
-      :to="item.to"
-      :href="item.href"
+        :is="item.to ? 'RouterLink' : 'a'"
+        :href="item.href"
+        :to="item.to"
     >
       <VIcon
-        :icon="item.icon"
-        class="nav-item-icon"
+          :icon="item.icon"
+          class="nav-item-icon"
       />
       <!-- 👉 Title -->
       <span class="nav-item-title">

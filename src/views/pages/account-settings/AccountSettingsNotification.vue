@@ -38,42 +38,42 @@ const selectedNotification = ref('Only when I\'m online')
 
     <VTable class="text-no-wrap">
       <thead>
-        <tr>
-          <th scope="col">
-            Type
-          </th>
-          <th scope="col">
-            EMAIL
-          </th>
-          <th scope="col">
-            BROWSER
-          </th>
-          <th scope="col">
-            App
-          </th>
-        </tr>
+      <tr>
+        <th scope="col">
+          Type
+        </th>
+        <th scope="col">
+          EMAIL
+        </th>
+        <th scope="col">
+          BROWSER
+        </th>
+        <th scope="col">
+          App
+        </th>
+      </tr>
       </thead>
       <tbody>
-        <tr
+      <tr
           v-for="device in recentDevices"
           :key="device.type"
-        >
-          <td>
-            {{ device.type }}
-          </td>
-          <td>
-            <VCheckbox v-model="device.email" />
-          </td>
-          <td>
-            <VCheckbox v-model="device.browser" />
-          </td>
-          <td>
-            <VCheckbox v-model="device.app" />
-          </td>
-        </tr>
+      >
+        <td>
+          {{ device.type }}
+        </td>
+        <td>
+          <VCheckbox v-model="device.email"/>
+        </td>
+        <td>
+          <VCheckbox v-model="device.browser"/>
+        </td>
+        <td>
+          <VCheckbox v-model="device.app"/>
+        </td>
+      </tr>
       </tbody>
     </VTable>
-    <VDivider />
+    <VDivider/>
 
     <VCardText>
       <VForm @submit.prevent="() => {}">
@@ -83,13 +83,13 @@ const selectedNotification = ref('Only when I\'m online')
 
         <VRow>
           <VCol
-            cols="12"
-            sm="6"
+              cols="12"
+              sm="6"
           >
             <VSelect
-              v-model="selectedNotification"
-              mandatory
-              :items="['Only when I\'m online', 'Anytime']"
+                v-model="selectedNotification"
+                :items="['Only when I\'m online', 'Anytime']"
+                mandatory
             />
           </VCol>
         </VRow>
@@ -99,9 +99,9 @@ const selectedNotification = ref('Only when I\'m online')
             Save Changes
           </VBtn>
           <VBtn
-            color="secondary"
-            variant="tonal"
-            type="reset"
+              color="secondary"
+              type="reset"
+              variant="tonal"
           >
             Reset
           </VBtn>

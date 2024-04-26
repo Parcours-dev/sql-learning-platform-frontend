@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from 'vue';
+import {defineProps} from 'vue';
 
 // Accepter les données des employés comme prop
 const props = defineProps({
@@ -9,7 +9,7 @@ const props = defineProps({
 
 
 <template>
-  <VTable height="500" fixed-header>
+  <VTable fixed-header height="500">
     <thead>
     <tr>
       <th>Nom</th>

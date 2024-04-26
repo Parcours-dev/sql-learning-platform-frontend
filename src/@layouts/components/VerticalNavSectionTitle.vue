@@ -12,8 +12,8 @@ const props = defineProps({
     <div class="title-wrapper">
       <!-- eslint-disable vue/no-v-text-v-html-on-component -->
       <span
-        class="title-text"
-        v-text="item.heading"
+          class="title-text"
+          v-text="item.heading"
       />
       <!-- eslint-enable vue/no-v-text-v-html-on-component -->
     </div>

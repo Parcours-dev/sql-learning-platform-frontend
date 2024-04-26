@@ -1,11 +1,11 @@
 <!-- Thanks: https://markus.oberlehner.net/blog/transition-to-height-auto-with-vue/ -->
 
 <script>
-import { Transition } from 'vue'
+import {Transition} from 'vue'
 
 export default defineComponent({
   name: 'TransitionExpand',
-  setup(_, { slots }) {
+  setup(_, {slots}) {
     const onEnter = element => {
       const width = getComputedStyle(element).width
 

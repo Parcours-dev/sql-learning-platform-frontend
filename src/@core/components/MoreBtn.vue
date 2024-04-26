@@ -13,15 +13,15 @@ const props = defineProps({
 
 <template>
   <IconBtn>
-    <VIcon icon="bx-dots-vertical" />
+    <VIcon icon="bx-dots-vertical"/>
 
     <VMenu
-      v-if="props.menuList"
-      activator="parent"
+        v-if="props.menuList"
+        activator="parent"
     >
       <VList
-        :items="props.menuList"
-        :item-props="props.itemProps"
+          :item-props="props.itemProps"
+          :items="props.menuList"
       />
     </VMenu>
   </IconBtn>

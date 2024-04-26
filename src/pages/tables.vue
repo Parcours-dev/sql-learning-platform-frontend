@@ -10,7 +10,7 @@ import DemoSimpleTableTheme from '@/views/pages/tables/DemoSimpleTableTheme.vue'
   <VRow>
     <VCol cols="12">
       <VCard title="Basic">
-        <DemoSimpleTableBasics />
+        <DemoSimpleTableBasics/>
       </VCard>
     </VCol>
 
@@ -19,7 +19,7 @@ import DemoSimpleTableTheme from '@/views/pages/tables/DemoSimpleTableTheme.vue'
         <VCardText>
           use <code>theme</code> prop to switch table to the dark theme.
         </VCardText>
-        <DemoSimpleTableTheme />
+        <DemoSimpleTableTheme/>
       </VCard>
     </VCol>
 
@@ -28,7 +28,7 @@ import DemoSimpleTableTheme from '@/views/pages/tables/DemoSimpleTableTheme.vue'
         <VCardText>
           You can show a dense version of the table by using the <code>density</code> prop.
         </VCardText>
-        <DemoSimpleTableDensity />
+        <DemoSimpleTableDensity/>
       </VCard>
     </VCol>
 
@@ -37,7 +37,7 @@ import DemoSimpleTableTheme from '@/views/pages/tables/DemoSimpleTableTheme.vue'
         <VCardText>
           You can set the height of the table by using the <code>height</code> prop.
         </VCardText>
-        <DemoSimpleTableHeight />
+        <DemoSimpleTableHeight/>
       </VCard>
     </VCol>
 
@@ -46,7 +46,7 @@ import DemoSimpleTableTheme from '@/views/pages/tables/DemoSimpleTableTheme.vue'
         <VCardText>
           You can fix the header of table by using the <code>fixed-header</code> prop.
         </VCardText>
-        <DemoSimpleTableFixedHeader />
+        <DemoSimpleTableFixedHeader/>
       </VCard>
     </VCol>
   </VRow>

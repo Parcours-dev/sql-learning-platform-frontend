@@ -1,6 +1,6 @@
 <script setup>
 import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
+import {useTheme} from 'vuetify'
 
 const vuetifyTheme = useTheme()
 
@@ -17,14 +17,14 @@ const series = [{
 
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
-  
+
   return {
     chart: {
       parentHeightOffset: 0,
-      toolbar: { show: false },
+      toolbar: {show: false},
     },
-    tooltip: { enabled: false },
-    dataLabels: { enabled: false },
+    tooltip: {enabled: false},
+    dataLabels: {enabled: false},
     stroke: {
       width: 3,
       curve: 'smooth',
@@ -72,11 +72,11 @@ const chartOptions = computed(() => {
       },
     },
     xaxis: {
-      labels: { show: false },
-      axisTicks: { show: false },
-      axisBorder: { show: false },
+      labels: {show: false},
+      axisTicks: {show: false},
+      axisBorder: {show: false},
     },
-    yaxis: { show: false },
+    yaxis: {show: false},
     markers: {
       size: 1,
       offsetY: 2,
@@ -109,10 +109,10 @@ const chartOptions = computed(() => {
     </VCardText>
 
     <VueApexCharts
-      type="area"
-      :height="110"
-      :options="chartOptions"
-      :series="series"
+        :height="110"
+        :options="chartOptions"
+        :series="series"
+        type="area"
     />
   </VCard>
 </template>

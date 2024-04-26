@@ -1,8 +1,8 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import {ref} from 'vue';
 import axios from 'axios';
 import ShowChapitreTable from "@/views/pages/tables/ShowChapitreTable.vue";
-import { toast } from "vue3-toastify";
+import {toast} from "vue3-toastify";
 import 'vue3-toastify/dist/index.css';
 
 
@@ -34,7 +34,7 @@ const soumettreChapitre = async () => {
     if (isEditing.value && chapitreId.value) {
       response = await axios.put(`http://localhost:3000/api/chapitres/${chapitreId.value}`, chapitre);
       if (response.status === 200) {
-        toast('Chapitre modifié', { type: 'success' });
+        toast('Chapitre modifié', {type: 'success'});
         resetForm();
         window.location.reload();
 
@@ -42,14 +42,14 @@ const soumettreChapitre = async () => {
     } else {
       response = await axios.post('http://localhost:3000/api/addchapitres', chapitre);
       if (response.status === 200) {
-        toast('Chapitre ajouté', { type: 'success' });
+        toast('Chapitre ajouté', {type: 'success'});
         resetForm();
         window.location.reload();
       }
     }
   } catch (error) {
     console.error('Error submitting chapter:', error);
-    toast('Erreur lors de la soumission', { type: 'error' });
+    toast('Erreur lors de la soumission', {type: 'error'});
   }
 }
 
@@ -93,28 +93,28 @@ const setEditChapter = (chapitre) => {
               <v-row>
                 <v-col cols="12" md="6">
                   <v-text-field
-                      label="Nom du Chapitre"
-                      prepend-icon="mdi-book-open-variant"
                       v-model="nomChapitre"
-                      placeholder="Entrez le nom du chapitre"
-                      outlined
                       dense
+                      label="Nom du Chapitre"
+                      outlined
+                      placeholder="Entrez le nom du chapitre"
+                      prepend-icon="mdi-book-open-variant"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
                   <v-text-field
-                      label="Description"
-                      prepend-icon="mdi-text-box-outline"
                       v-model="descriptionChapitre"
-                      placeholder="Entrez une description"
-                      outlined
                       dense
+                      label="Description"
+                      outlined
+                      placeholder="Entrez une description"
+                      prepend-icon="mdi-text-box-outline"
                   ></v-text-field>
                 </v-col>
               </v-row>
               <v-row justify="end">
                 <v-col cols="auto">
-                  <v-btn color="primary" type="submit" class="ma-2">
+                  <v-btn class="ma-2" color="primary" type="submit">
                     {{ isEditing ? 'Modifier' : 'Ajouter' }} Chapitre
                   </v-btn>
                 </v-col>

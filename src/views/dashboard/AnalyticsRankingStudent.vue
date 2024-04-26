@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
 
 const userRanking = ref([]);
@@ -12,7 +12,6 @@ onMounted(async () => {
     console.error("Error fetching user ranking:", error);
   }
 });
-
 
 
 // Fonction pour déterminer l'emoji en fonction du rang
@@ -35,7 +34,7 @@ function rankEmoji(rank) {
     <VCardBody>
       <VRow>
         <VCol>
-          <VTable height="430" fixed-header>
+          <VTable fixed-header height="430">
             <thead>
             <tr>
               <th>Rang</th>
@@ -51,14 +50,12 @@ function rankEmoji(rank) {
             </tr>
             </tbody>
           </VTable>
-          </VCol>
+        </VCol>
       </VRow>
     </VCardBody>
-    </VCard>
+  </VCard>
 
 </template>
-
-
 
 
 <style>

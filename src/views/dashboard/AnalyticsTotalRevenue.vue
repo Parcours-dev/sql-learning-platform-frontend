@@ -1,17 +1,14 @@
 <script setup>
 import VueApexCharts from 'vue3-apexcharts'
-import {
-  useDisplay,
-  useTheme,
-} from 'vuetify'
-import { hexToRgb } from '@layouts/utils'
+import {useDisplay, useTheme,} from 'vuetify'
+import {hexToRgb} from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
 const display = useDisplay()
 
 const series = [
   {
-    name: `${ new Date().getFullYear() - 1 }`,
+    name: `${new Date().getFullYear() - 1}`,
     data: [
       18,
       7,
@@ -23,7 +20,7 @@ const series = [
     ],
   },
   {
-    name: `${ new Date().getFullYear() - 2 }`,
+    name: `${new Date().getFullYear() - 2}`,
     data: [
       -13,
       -18,
@@ -39,26 +36,26 @@ const series = [
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
   const variableTheme = vuetifyTheme.current.value.variables
-  const disabledTextColor = `rgba(${ hexToRgb(String(currentTheme['on-surface'])) },${ variableTheme['disabled-opacity'] })`
-  const primaryTextColor = `rgba(${ hexToRgb(String(currentTheme['on-surface'])) },${ variableTheme['high-emphasis-opacity'] })`
-  const borderColor = `rgba(${ hexToRgb(String(variableTheme['border-color'])) },${ variableTheme['border-opacity'] })`
-  
+  const disabledTextColor = `rgba(${hexToRgb(String(currentTheme['on-surface']))},${variableTheme['disabled-opacity']})`
+  const primaryTextColor = `rgba(${hexToRgb(String(currentTheme['on-surface']))},${variableTheme['high-emphasis-opacity']})`
+  const borderColor = `rgba(${hexToRgb(String(variableTheme['border-color']))},${variableTheme['border-opacity']})`
+
   return {
     bar: {
       chart: {
         stacked: true,
         parentHeightOffset: 0,
-        toolbar: { show: false },
+        toolbar: {show: false},
       },
-      dataLabels: { enabled: false },
+      dataLabels: {enabled: false},
       stroke: {
         width: 6,
         lineCap: 'round',
         colors: [currentTheme.surface],
       },
       colors: [
-        `rgba(${ hexToRgb(String(currentTheme.primary)) }, 1)`,
-        `rgba(${ hexToRgb(String(currentTheme.info)) }, 1)`,
+        `rgba(${hexToRgb(String(currentTheme.primary))}, 1)`,
+        `rgba(${hexToRgb(String(currentTheme.info))}, 1)`,
       ],
       legend: {
         offsetX: -10,
@@ -66,7 +63,7 @@ const chartOptions = computed(() => {
         fontSize: '14px',
         horizontalAlign: 'left',
         fontFamily: 'Public Sans',
-        labels: { colors: currentTheme.secondary },
+        labels: {colors: currentTheme.secondary},
         itemMargin: {
           vertical: 4,
           horizontal: 10,
@@ -79,12 +76,12 @@ const chartOptions = computed(() => {
         },
       },
       states: {
-        hover: { filter: { type: 'none' } },
-        active: { filter: { type: 'none' } },
+        hover: {filter: {type: 'none'}},
+        active: {filter: {type: 'none'}},
       },
       grid: {
         borderColor,
-        padding: { bottom: 5 },
+        padding: {bottom: 5},
       },
       plotOptions: {
         bar: {
@@ -95,9 +92,9 @@ const chartOptions = computed(() => {
         },
       },
       xaxis: {
-        axisTicks: { show: false },
-        crosshairs: { opacity: 0 },
-        axisBorder: { show: false },
+        axisTicks: {show: false},
+        crosshairs: {opacity: 0},
+        axisBorder: {show: false},
         categories: [
           'Jan',
           'Feb',
@@ -127,30 +124,30 @@ const chartOptions = computed(() => {
       responsive: [
         {
           breakpoint: display.thresholds.value.xl,
-          options: { plotOptions: { bar: { columnWidth: '43%' } } },
+          options: {plotOptions: {bar: {columnWidth: '43%'}}},
         },
         {
           breakpoint: display.thresholds.value.lg,
-          options: { plotOptions: { bar: { columnWidth: '50%' } } },
+          options: {plotOptions: {bar: {columnWidth: '50%'}}},
         },
         {
           breakpoint: display.thresholds.value.md,
-          options: { plotOptions: { bar: { columnWidth: '42%' } } },
+          options: {plotOptions: {bar: {columnWidth: '42%'}}},
         },
         {
           breakpoint: display.thresholds.value.sm,
-          options: { plotOptions: { bar: { columnWidth: '45%' } } },
+          options: {plotOptions: {bar: {columnWidth: '45%'}}},
         },
       ],
     },
     radial: {
-      chart: { sparkline: { enabled: true } },
+      chart: {sparkline: {enabled: true}},
       labels: ['Growth'],
-      stroke: { dashArray: 5 },
-      colors: [`rgba(${ hexToRgb(String(currentTheme.primary)) }, 1)`],
+      stroke: {dashArray: 5},
+      colors: [`rgba(${hexToRgb(String(currentTheme.primary))}, 1)`],
       states: {
-        hover: { filter: { type: 'none' } },
-        active: { filter: { type: 'none' } },
+        hover: {filter: {type: 'none'}},
+        active: {filter: {type: 'none'}},
       },
       fill: {
         type: 'gradient',
@@ -172,8 +169,8 @@ const chartOptions = computed(() => {
         radialBar: {
           endAngle: 150,
           startAngle: -140,
-          hollow: { size: '55%' },
-          track: { background: 'transparent' },
+          hollow: {size: '55%'},
+          track: {background: 'transparent'},
           dataLabels: {
             name: {
               offsetY: 25,
@@ -195,19 +192,19 @@ const chartOptions = computed(() => {
       responsive: [
         {
           breakpoint: 900,
-          options: { chart: { height: 200 } },
+          options: {chart: {height: 200}},
         },
         {
           breakpoint: 735,
-          options: { chart: { height: 200 } },
+          options: {chart: {height: 200}},
         },
         {
           breakpoint: 660,
-          options: { chart: { height: 200 } },
+          options: {chart: {height: 200}},
         },
         {
           breakpoint: 600,
-          options: { chart: { height: 280 } },
+          options: {chart: {height: 280}},
         },
       ],
     },
@@ -234,50 +231,50 @@ const balanceData = [
   <VCard>
     <VRow no-gutters>
       <VCol
-        cols="12"
-        sm="7"
-        xl="8"
-        :class="$vuetify.display.smAndUp ? 'border-e' : 'border-b'"
+          :class="$vuetify.display.smAndUp ? 'border-e' : 'border-b'"
+          cols="12"
+          sm="7"
+          xl="8"
       >
         <VCardItem class="pb-0">
           <VCardTitle>Total Revenue</VCardTitle>
 
           <template #append>
             <div class="me-n3">
-              <MoreBtn />
+              <MoreBtn/>
             </div>
           </template>
         </VCardItem>
 
         <!-- bar chart -->
         <VueApexCharts
-          id="bar-chart"
-          type="bar"
-          :height="336"
-          :options="chartOptions.bar"
-          :series="series"
+            id="bar-chart"
+            :height="336"
+            :options="chartOptions.bar"
+            :series="series"
+            type="bar"
         />
       </VCol>
 
       <VCol
-        cols="12"
-        sm="5"
-        xl="4"
+          cols="12"
+          sm="5"
+          xl="4"
       >
         <VCardText class="text-center">
           <VBtn
-            size="small"
-            variant="tonal"
-            append-icon="bx-chevron-down"
-            class="mt-4"
+              append-icon="bx-chevron-down"
+              class="mt-4"
+              size="small"
+              variant="tonal"
           >
             2023
             <VMenu activator="parent">
               <VList>
                 <VListItem
-                  v-for="(item, index) in ['2023', '2022', '2021']"
-                  :key="index"
-                  :value="item"
+                    v-for="(item, index) in ['2023', '2022', '2021']"
+                    :key="index"
+                    :value="item"
                 >
                   <VListItemTitle>{{ item }}</VListItemTitle>
                 </VListItem>
@@ -287,11 +284,11 @@ const balanceData = [
 
           <!-- radial chart -->
           <VueApexCharts
-            type="radialBar"
-            :height="200"
-            :options="chartOptions.radial"
-            :series="[78]"
-            class="mt-6"
+              :height="200"
+              :options="chartOptions.radial"
+              :series="[78]"
+              class="mt-6"
+              type="radialBar"
           />
 
           <p class="font-weight-medium text-high-emphasis mb-7">
@@ -299,16 +296,16 @@ const balanceData = [
           </p>
           <div class="d-flex align-center justify-center gap-x-8 gap-y-4 flex-wrap">
             <div
-              v-for="data in balanceData"
-              :key="data.year"
-              class="d-flex align-center gap-3"
+                v-for="data in balanceData"
+                :key="data.year"
+                class="d-flex align-center gap-3"
             >
               <VAvatar
-                :icon="data.icon"
-                :color="data.color"
-                size="38"
-                rounded
-                variant="tonal"
+                  :color="data.color"
+                  :icon="data.icon"
+                  rounded
+                  size="38"
+                  variant="tonal"
               />
 
               <div class="text-start">

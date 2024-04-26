@@ -2,14 +2,14 @@
   <div class="news-container">
     <div v-if="newsItems.length" class="news-item">
       <h3><a :href="newsItems[0].link" target="_blank">{{ newsItems[0].title }}</a></h3>
-      <div v-html="newsItems[0].contentSnippet" class="content-snippet"></div>
+      <div class="content-snippet" v-html="newsItems[0].contentSnippet"></div>
       <p class="news-date">{{ formatDate(newsItems[0].pubDate) }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
 

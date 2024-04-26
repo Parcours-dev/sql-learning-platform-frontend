@@ -4,26 +4,26 @@ import avatar1 from '@images/avatars/avatar-1.png'
 
 <template>
   <VBadge
-    dot
-    location="bottom right"
-    offset-x="3"
-    offset-y="3"
-    color="success"
-    bordered
+      bordered
+      color="success"
+      dot
+      location="bottom right"
+      offset-x="3"
+      offset-y="3"
   >
     <VAvatar
-      class="cursor-pointer"
-      color="primary"
-      variant="tonal"
+        class="cursor-pointer"
+        color="primary"
+        variant="tonal"
     >
-      <VImg :src="avatar1" />
+      <VImg :src="avatar1"/>
 
       <!-- SECTION Menu -->
       <VMenu
-        activator="parent"
-        width="230"
-        location="bottom end"
-        offset="14px"
+          activator="parent"
+          location="bottom end"
+          offset="14px"
+          width="230"
       >
         <VList>
           <!-- 👉 User Avatar & Name -->
@@ -31,17 +31,17 @@ import avatar1 from '@images/avatars/avatar-1.png'
             <template #prepend>
               <VListItemAction start>
                 <VBadge
-                  dot
-                  location="bottom right"
-                  offset-x="3"
-                  offset-y="3"
-                  color="success"
+                    color="success"
+                    dot
+                    location="bottom right"
+                    offset-x="3"
+                    offset-y="3"
                 >
                   <VAvatar
-                    color="primary"
-                    variant="tonal"
+                      color="primary"
+                      variant="tonal"
                   >
-                    <VImg :src="avatar1" />
+                    <VImg :src="avatar1"/>
                   </VAvatar>
                 </VBadge>
               </VListItemAction>
@@ -52,15 +52,15 @@ import avatar1 from '@images/avatars/avatar-1.png'
             </VListItemTitle>
             <VListItemSubtitle>Rôle admin/user</VListItemSubtitle>
           </VListItem>
-          <VDivider class="my-2" />
+          <VDivider class="my-2"/>
 
           <!-- 👉 Profile -->
           <VListItem link to="/account-settings">
             <template #prepend>
               <VIcon
-                class="me-2"
-                icon="bx-user"
-                size="22"
+                  class="me-2"
+                  icon="bx-user"
+                  size="22"
               />
             </template>
 
@@ -71,9 +71,9 @@ import avatar1 from '@images/avatars/avatar-1.png'
           <VListItem link to="/account-settings">
             <template #prepend>
               <VIcon
-                class="me-2"
-                icon="bx-cog"
-                size="22"
+                  class="me-2"
+                  icon="bx-cog"
+                  size="22"
               />
             </template>
 
@@ -107,15 +107,15 @@ import avatar1 from '@images/avatars/avatar-1.png'
           </VListItem>-->
 
           <!-- Divider -->
-          <VDivider class="my-2" />
+          <VDivider class="my-2"/>
 
           <!-- 👉 Logout -->
           <VListItem to="/login">
             <template #prepend>
               <VIcon
-                class="me-2"
-                icon="bx-log-out"
-                size="22"
+                  class="me-2"
+                  icon="bx-log-out"
+                  size="22"
               />
             </template>
 

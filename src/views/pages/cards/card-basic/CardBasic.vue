@@ -1,9 +1,9 @@
 <script setup>
 
 import pages3 from '@images/pages/3.png'
-import { useStore } from 'vuex';
+import {useStore} from 'vuex';
 
-import { ref, onMounted } from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
 
 const isCardDetailsVisible = ref(false)
@@ -56,9 +56,9 @@ const hoveredCard = ref(null)
             {{ card.description }}
           </div>
           <VBtn
-              variant="text"
-              density="comfortable"
               :to="{ path: '/exercices' }"
+              density="comfortable"
+              variant="text"
               @click="selectionnerChapitre(card.chapitreId)"
           >
             Accès aux exercices 🧠
@@ -70,7 +70,6 @@ const hoveredCard = ref(null)
 
 
 </template>
-
 
 
 <style lang="scss" scoped>
@@ -171,8 +170,8 @@ body {
   z-index: 3;
   width: 0px;
   height: 100%;
-  background: rgb(0,154,217);
-  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
+  background: rgb(0, 154, 217);
+  background: linear-gradient(90deg, rgba(0, 154, 217, 1) 0%, rgba(217, 147, 0, 1) 65%, rgba(255, 186, 0, 1) 100%);
   transition: 0.6s ease-out;
 }
 

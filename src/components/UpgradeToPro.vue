@@ -1,23 +1,24 @@
 <template>
   <VBtn
-    color="error"
-    class="product-upgrade-to-pro"
-    href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/"
-    target="_blank"
-    rel="noopener noreferrer"
+      class="product-upgrade-to-pro"
+      color="error"
+      href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/"
+      rel="noopener noreferrer"
+      target="_blank"
   >
     Upgrade to Pro
 
     <VMenu
-      open-on-hover
-      activator="parent"
-      offset="15"
-      max-width="400px"
-      :close-on-content-click="false"
-      transition="slide-y-reverse-transition"
+        :close-on-content-click="false"
+        activator="parent"
+        max-width="400px"
+        offset="15"
+        open-on-hover
+        transition="slide-y-reverse-transition"
     >
       <VCard>
-        <VImg src="https://cdn.jsdelivr.net/gh/themeselection/ts-assets/sneat/sneat-vuetify-vuejs-admin-template/banner/banner.png" />
+        <VImg
+            src="https://cdn.jsdelivr.net/gh/themeselection/ts-assets/sneat/sneat-vuetify-vuejs-admin-template/banner/banner.png"/>
         <VCardTitle>Sneat - Vuetify Admin Template</VCardTitle>
         <VCardText>
           Sneat Admin is the most developer friendly & highly customisable Admin Dashboard Template based on Vuetify.
@@ -25,18 +26,18 @@
         <VCardText>Click on below button to explore PRO version.</VCardText>
         <VCardText>
           <VBtn
-            class="me-4"
-            href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/?tab=details#details"
-            target="_blank"
-            rel="noopener noreferrer"
+              class="me-4"
+              href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/?tab=details#details"
+              rel="noopener noreferrer"
+              target="_blank"
           >
             Demo
           </VBtn>
           <VBtn
-            variant="outlined"
-            href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/"
-            target="_blank"
-            rel="noopener noreferrer"
+              href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template/"
+              rel="noopener noreferrer"
+              target="_blank"
+              variant="outlined"
           >
             Download
           </VBtn>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, reactive, defineEmits } from 'vue';
+import {defineEmits, onMounted, reactive, ref} from 'vue';
 import axios from 'axios';
 import {toast} from "vue3-toastify";
 
@@ -28,10 +28,9 @@ const editChapter = (chapter) => {
 const deleteChapter = async (id) => {
   await axios.delete(`http://localhost:3000/api/deletechapitres/${id}`);
   if (response.status === 200) {
-    toast('Chapitre supprimé', { type: 'success' });
+    toast('Chapitre supprimé', {type: 'success'});
     fetchChapters();
-  }
-  else{
+  } else {
     toast('Erreur lors de la suppression', {type: 'error'})
   }
 };
@@ -59,7 +58,7 @@ onMounted(fetchChapters);
 </script>
 <template>
   <v-container>
-    <v-table fixed-header height="500" density="comfortable">
+    <v-table density="comfortable" fixed-header height="500">
       <thead>
       <tr>
         <th @click="sortChapters('ChapitreID')">ID</th>
@@ -77,7 +76,7 @@ onMounted(fetchChapters);
           <v-btn icon @click="editChapter(chapter)">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
-          <v-btn icon color="red" @click="deleteChapter(chapter.ChapitreID)">
+          <v-btn color="red" icon @click="deleteChapter(chapter.ChapitreID)">
             <v-icon>mdi-delete</v-icon>
           </v-btn>
 

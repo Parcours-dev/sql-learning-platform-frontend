@@ -6,21 +6,21 @@ import misc404 from '@images/pages/404.png'
 <template>
   <div class="misc-wrapper">
     <ErrorHeader
-      error-title="Page introuvable ⚠️"
-      error-description="On ne trouve pas la page que tu souhaites afficher"
+        error-description="On ne trouve pas la page que tu souhaites afficher"
+        error-title="Page introuvable ⚠️"
     />
 
     <!-- 👉 Image -->
     <div class="misc-avatar w-100 text-center">
       <VImg
-        :src="misc404"
-        alt="Coming Soon"
-        :max-width="500"
-        class="mx-auto"
+          :max-width="500"
+          :src="misc404"
+          alt="Coming Soon"
+          class="mx-auto"
       />
       <VBtn
-        to="/dashboard"
-        class="mt-10"
+          class="mt-10"
+          to="/dashboard"
       >
         Retour à l'accueil
       </VBtn>

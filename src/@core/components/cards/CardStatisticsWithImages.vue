@@ -42,29 +42,29 @@ const isPositive = controlledComputed(() => props.change, () => Math.sign(props.
             {{ props.stats }}
           </h5>
           <span
-            class="text-caption"
-            :class="isPositive ? 'text-success' : 'text-error'"
+              :class="isPositive ? 'text-success' : 'text-error'"
+              class="text-caption"
           >
             {{ isPositive ? `+${props.change}` : props.change }}%
           </span>
         </div>
 
         <VChip
-          v-if="props.subtitle"
-          size="small"
-          :color="props.color"
+            v-if="props.subtitle"
+            :color="props.color"
+            size="small"
         >
           {{ props.subtitle }}
         </VChip>
       </VCardText>
 
-      <VSpacer />
+      <VSpacer/>
 
       <div class="illustrator-img">
         <VImg
-          v-if="props.image"
-          :src="props.image"
-          :width="110"
+            v-if="props.image"
+            :src="props.image"
+            :width="110"
         />
       </div>
     </div>
