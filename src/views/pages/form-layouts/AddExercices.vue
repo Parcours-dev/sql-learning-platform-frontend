@@ -1,17 +1,16 @@
 <script>
 import axios from 'axios';
 import ShowExerciceTable from '@/views/pages/tables/ShowExerciceTable.vue';
-import {toast} from "vue3-toastify";
-import 'vue3-toastify/dist/index.css';
+import DemoSimpleTableFixedHeader from "@/views/pages/tables/DemoSimpleTableFixedHeader.vue";  // Assurez-vous que le chemin est correct
 
 export default {
   components: {
+    DemoSimpleTableFixedHeader,
     ShowExerciceTable
   },
   data() {
     return {
       exercice: {
-        id: null,
         titre: '',
         description: '',
         correctQuery: '',
@@ -21,99 +20,105 @@ export default {
         instructions: '',
         chapitreId: ''
       },
+      selectedTables: [],
+      allTables: [],
       rules: {
         required: value => !!value || 'Ce champ est requis.',
-        numeric: value => !isNaN(Number(value)) || 'Doit être numérique.'
+        numeric: value => !isNaN(Number(value)) || 'Ce champ doit être numérique.'
       },
-      isEditing: false,
-      exercices: []
+      exercices: []  // Supposons que vous chargerez cette liste via une API
     };
   },
   methods: {
+    async fetchAllTables() {
+      try {
+        const [tablesResponse, selectedResponse] = await Promise.all([
+          axios.get('http://localhost:3000/api/tables'),
+          axios.get('http://localhost:3000/api/get-selected-tables')
+        ]);
+        this.allTables = tablesResponse.data;
+        this.selectedTables = selectedResponse.data.tables;
+      } catch (error) {
+        console.error('Error fetching table names or selected tables:', error);
+      }
+    },
+    saveTableSelections() {
+      console.log('Selected tables:', this.selectedTables);
+      // Store the selection in the session or send to backend
+      axios.post('http://localhost:3000/api/save-tables', { tables: this.selectedTables });
+    },
+    async submitExercice() {
+      if (!this.validateExercice()) {
+        alert('Veuillez remplir tous les champs requis correctement.');
+        return;
+      }
+      try {
+        const url = 'http://localhost:3000/api/addexercices';
+        const response = await axios.post(url, this.exercice, {withCredentials: true});
+        if (response.data) {
+          alert('Exercice ajouté avec succès: ' + response.data.message);
+          this.fetchExercices(); // Re-fetch exercices after adding
+        }
+      } catch (error) {
+        console.error('Erreur lors de l’ajout de l’exercice:', error);
+        alert('Échec de l’ajout de l’exercice');
+      }
+    },
+    validateExercice() {
+      return Object.values(this.exercice).every(value => value !== '') &&
+          !isNaN(Number(this.exercice.chapitreId));
+    },
     async fetchExercices() {
       try {
         const response = await axios.get('http://localhost:3000/api/exercices');
-        this.exercices = response.data;
-      } catch (error) {
-        console.error('Error loading exercises:', error);
-      }
-    },
-    async submitExercice() {
-      const method = this.isEditing ? 'put' : 'post';
-      const url = this.isEditing ? `http://localhost:3000/api/questions/${this.exercice.id}` : 'http://localhost:3000/api/addexercices';
-      try {
-        const response = await axios[method](url, this.exercice);
-        if (response.status === 200 || response.status === 201) {
-          toast.success(`Exercice ${this.isEditing ? 'modifié' : 'ajouté'} avec succès.`, {
-            position: 'top-center',
-            autoClose: 1500,
-          });
-          this.resetForm();
-          this.fetchExercices();
+        if (response.ok) {
+          this.exercices = await response.json();
         }
       } catch (error) {
-        console.error(`Error submitting exercise: ${error}`);
-        toast.error(`Erreur lors de l'${this.isEditing ? 'modification' : 'ajout'} de l'exercice.`, {
-          position: 'top-center',
-          autoClose: 2500,
-        });
+        console.error('Erreur lors du chargement des exercices:', error);
       }
-    },
-    setEditExercice(exercice) {
-      this.exercice = {...exercice};
-      this.isEditing = true;
-    },
-    resetForm() {
-      this.exercice = {
-        id: null,
-        titre: '',
-        description: '',
-        correctQuery: '',
-        niveau: '',
-        categorie: '',
-        texteQuestion: '',
-        instructions: '',
-        chapitreId: ''
-      };
-      this.isEditing = false;
     }
   },
   mounted() {
+    this.fetchAllTables();
     this.fetchExercices();
   }
 }
 </script>
 
+
 <template>
   <v-container fluid>
-    <v-col cols="12" md="12">
-      <v-card title="Liste des exercices">
-        <v-card-text>
+    <!-- Colonne de droite pour la table -->
+    <VCol cols="12" md="12">
+      <VCard title="Lise des exercices">
+        <VCardText>
           Voici la liste des exercices actuellement disponibles.
-          <ShowExerciceTable @edit-exercice="setEditExercice"/>
-        </v-card-text>
-      </v-card>
-    </v-col>
+        </VCardText>
+        <ShowExerciceTable/>
+      </VCard>
+    </VCol>
     <v-row>
-      <v-col cols="12">
-        <v-container fluid>
+      <!-- Colonne de gauche pour le formulaire -->
+      <v-col cols="4" md="12">
+        <v-card outlined class="pa-4">
           <v-form @submit.prevent="submitExercice">
             <v-row>
-              <v-col cols="12" md="6">
+              <v-col cols="12">
                 <v-text-field
+                    label="Titre de l'Exercice"
                     v-model="exercice.titre"
                     :rules="[rules.required]"
-                    label="Titre de l'Exercice"
-                    prepend-icon="mdi-format-title"
+                    outlined
                     required
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" md="6">
+              <v-col cols="12">
                 <v-text-field
+                    label="Catégorie"
                     v-model="exercice.categorie"
                     :rules="[rules.required]"
-                    label="Catégorie"
-                    prepend-icon="mdi-bookshelf"
+                    outlined
                     required
                 ></v-text-field>
               </v-col>
@@ -121,11 +126,10 @@ export default {
             <v-row>
               <v-col cols="12">
                 <v-textarea
+                    label="Description"
                     v-model="exercice.description"
                     :rules="[rules.required]"
-                    auto-grow
-                    label="Description"
-                    prepend-icon="mdi-text"
+                    outlined
                     required
                 ></v-textarea>
               </v-col>
@@ -133,11 +137,10 @@ export default {
             <v-row>
               <v-col cols="12">
                 <v-textarea
+                    label="Texte de la Question"
                     v-model="exercice.texteQuestion"
                     :rules="[rules.required]"
-                    auto-grow
-                    label="Texte de la Question"
-                    prepend-icon="mdi-comment-question-outline"
+                    outlined
                     required
                 ></v-textarea>
               </v-col>
@@ -145,29 +148,28 @@ export default {
             <v-row>
               <v-col cols="12">
                 <v-textarea
-                    v-model="exercice.instructions"
-                    auto-grow
                     label="Instructions"
-                    prepend-icon="mdi-format-list-bulleted"
+                    v-model="exercice.instructions"
+                    outlined
                 ></v-textarea>
               </v-col>
             </v-row>
             <v-row>
-              <v-col cols="12" md="6">
+              <v-col cols="12">
                 <v-text-field
+                    label="Requête Correcte"
                     v-model="exercice.correctQuery"
                     :rules="[rules.required]"
-                    label="Requête Correcte"
-                    prepend-icon="mdi-code-tags"
+                    outlined
                     required
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" md="6">
+              <v-col cols="12">
                 <v-text-field
+                    label="Niveau"
                     v-model="exercice.niveau"
                     :rules="[rules.required]"
-                    label="Niveau"
-                    prepend-icon="mdi-school"
+                    outlined
                     required
                 ></v-text-field>
               </v-col>
@@ -175,21 +177,38 @@ export default {
             <v-row>
               <v-col cols="12">
                 <v-text-field
+                    label="Numéro du Chapitre"
                     v-model="exercice.chapitreId"
                     :rules="[rules.required, rules.numeric]"
-                    label="Numéro du Chapitre"
-                    prepend-icon="mdi-book-open-page-variant"
+                    outlined
                     required
                 ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
-              <v-col class="text-right" cols="12">
-                <v-btn color="primary" type="submit">{{ isEditing ? 'Modifier' : 'Ajouter' }} Exercice</v-btn>
+              <v-col cols="12" class="text-right">
+                <v-btn color="primary" type="submit">
+                  Ajouter Exercice
+                </v-btn>
               </v-col>
             </v-row>
           </v-form>
-        </v-container>
+        </v-card>
+        <!-- Zone de sélection de table -->
+        <v-card outlined class="pa-4 mt-3">
+          <v-card-title>Sélectionnez les tables</v-card-title>
+          <v-card-text>
+            <v-checkbox
+                v-for="table in allTables"
+                :key="table"
+                v-model="selectedTables"
+                :label="table"
+                :value="table"
+            ></v-checkbox>
+
+          </v-card-text>
+          <v-btn @click="saveTableSelections">Envoyer</v-btn>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
