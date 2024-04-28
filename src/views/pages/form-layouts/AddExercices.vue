@@ -13,6 +13,7 @@ export default {
     return {
       idEditing: false,
       exercice: {
+        id: null,
         titre: '',
         description: '',
         correctQuery: '',
@@ -84,7 +85,6 @@ export default {
           })
           .catch(error => {
             // Affichage d'un toast d'erreur
-            console.error('Erreur lors de la sauvegarde des tables sélectionnées:', error);
             toast("Erreur lors de la sauvegarde des tables sélectionnées.", {
               position: 'top-center', // adaptez selon vos besoins
               timeout: 5000,
@@ -120,6 +120,7 @@ export default {
         const response = await axios({ url, method, data: this.exercice, withCredentials: true });
         if (response.data) {
           this.isEditing = false;
+          this.exercice.id = null;
           toast(response.data.message, {
             theme: 'auto',
             type: 'success',
