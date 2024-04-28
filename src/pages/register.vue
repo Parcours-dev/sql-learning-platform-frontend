@@ -1,13 +1,15 @@
 <script setup>
-import {ref} from 'vue';
+import { ref } from 'vue';
 import axios from 'axios';
 import logo from '@images/logo.svg?raw';
 import ErrorHeader from "@/components/ErrorHeader.vue";
 import router from "@/router";
 
-
 const form = ref({
   username: '',
+  nom: '',  // Added field
+  prenom: '',  // Added field
+  numEtudiant: '',  // Added field
   email: '',
   password: '',
   privacyPolicies: false,
@@ -16,53 +18,49 @@ const showError = ref(false);
 const errorDetails = ref({});
 const isPasswordVisible = ref(false);
 
-// Fonction pour gérer l'inscription
+// Function to handle registration
 const handleSignUp = async () => {
-  showError.value = false; // Réinitialiser l'état de l'erreur avant chaque tentative
+  showError.value = false;
 
   if (!form.value.privacyPolicies) {
     showError.value = true;
     errorDetails.value = {
       errorCode: '⚠️',
-      errorTitle: 'Validation de la politique de confidentialité',
-      errorDescription: 'Vous devez accepter la politique de confidentialité pour continuer.',
+      errorTitle: 'Privacy Policy Validation',
+      errorDescription: 'You must accept the privacy policy to continue.',
     };
     return;
   }
 
+  // Include additional data checks or validation if necessary
+
   try {
-    const response = await axios.post('http://localhost:3000/register', form.value);
+    const response = await axios.post('http://localhost:3000/register', {
+      username: form.value.username,
+      nom: form.value.nom,
+      prenom: form.value.prenom,
+      numEtudiant: form.value.numEtudiant,
+      email: form.value.email,
+      password: form.value.password
+    });
     if (response.status === 201) {
-      await router.push('/login')
+      showError.value = false;
+      errorDetails.value = {};
+      // Redirect to login page after successful registration
+      await router.push('/login');
     }
   } catch (error) {
     showError.value = true;
     if (error.response) {
-      if (error.response.status === 400) {
-        errorDetails.value = {
-          errorCode: '🤔',
-          errorTitle: 'Données manquantes',
-          errorDescription: 'Tous les champs sont requis. Veuillez les remplir pour continuer.',
-        };
-      } else if (error.response.status === 500) {
-        errorDetails.value = {
-          errorCode: '😤',
-          errorTitle: 'Erreur Serveur',
-          errorDescription: 'Problème de serveur interne. Veuillez réessayer plus tard.',
-        };
-      } else if (error.response.status === 404) {
-        errorDetails.value = {
-          errorCode: '🙈',
-          errorTitle: 'Problème de connexion',
-          errorDescription: 'Impossible de se connecter au serveur. Veuillez vérifier votre connexion.',
-        };
-      }
+      errorDetails.value =   {
+        errorCode: error.response.status === 400 ? '🤔' : '😤',
+        errorTitle: error.response.status === 400 ? 'Missing Data' : 'Server Error',
+        errorDescription: error.response.data.message || 'An internal server error occurred. Please try again later.'
+      };
     }
   }
 };
-
 </script>
-
 
 <template>
   <div class="auth-wrapper d-flex align-center justify-center pa-4">
@@ -109,8 +107,32 @@ const handleSignUp = async () => {
               <VTextField
                   v-model="form.username"
                   autofocus
-                  label="Nom Complet"
+                  label="Pseudo"
+                  placeholder="Parcours"
+              />
+            </VCol>
+            <VCol cols="12">
+              <VTextField
+                  v-model="form.nom"
+                  autofocus
+                  label="Nom"
                   placeholder="Pierre Coussot"
+              />
+            </VCol>
+            <VCol cols="12">
+              <VTextField
+                  v-model="form.prenom"
+                  autofocus
+                  label="Prénom"
+                  placeholder="Pierre Coussot"
+              />
+            </VCol>
+            <VCol cols="12">
+              <VTextField
+                  v-model="form.numEtudiant"
+                  autofocus
+                  label="Numéro Etduiant"
+                  placeholder="123456"
               />
             </VCol>
             <!-- email -->

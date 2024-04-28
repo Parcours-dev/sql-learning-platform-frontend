@@ -49,7 +49,7 @@ export default {
             autoClose: 1500,
           });
           this.resetForm();
-          this.fetchExercices();
+          window.location.reload();
         }
       } catch (error) {
         console.error(`Error submitting exercise: ${error}`);
