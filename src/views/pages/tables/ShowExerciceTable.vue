@@ -1,6 +1,7 @@
 <script setup>
 import {defineEmits, onMounted, reactive, ref} from 'vue';
 import axios from 'axios';
+import {toast} from "vue3-toastify";
 
 const emits = defineEmits(['edit-exercice', 'delete-exercice']);
 const questions = ref([]);
@@ -31,10 +32,18 @@ const editExercice = (question) => {
 
 const deleteExercice = async (questionId) => {
   try {
-    await axios.delete(`http://localhost:3000/api/questions/${questionId}`);
+    await axios.delete(`http://localhost:3000/api/deletequestions/${questionId}`);
     fetchQuestions();  // Recharger les questions après suppression
+    toast.success('Question supprimée avec succès.', {
+      position: 'top-center',
+      autoClose: 1500,
+    });
   } catch (error) {
     console.error('Error deleting question:', error);
+    toast.error('Erreur lors de la suppression de la question.', {
+      position: 'top-center',
+      autoClose: 2500,
+    });
   }
 };
 

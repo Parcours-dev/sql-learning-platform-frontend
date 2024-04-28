@@ -8,6 +8,7 @@ onMounted(async () => {
   try {
     const response = await axios.get('http://localhost:3000/api/user-ranking');
     userRanking.value = response.data;
+    console.log("User ranking:", userRanking.value);
   } catch (error) {
     console.error("Error fetching user ranking:", error);
   }
@@ -31,7 +32,7 @@ function rankEmoji(rank) {
 <template>
   <VCard>
     <VCardTitle>Classement des élèves</VCardTitle>
-    <VCardBody>
+    <VCard>
       <VRow>
         <VCol>
           <VTable fixed-header height="430">
@@ -52,10 +53,13 @@ function rankEmoji(rank) {
           </VTable>
         </VCol>
       </VRow>
-    </VCardBody>
+    </VCard>
   </VCard>
 
 </template>
+
+
+
 
 
 <style>

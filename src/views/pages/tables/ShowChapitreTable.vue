@@ -28,8 +28,8 @@ const editChapter = (chapter) => {
 const deleteChapter = async (id) => {
   await axios.delete(`http://localhost:3000/api/deletechapitres/${id}`);
   if (response.status === 200) {
+    fetchChapters();  // Recharger les questions après suppression
     toast('Chapitre supprimé', {type: 'success'});
-    fetchChapters();
   } else {
     toast('Erreur lors de la suppression', {type: 'error'})
   }
