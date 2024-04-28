@@ -17,7 +17,7 @@ const fetchQuestions = async () => {
 
 const editExercice = (question) => {
   emits('edit-exercice', {
-    id: question.QuestionID, // Assurez-vous d'utiliser les bons noms de propriétés
+    id: question.QuestionID,  // Assurez-vous que l'ID est correctement inclus ici
     titre: question.Title,
     description: question.Description,
     correctQuery: question.CorrectQuery,
@@ -27,7 +27,6 @@ const editExercice = (question) => {
     instructions: question.Instructions,
     chapitreId: question.ChapitreID
   });
-  console.log('Editing exercise:', question);
 };
 
 const deleteExercice = async (questionId) => {

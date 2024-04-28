@@ -36,15 +36,12 @@ const soumettreChapitre = async () => {
       if (response.status === 200) {
         toast('Chapitre modifié', {type: 'success'});
         resetForm();
-        window.location.reload();
-
       }
     } else {
       response = await axios.post('http://localhost:3000/api/addchapitres', chapitre);
       if (response.status === 200) {
         toast('Chapitre ajouté', {type: 'success'});
         resetForm();
-        window.location.reload();
       }
     }
   } catch (error) {
